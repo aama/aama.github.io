@@ -1,71 +1,66 @@
 <!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <title>Aama.github.io by aama</title>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Aama.github.io : Afro-Asiatic Morphology Archive" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Aama.github.io</title>
   </head>
 
   <body>
-    <div id="container">
-      <div class="inner">
 
-        <header>
-          <h1>Aama.github.io</h1>
-          <h2>Afro-Asiatic Morphology Archive</h2>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/aama">View on GitHub</a>
+
+          <h1 id="project_title">Aama.github.io</h1>
+          <h2 id="project_tagline">Afro-Asiatic Morphology Archive</h2>
+
         </header>
+    </div>
 
-        <section id="downloads" class="clearfix">
-          <a href="https://github.com/aama" id="view-on-github" class="button"><span>View on GitHub</span></a>
-        </section>
-
-        <hr>
-
-        <section id="main_content">
-          <h3>
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3>
 <a name="welcome-to-aama---the-afro-asiatic-morphology-archive" class="anchor" href="#welcome-to-aama---the-afro-asiatic-morphology-archive"><span class="octicon octicon-link"></span></a>Welcome to AAMA - the Afro-Asiatic Morphology Archive.</h3>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+<p>Basic structure:</p>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<ul>
+<li>Term - a basic element; covers both "word" and "morph" (on which, see below)</li>
+<li>Lexeme - an abstraction that connects a collection of semantically related terms; the intuitive idea is that the "members" of a lexeme are like variations on a theme
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<ul>
+<li>"ordinary" lexemes like READ - joins (he) reads (present), (he) read (past), reading, etc.  In such cases the semantically related words are also related morphophonologically</li>
+<li>"special" cases:
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-        </section>
-
-        <footer>
-          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
-        </footer>
-
-        
-      </div>
+<ul>
+<li>suppletion - lexemes whose members are drawn from groups that are not related morphophonologically.  For example the lexeme GO contains (he) goes and (he) went - "went" comes from the archaic verb "wend" and is unrelated historically to the verb "go" (except via suppletion).  Another example is good - better.</li>
+<li>in some cases the relationship and etymology of the lexeme members may not be clear, but we put them in the same lexeme based on meaning/use. For example, pronouns are obviously similar in some sense but it's not clear what to do with them theoretically since they serve a great variety of functions in different languages.  We use a PRO lexeme in the archive for purely pragmatic purposes - it makes it easier to organize and manipulate the data.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Morph - a sub-word unit of organization; e.g. the 's' in "cats", 'en' in "wooden", 'ing' in "ranting", etc.</li>
+<li>Morpheme - basically the morphemic counterpart to a lexeme.  Just as a lexeme can be thought of as a representation of a morpho-semantic class at the word level, the notion of morpheme is intended to represent such a class at the sub-word level.  Unfortunately the term "morpheme" is commonly used with several distinct senses; for example, /s/ and /z/ may be called morphemes, but one may also talk of the "plural morpheme" (just as one may talk of the GO lexeme).  For AAMA we would have a PL morpheme linking /s/ and /z/ morphs.  Again, this is purely pragmatic; it makes it easier to organize and manipulate the data.</li>
+</ul>
+      </section>
     </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
   </body>
 </html>
