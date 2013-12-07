@@ -33,7 +33,8 @@
 <p>Basic structure:</p>
 
 <ul>
-<li>Term - a basic element; covers both "word" and "morph" (on which, see below)</li>
+<li>Term - we use "term" to refer to both "lxterms" (i.e. words) and "muterms" (i.e. morphs/morphemes).  A basic motivation is that we then get a kind of recursive structure: a term may consist of a minimal element (morph) or may be composed of other terms, so morphs, words, and multi-word structures (e.g. "has been eating") are treated equally as terms. </li>
+<li>lxterm - a word or word-like unit of organization.  An lxterm may contain multiple words, e.g. English "has gone".</li>
 <li>Lexeme - an abstraction that connects a collection of semantically related terms; the intuitive idea is that the "members" of a lexeme are like variations on a theme
 
 <ul>
@@ -47,8 +48,8 @@
 </li>
 </ul>
 </li>
-<li>Morph - a sub-word unit of organization; e.g. the 's' in "cats", 'en' in "wooden", 'ing' in "ranting", etc.</li>
-<li>Morpheme - basically the morphemic counterpart to a lexeme.  Just as a lexeme can be thought of as a representation of a morpho-semantic class at the word level, the notion of morpheme is intended to represent such a class at the sub-word level.  Unfortunately the term "morpheme" is commonly used with several distinct senses; for example, /s/ and /z/ may be called morphemes, but one may also talk of the "plural morpheme" (just as one may talk of the GO lexeme).  For AAMA we would have a PL morpheme linking /s/ and /z/ morphs.  Again, this is purely pragmatic; it makes it easier to organize and manipulate the data.</li>
+<li>muterm - a "morph", sub-word unit of organization; e.g. the 's' in "cats", 'en' in "wooden", 'ing' in "ranting", etc.</li>
+<li>Morpheme - basically the morphemic counterpart to a lexeme.  Just as a lexeme can be thought of as a representation of a morpho-semantic class at the word level, the notion of morpheme is intended to represent such a class at the sub-word level.  Unfortunately the term "morpheme" is commonly used with several distinct senses; for example, /s/ and /z/ may be called morphemes, but one may also talk of the "plural morpheme" (just as one may talk of the GO lexeme).  For AAMA we would have a PL morpheme linking /s/ and /z/ muterms (or morphs).  Again, this is purely pragmatic; it makes it easier to organize and manipulate the data.</li>
 </ul>
       </section>
     </div>
