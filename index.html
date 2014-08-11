@@ -8,13 +8,13 @@
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-    <title>Aama.github.io</title>
-  </head>
+      <title>Aama.github.io</title>
+    </head>
 
-  <body>
+    <body>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
+      <!-- HEADER -->
+      <div id="header_wrap" class="outer">
         <header class="inner">
           <a id="forkme_banner" href="https://github.com/aama">View on GitHub</a>
 
@@ -22,46 +22,186 @@
           <h2 id="project_tagline">Afro-Asiatic Morphology Archive</h2>
 
         </header>
-    </div>
+      </div>
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>
-<a name="welcome-to-aama---the-afro-asiatic-morphology-archive" class="anchor" href="#welcome-to-aama---the-afro-asiatic-morphology-archive"><span class="octicon octicon-link"></span></a>Welcome to AAMA - the Afro-Asiatic Morphology Archive.</h3>
+      <!-- MAIN CONTENT -->
+      <div id="main_content_wrap" class="outer">
+	<section id="main_content" class="inner">
+          <h3>
+	  <a name="welcome-to-aama---the-afro-asiatic-morphology-archive" class="anchor" href="#welcome-to-aama---the-afro-asiatic-morphology-archive"><span class="octicon octicon-link"></span></a>Welcome to AAMA - the Afro-Asiatic Morphology Archive.</h3>
 
-<p>Basic structure:</p>
+	  <h4>Getting Started</h4>
 
-<ul>
-<li>Term - we use "term" to refer to both "lxterms" (i.e. words) and "muterms" (i.e. morphs/morphemes).  A basic motivation is that we then get a kind of recursive structure: a term may consist of a minimal element (morph) or may be composed of other terms, so morphs, words, and multi-word structures (e.g. "has been eating") are treated equally as terms. </li>
-<li>lxterm - a word or word-like unit of organization.  An lxterm may contain multiple words, e.g. English "has gone".</li>
-<li>Lexeme - an abstraction that connects a collection of semantically related terms; the intuitive idea is that the "members" of a lexeme are like variations on a theme
+	  <h5>Overview</h5>
+	  <ol>
+	    <li><a href="#software">Install and configure required software</a></li>
+	    <li><a href="#datatools">Download data and tools</a></li>
+	    <li><a href="#rdfgen">Generate RDF data from morphological data files</a></li>
+	    <li><a href="#rdfupload">Upload RDF data to SPARQL service</a></li>
+	    <li><a href="#aamaquery">Query SPARQL service</a></li>
+	  </ol>
 
-<ul>
-<li>"ordinary" lexemes like READ - joins (he) reads (present), (he) read (past), reading, etc.  In such cases the semantically related words are also related morphophonologically</li>
-<li>"special" cases:
+	  <h5>Details</h5>
+	  <ol>
+	    <li id="software">
+	      <h6>Install and configure required software</h6>
+	      <ol>
+		<li>
+		  <h6>Git client</h6>
+		  <p>The aama project uses <a
+		  href="http://github.com">GitHub</a> to store data
+		  and tools; you'll need a git client in order to
+		  download the tools repository and the data
+		  repositories you're interested in.  Follow the
+		  instructions at <a
+		  href="https://help.github.com/articles/set-up-git#platform-mac">Set
+		  Up Git</a>.
+		  </p>
+		  <p>Note that you do not need to create a github
+		  account unless you want to edit the data or code.
+		  Instructions for how to do that are below.
+		  </p>
+		</li>
+		<li>
+		  <p>
+		    Create and switch to an <code>aama</code> directory
+		    structure on your local drive, e.g.
+		    <pre>
+~/ $ mkdir aama
+~/ $ cd aama</pre>
+		  </p>
+		</li>
+		<li>
+		  <h6>rdf2rdf.jar</h6>
+		  <p>We use this tool to convert RDF files to various
+		  formats.  <a
+		  href="http://www.l3s.de/~minack/rdf2rdf/">Download
+		  it</a> and save it someplace convenient -
+		  <code>~/aama/jar</code> is a good place.
+		  </p>
+		</li>
+		<li>
+		  <h6>Fuseki</h6>
+		  <p>
+		    Fuseki is a SPARQL server.  <a
+		    href="http://jena.apache.org/download/index.cgi">Download</a>
+		    the <code>jena-fuseki-1.1.0-distribution</code>
+		    distribution (either the zip file or the tar file)
+		    and store it in a convenient location.
+		    <code>~/aama/fuseki</code> is a good place.
+		    Follow the <a
+		    href="http://jena.apache.org/documentation/serving_data/#getting-started-with-fuseki">Getting
+		    Started with Fuseki</a> instructions to install it
+		    and verify that it runs.
+		    <b>(TODO: more detailed instructions here...)</b>
+		  </p>
+		</li>
+	      </ol>
+	    </li>
+	    <li id="datatools">
+	      <h6>Download data and tools</h6>
+	      <ul>
+		<li>
+		  <p>Take a look at the <a
+		  href="https://github.com/aama">Aama repositories</a> and
+		  decide which languages interest you.  In general we use
+		  one repository per language, but since it is not always
+		  easy to distinguish between languages and dialects,
+		  sometimes we have multiple repositories per language
+		  family, e.g. <a
+		  href="https://github.com/aama/beja-arteiga">beja-arteiga</a>,
+		  <a
+		      href="https://github.com/aama/beja-bishari">beja-bishari</a>,
+		  etc.
+		  </p>
+		  <p>Now you need to download the data to your local
+		  harddrive.  Create a <code>data</code> directory
+		  inside the <code>aama</code> directory,
+		  e.g. <code>~/aama $ mkdir data</code>. Then clone
+		  each language repository into the data directory:
+		  </p>
+		  <pre>
+~/ $ cd aama/data
+~/aama/data $ git clone https://github.com/aama/afar.git
+~/aama/data $ git clone https://github.com/aama/geez.git
+~/aama/data $ git clone https://github.com/aama/yemsa.git</pre>
+		  <p>
+		    Alternatively, you can create a personal github
+		    account, <i>fork</i> the aama repositories (copy them
+		    to your account), and then clone your repositories to
+		    your local drive.  See <a
+		    href="https://help.github.com/articles/fork-a-repo">Fork
+		    a Repo</a> for details.
+		  </p>
+		</li>
+		<li>
+		  <p>
+		    In the same <code>aama</code> directory, clone the
+		    aama <a href="https://github.com/aama/tools">tools
+		    repository</a>.
+		  </p>
+		</li>
+	      </ul>
+	      <p>
+		When you're done, your directory structure should look
+		like this (assuming you have cloned afar, geez, and
+		yemsa):
+	      </p>
+		<pre>
+   aama
+   |-data
+   |---afar
+   |---geez
+   |---yemsa
+   |-fuseki
+   |-jar
+   |-tools
+		</pre>
+	    </li>
+	    <li id="rdfgen">
+	      <h6>Generate RDF data from morphological data files</h6>
+	    </li>
+	    <li id="rdfupload">
+	      <h6>Upload RDF data to SPARQL service</h6>
+	    </li>
+	    <li id="aamaquery">
+	      <h6>Query SPARQL service</h6>
+	    </li>
+	  </ol>
 
-<ul>
-<li>suppletion - lexemes whose members are drawn from groups that are not related morphophonologically.  For example the lexeme GO contains (he) goes and (he) went - "went" comes from the archaic verb "wend" and is unrelated historically to the verb "go" (except via suppletion).  Another example is good - better.</li>
-<li>in some cases the relationship and etymology of the lexeme members may not be clear, but we put them in the same lexeme based on meaning/use. For example, pronouns are obviously similar in some sense but it's not clear what to do with them theoretically since they serve a great variety of functions in different languages.  We use a PRO lexeme in the archive for purely pragmatic purposes - it makes it easier to organize and manipulate the data.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>muterm - a "morph", sub-word unit of organization; e.g. the 's' in "cats", 'en' in "wooden", 'ing' in "ranting", etc.</li>
-<li>Morpheme - basically the morphemic counterpart to a lexeme.  Just as a lexeme can be thought of as a representation of a morpho-semantic class at the word level, the notion of morpheme is intended to represent such a class at the sub-word level.  Unfortunately the term "morpheme" is commonly used with several distinct senses; for example, /s/ and /z/ may be called morphemes, but one may also talk of the "plural morpheme" (just as one may talk of the GO lexeme).  For AAMA we would have a PL morpheme linking /s/ and /z/ muterms (or morphs).  Again, this is purely pragmatic; it makes it easier to organize and manipulate the data.</li>
-</ul>
-      </section>
-    </div>
+	  <h4>Data Schema </h4>
+	  <p>Basic structure:</p>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
+	  <ul>
+	    <li>Term - we use "term" to refer to both "lxterms" (i.e. words) and "muterms" (i.e. morphs/morphemes).  A basic motivation is that we then get a kind of recursive structure: a term may consist of a minimal element (morph) or may be composed of other terms, so morphs, words, and multi-word structures (e.g. "has been eating") are treated equally as terms. </li>
+	    <li>lxterm - a word or word-like unit of organization.  An lxterm may contain multiple words, e.g. English "has gone".</li>
+	    <li>Lexeme - an abstraction that connects a collection of semantically related terms; the intuitive idea is that the "members" of a lexeme are like variations on a theme
 
-    
+	    <ul>
+	      <li>"ordinary" lexemes like READ - joins (he) reads (present), (he) read (past), reading, etc.  In such cases the semantically related words are also related morphophonologically</li>
+	      <li>"special" cases:
 
-  </body>
-</html>
+	      <ul>
+		<li>suppletion - lexemes whose members are drawn from groups that are not related morphophonologically.  For example the lexeme GO contains (he) goes and (he) went - "went" comes from the archaic verb "wend" and is unrelated historically to the verb "go" (except via suppletion).  Another example is good - better.</li>
+		<li>in some cases the relationship and etymology of the lexeme members may not be clear, but we put them in the same lexeme based on meaning/use. For example, pronouns are obviously similar in some sense but it's not clear what to do with them theoretically since they serve a great variety of functions in different languages.  We use a PRO lexeme in the archive for purely pragmatic purposes - it makes it easier to organize and manipulate the data.</li>
+	      </ul>
+	      </li>
+	    </ul>
+	    </li>
+	    <li>muterm - a "morph", sub-word unit of organization; e.g. the 's' in "cats", 'en' in "wooden", 'ing' in "ranting", etc.</li>
+	    <li>Morpheme - basically the morphemic counterpart to a lexeme.  Just as a lexeme can be thought of as a representation of a morpho-semantic class at the word level, the notion of morpheme is intended to represent such a class at the sub-word level.  Unfortunately the term "morpheme" is commonly used with several distinct senses; for example, /s/ and /z/ may be called morphemes, but one may also talk of the "plural morpheme" (just as one may talk of the GO lexeme).  For AAMA we would have a PL morpheme linking /s/ and /z/ muterms (or morphs).  Again, this is purely pragmatic; it makes it easier to organize and manipulate the data.</li>
+	  </ul>
+	</section>
+      </div>
+
+      <!-- FOOTER  -->
+      <div id="footer_wrap" class="outer">
+	<footer class="inner">
+          <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+	</footer>
+      </div>
+
+      
+
+    </body>
+  </html>
