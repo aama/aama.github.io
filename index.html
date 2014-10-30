@@ -81,16 +81,6 @@
 		  </p>
 		</li>
 		<li>
-		  <h6>aama-edn2ttl.jar</h6>
-		  <p>The purpose of this jar file is to convert EDN-format 
-		    data files (see below) to TTL format. 
-		    You will find the file in <code>~/aama/tools/clj</code>, 
-		    where you will also find its source-code. You should
-		    move it to wherever you saved the rdf2rdf.jar file
-		    (for example in <code>~/aama/jar</code>).
-		  </p>
-		</li>
-		<li>
 		  <h6>Fuseki</h6>
 		  <p>
 		    Fuseki is a SPARQL server.  <a
@@ -115,10 +105,8 @@
 		  <p>Take a look at the <a
 		  href="https://github.com/aama">Aama repositories</a> and
 		  decide which languages interest you.  In general we use
-		  one repository per language, but since it is not always
-		  easy to distinguish between languages and dialects,
-		  sometimes we have multiple repositories per language
-		  family, e.g. <a
+		  one repository per language, or in some cases, language 
+		  variety, e.g. <a
 		  href="https://github.com/aama/beja-arteiga">beja-arteiga</a>,
 		  <a
 		      href="https://github.com/aama/beja-bishari">beja-bishari</a>,
@@ -170,15 +158,183 @@
 	    </li>
 	    <li id="ednformat">
 	      <h6>The EDN morphological data format</h6>
+
+	      <p> The normative/persistant data format is the json-like 
+		<a href="https://github.com/edn-format/edn">edn:  Extensible 
+		  Data Notation</a>. This notation has the advantage of being
+		rigorously defined system of terms (<code>:term</code>),
+		strings (<code>"string"</code>), vectors (<code>[a b c]</code> 
+		maps (<code>{a b, c d}</code> and sets 
+		(<code>#{a b c d}</code>, and thus readily
+		transformable into a RDF notation, while  at the same time 
+		providing a human-readable natural format for data-entry and 
+		inspection.
+	      </p>
+	      <p>
+		Our current EDN structure, while open to extension and revision,
+		seems to provide a natural notation for the verbal and 
+		pronominal inflectional paradigms encountered in Afroasiatic,
+		and perhaps for inflectional paradigms generally. In outline 
+		each language EDN file has the following structure (see below 
+		for explanation of terms):
+		</p>
+	      <pre>
+{
+|-:lang         %%"language name term"%%
+|-:sgpref       %%"string representing 3-character ns prefix used for the 
+|                  URI of language-specific morphosyntactic properties 
+|                  and values"%%  
+|-:schemata {	%%"associative map of each morphosyntactic property used 
+|                  in the inflectional paradigms with a vector of its values"%%
+|            }
+|-:morphemes {  %%"associative map of paradigmatic 'morphemes' with summary map
+|                  of properties"%%
+|            }
+|-:lexemes   {  %%"associative map of paradigmatic 'lexemes' with summary map 
+|                  of properties -- a rudimentary lexicon of paradigm lexemes"%%
+|            }
+|-:lxterms #{  %%"set of lexeme-derived term-clusters, each of which
+|                 has the structure:"%%
+|        {
+|--:label   
+|--:note
+|--:common     %%"map of property-value pairs which all members of the
+|                 termcluster have in common"%%
+|--:terms      %%"vector of vectors, the first of which enumerates  the
+|                  properties which differentiate individual terms, while
+|                  the others list, in order, the value of the i-th
+|                  property -- in fact, a paradigm for the common property-
+|                  value pairs of the lexeme in question"%%
+|   }
+|
+| . . .
+|
+| }
+|-:muterms #{  %%"set of morpheme-derived term-clusters, each of which
+|                 has the structure:"%%
+|   {
+|--:label   
+|--:note
+|--:common     %%"map of property-value pairs which all members of the
+|                 termcluster have in common"%%
+|--:terms      %%"vector of vectors, the first of which enumerates  the
+|                  properties which differentiate individual terms, while
+|                  the others list, in order, the value of the i-th
+|                  property -- in fact, a paradigm for the common property-
+|                  value pairs of the morpheme in question"%%
+|   }
+|
+| . . .
+|
+| }
+}
+</pre>
+             <p>
+	       Since the EDN file is the normative/persistant data format,
+	       any corrections or additions you want to make, must be made 
+	       in this file, from which you will then generate new TTL/RDF 
+	       files to be  uploaded to the SPARQL server. And in fact, as 
+	       long as you observe the above structure for EDN 
+	       files, you can create any number of  new language files,
+	       transform them to RDF format, and upload them to the
+	       SPARQL server for querying.
+	       </p>
 	    </li>
 	    <li id="rdfgen">
 	      <h6>Generate RDF data from morphological data files</h6>
+	      <p>
+		In order to convert EDN-format data files to TTL ("turtle" 
+		-- a more easily human-readable RDF format), you will
+		need the <code>aama-edn2ttl.jar</code> file.
+		You will find this file in the <code>~/aama/tools/clj</code> 
+		directory, which also contains its source-code. You should
+		move this file to wherever you saved the rdf2rdf.jar file
+		(for example in <code>~/aama/jar</code>), which in turn will
+		convert the .ttl file to the rdf-xml which is needed for
+		uploading to the Fuseki SPARQL service.
+	      </p>
+	      <p>
+		The EDN->TTL->RDF conversion can be effected by running:
+		<pre>
+~/aama $ tools/bin/edn2rdf.sh
+                </pre>
+		which will make a .ttl and .rdf file for every .edn file
+		in the data/ directory. This script presumes that the two
+		jar files have been placed in <code>~/aama/jar</code>; you
+		should edit it if the jar files have been located elsewhere.
+		(Note that the file can be edited to effect the conversion
+		on a single language, or set of languages.)
+		</p>
 	    </li>
 	    <li id="rdfupload">
 	      <h6>Upload RDF data to SPARQL service</h6>
+	      <p>
+		In order to upload the RDF files to Fuseki, you must
+		first start the server by running:
+		<pre>
+~/aama $ tools/bin/fuseki.sh
+                </pre>
+		This script, like the following, assumes that Fuseki has
+		been placed in the <code>aama/fuseki</code> directory; the
+                scripts should be edited for the correct location if this
+		is not the case. When run for the first time, you will notice 
+		that the script, which references the configuration file 
+		<code>tools/aamaconfig.ttl</code>, will have placed a, 
+		for the moment empty, data
+		sub-directory <code>aama</code> in the 
+		<code>fuseki/jena-fuseki-1.1.1/</code> directory.
+		</p>
+	      <p>
+		The following script:
+		<pre>
+~/aama $ tools/bin/aama-rdf2fuseki.sh
+                </pre>
+		will load all the rdf files in <code>aama/data</code>
+		into the Fuseki server.
+		(Note here also that the script can be edited to 
+		upload only a single language, or set of languages.)
+		</p>
+	  <p>
+	    You can test the upload with the script: 
+	    <pre>
+~/aama $ tools/bin/fuqueries.sh
+            </pre>
+	    which runs the queries <code>count-triples.rq</code>
+	    ("How many triples are there in the datastore?") and 
+	    <code>list-graphs.rq</code> ("What are the URIs of the 
+	    language subgraphs?"), from the directory 
+	    <code>tools/sparql/rq-ru</code>.
+	    If the upload has been successful, you will see an output such as
+	    the following (assuming again that afar, geez, and yemsa are the 
+	    languages which have been cloned into aama/data/).</p>
+	  <pre>
+Query: tools/sparql/rq-ru/count-triples.rq
+?sTotal
+45471
+Query: tools/sparql/rq-ru/list-graphs.rq
+?g
+&lt;http://oi.uchicago.edu/aama/2013/graph/afar>
+&lt;http://oi.uchicago.edu/aama/2013/graph/geez>
+&lt;http://oi.uchicago.edu/aama/2013/graph/yemsa>
+	  </pre>
+	  </p>
+
 	    </li>
 	    <li id="aamaquery">
 	      <h6>Query SPARQL service</h6>
+	      The SPARQL service can accessed to explore the morphological
+	      data in two interfaces:
+	      <ol>
+		<li>
+		  <h7>A Command-line Interface</h7>
+		  (Description of queries in <code>tools/sparql/rq-ru</code>
+		  and scripts in <code>tools/bin</code>.)
+		  </li>
+		<li>
+		  <h7>A Web Interface</h7>
+		  (Description of <code>webapp</code>.)
+		  </li>
+		</ol>
 	    </li>
 	  </ol>
 
