@@ -234,12 +234,12 @@
 </pre>
              <p>
 	       Since the EDN file is the normative/persistant data format,
-	       any corrections or additions you want to make, must be made 
+	       any corrections or additions you want to make must be made 
 	       in this file, from which you will then generate new TTL/RDF 
 	       files to be  uploaded to the SPARQL server. And in fact, as 
 	       long as you observe the above structure for EDN 
-	       files, you can create any number of  new language files,
-	       transform them to RDF format, and upload them to the
+	       files, you can create any number of new language files of your
+	       own, transform them to RDF format, and upload them to the
 	       SPARQL server for querying.
 	       </p>
 	    </li>
@@ -326,16 +326,26 @@ Query: tools/sparql/rq-ru/list-graphs.rq
 	    <li id="aamaquery">
 	      <h6>Query SPARQL service</h6>
 	      The SPARQL service can accessed to explore the morphological
-	      data in two interfaces:
+	      data via three interfaces:
 	      <ol>
 		<li>
-		  <h7>A Command-line Interface</h7>
+		  <h7>An AAMA command-line interface</h7>
+		 <p>
 		  (Description of queries in <code>tools/sparql/rq-ru</code>
-		  and scripts in <code>tools/bin</code>.)
+		  and scripts in <code>tools/bin</code>.)</p>
 		  </li>
 		<li>
-		  <h7>A Web Interface</h7>
-		  (Description of <code>webapp</code>.)
+		  <h7>A webapp interface specifically oriented to AAMA data</h7>
+		  <p>(Description of <code>webapp</code>.)</p>
+		  </li>
+		<li>
+		  <h7>The Apache-Jena Fuseki interface </h7>
+		  <p>
+		    This can be seen at localhost:3030 after the launching
+		  of Fuseki. Consult 
+		  <a
+		    href="http://jena.apache.org/documentation/serving_data/#getting-started-with-fuseki">Getting Started with Fuseki</a>
+		  </p>
 		  </li>
 		</ol>
 	    </li>
