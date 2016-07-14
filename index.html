@@ -167,7 +167,7 @@
 		strings (<code>"string"</code>), vectors 
 		(<code>[a b c d]</code> maps (<code>{a b, c d}</code> and sets 
 		(<code>#{a b c d}</code>, and thus reliably transformable 
-		into a consistant RDF notation, while  at the same time 
+		into a consistent RDF notation, while  at the same time 
 		providing a human-readable natural format for data-entry and 
 		inspection.
 	      </p>
@@ -340,12 +340,13 @@ Query: tools/sparql/rq-ru/list-graphs.rq
 		  <p>A preliminary menu-driven web application, written in Clojure, which demonstrates 
 		  use of SPARQL query templates for display and comparison of paradigms and 
 		  morpho-syntactic properties and categories, can be downloaded from
-		  	<a href="https://github.com/gbgg/webapp">its Github repository</a>.
+		  	<a href="https://github.com/aama/webapp">its Github repository</a>.
 		  </p>
 		  <p>The application presupposes that the Fuseki AAMA data server has been launched
 		  	through the invocation of the shell-script <code>bin/fuseki.sh</code>. At present 
-		  	the application needs to be run through the command <code>lein ring server</code> using 
-		  	<a href="http://leiningen.org">Leiningen</a>
+		  	the application can be run either through the command <code>lein ring server</code> using 
+		  	<a href="http://leiningen.org">Leiningen</a> or as a Java application from the jar file to be found
+			in the webapp directory.
 		  </p>
 		  </li>
 		<li>
