@@ -332,8 +332,19 @@ Query: tools/sparql/rq-ru/list-graphs.rq
 		<li>
 		  <h7>An AAMA command-line interface</h7>
 		 <p>
-		  (Description of queries in <code>tools/sparql/rq-ru</code>
-		  and scripts in <code>tools/bin</code>.)</p>
+		  (Some sample queries in <code>tools/sparql/rq-ru</code>
+		  and scripts in <code>tools/bin</code>. An earlier version exists with an extensive command-line application written in Perl.)</p>
+		  </li>
+		<li>
+		  <h7>The Apache-Jena Fuseki interface </h7>
+		  <p>
+		    You can see this on your browser at 
+		    <code>localhost:3030</code> after you launch Fuseki. 
+		    SPARQL queries can be run directly against the datastore in the Fuseki Control Panel (select the <code>/aama</code>
+		    dataset when prompted). Consult 
+		  <a
+		    href="http://jena.apache.org/documentation/serving_data/#getting-started-with-fuseki">Getting Started with Fuseki</a>
+		  </p>
 		  </li>
 		<li>
 		  <h7>A web application specifically oriented to AAMA data</h7>
@@ -344,20 +355,15 @@ Query: tools/sparql/rq-ru/list-graphs.rq
 		  </p>
 		  <p>The application presupposes that the Fuseki AAMA data server has been launched
 		  	through the invocation of the shell-script <code>bin/fuseki.sh</code>. At present 
-		  	the application can be run either through the command <code>lein ring server</code> using 
-		  	<a href="http://leiningen.org">Leiningen</a> or as a Java application from the jar file to be found
-			in the webapp directory.
+		  	the application can be run in the application directory, either
+		    <ol><li>from the downloaded sorce-code, with the command <code>lein ring server</code> using 
+		  	<a href="http://leiningen.org">Leiningen</a></li>
+		        <li> or as a Java application from the jar file to be found inn the webapp directory, with
+			  the command <code>java -jar aama-webapp.jar</code>.</li>
+			</ol>
 		  </p>
-		  </li>
-		<li>
-		  <h7>The Apache-Jena Fuseki interface </h7>
-		  <p>
-		    You can see this on your browser at 
-		    <code>localhost:3030</code> after you launch Fuseki. 
-		    Consult 
-		  <a
-		    href="http://jena.apache.org/documentation/serving_data/#getting-started-with-fuseki">Getting Started with Fuseki</a>
-		  </p>
+		  <p> In either case, in order to run the application must be initialized by generating/loading application-specific menu and index files,
+		    following the steps detailed in the <code>Help > Initialize Application</code>  menu option.
 		  </li>
 		</ol>
 	    </li>
