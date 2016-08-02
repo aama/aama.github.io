@@ -36,11 +36,12 @@
 	  <ol>
 	    <li><a href="#software">Install and configure required software</a></li>
 	    <li><a href="#datatools">Download data and tools</a></li>
-	    <li><a href="#ednformat">The EDN morphological data format</a></li>
+	    <li><a href="#ednformat">The EDN format for morphological data</a></li>
 	    <li><a href="#rdfgen">Generate RDF data from morphological data files</a></li>
 	    <li><a href="#rdfupload">Upload RDF data to SPARQL service</a></li>
 	    <li><a href="#aamaquery">Query SPARQL service</a></li>
 	  </ol>
+	    <p><a href="#datastructure">Appendix: The Data Schema</a></p>
 
 	  <h5>Details</h5>
 	  <ol>
@@ -84,18 +85,18 @@
 		<li>
 		  <h6>Fuseki</h6>
 		  <p>
-		    Fuseki is a SPARQL server.  <a
+		    Fuseki is the SPARQL server we are using to query the dataset.  <a
 		    href="http://jena.apache.org/download/index.cgi">Download</a>
-		    the <code>jena-fuseki-1.1.0-distribution</code>
+		    the <code>apache-jena-fuseki-2.4.0-distribution</code>
 		    distribution (either the zip file or the tar file)
 		    and store it in a convenient location.
 		    <code>~/aama/fuseki</code> is a good place.
-		    Follow the <a
-		    href="http://jena.apache.org/documentation/serving_data/#getting-started-with-fuseki">Getting
-		    Started with Fuseki</a> instructions to install it
-		    and verify that it runs.
-		    <b>(TODO: more detailed instructions here...)</b>
-		  </p>
+		   The following steps will install the <code>aama</code> dataset
+		    and verify that it runs. Futher information about Fuseki, 
+		    as well as information and links about RDF linked data and
+		    the SPARQL query language can be found at the
+		    <a href="http://jena.apache.org/index.html"> Apache Jena</a> 
+		    site. </p>
 		</li>
 	      </ol>
 	    </li>
@@ -137,7 +138,13 @@
 		  <p>
 		    In the same <code>aama</code> directory, clone the
 		    aama <a href="https://github.com/aama/tools">tools
-		    repository</a>.
+		    repository</a>:
+		    <pre>
+~/aama $ git clone https://github.com/aama/tools.git</pre>
+		    and the <a href="https://github.com/aama/webapp"> web
+		      application</a>:
+		    <pre>
+~/aama $ git clone https://github.com/aama/webapp.git</pre>
 		  </p>
 		</li>
 	      </ul>
@@ -155,10 +162,11 @@
    |-fuseki
    |-jar
    |-tools
+   |-webapp
 		</pre>
 	    </li>
 	    <li id="ednformat">
-	      <h6>The EDN morphological data format</h6>
+	      <h6>The EDN format for morphological data</h6>
 
 	      <p> The normative/persistant data format is the json-like 
 		<a href="https://github.com/edn-format/edn">edn:  Extensible 
@@ -172,67 +180,11 @@
 		inspection.
 	      </p>
 	      <p>
-		Our current EDN structure, while open to extension and revision,
+		Our current EDN structure (cf. <a href="#datastructure">below</a>)
+		while open to extension and revision,
 		seems to provide a natural notation for the verbal and 
 		pronominal inflectional paradigms encountered in Afroasiatic,
-		and perhaps for inflectional paradigms generally. In outline 
-		each language EDN file has the following structure (see any of 
-		the language .edn files for a concrete example, and see below 
-		for explanation of terms):
-		</p>
-	      <pre>
-
-{
-|-:lang         %%"language name term"%%
-|-:sgpref       %%"string representing 3-character ns prefix used for the 
-|                  URI of language-specific morphosyntactic properties 
-|                  and values"%%  
-|-:schemata {	%%"associative map of each morphosyntactic property used 
-|                  in the inflectional paradigms with a vector of its values"%%
-|            }
-|-:morphemes {  %%"associative map of paradigmatic 'morphemes' with summary map
-|                  of properties"%%
-|            }
-|-:lexemes   {  %%"associative map of paradigmatic 'lexemes' with summary map 
-|                  of properties -- a rudimentary lexicon of paradigm lexemes"%%
-|            }
-|-:lxterms #{  %%"set of lexeme-derived term-clusters, each of which
-|                 has the structure:"%%
-|        {
-|--:label   
-|--:note
-|--:common     %%"map of property-value pairs which all members of the
-|                 termcluster have in common"%%
-|--:terms      %%"vector of vectors, the first of which enumerates  the
-|                  properties which differentiate individual terms, while
-|                  the others list, in order, the value of the i-th
-|                  property -- in fact, a paradigm for the distinct property-
-|                  value pairs of the lexeme in question"%%
-|   }
-|
-| . . .
-|
-| }
-|-:muterms #{  %%"set of morpheme-derived term-clusters, each of which
-|                 has the structure:"%%
-|   {
-|--:label   
-|--:note
-|--:common     %%"map of property-value pairs which all members of the
-|                 termcluster have in common"%%
-|--:terms      %%"vector of vectors, the first of which enumerates  the
-|                  properties which differentiate individual terms, while
-|                  the others list, in order, the value of the i-th
-|                  property -- in fact, a paradigm for the distinct property-
-|                  value pairs of the morpheme in question"%%
-|   }
-|
-| . . .
-|
-| }
-}
-
-</pre>
+		and perhaps for inflectional paradigms generally. </p>
              <p>
 	       Since the EDN file is the normative/persistant data format,
 	       any corrections or additions you want to make must be made 
@@ -260,14 +212,15 @@
 	      <p>
 		The EDN->TTL->RDF conversion can be effected by running:
 		<pre>
-~/aama $ tools/bin/edn2rdf.sh
+~/aama $ tools/bin/aama-edn2rdf.sh "data/*"
                 </pre>
 		which will make a .ttl and .rdf file for every .edn file
 		in the data/ directory. This script presumes that the two
 		jar files have been placed in <code>~/aama/jar</code>; you
 		should edit it if the jar files have been located elsewhere.
-		(Note that the file can be edited to effect the conversion
-		on a single language, or set of languages.)
+		(The conversion of a single language file can be effected by
+		substituting, e.g., <code>data/oromo</code> for 
+		<code>"data/*"</code>.) 
 		</p>
 	    </li>
 	    <li id="rdfupload">
@@ -279,24 +232,24 @@
 ~/aama $ tools/bin/fuseki.sh
                 </pre>
 		This script, like the following, assumes that Fuseki has
-		been placed in the <code>aama/fuseki</code> directory; the
-                scripts should be edited for the correct location if this
+		been placed in the <code>aama/fuseki</code> directory, and that
+		the file <code>tools/aamaconfig.ttl</code> has been copied
+		to that directory; the
+                scripts should be edited for the correct locations if this
 		is not the case. When run for the first time, you will notice 
 		that the script, which references the configuration file 
 		<code>tools/aamaconfig.ttl</code>, will have placed a, 
 		for the moment empty, data
 		sub-directory <code>aama</code> in the 
-		<code>fuseki/jena-fuseki-1.1.1/</code> directory.
+		<code>fuseki/apache-jena-fuseki-2.4.0/</code> directory.
 		</p>
 	      <p>
 		The following script:
 		<pre>
-~/aama $ tools/bin/aama-rdf2fuseki.sh
+ ~/aama $ tools/bin/aama-rdf2fuseki.sh "data/*"
                 </pre>
 		will load all the rdf files in <code>aama/data</code>
 		into the Fuseki server.
-		(Note here also that the script can be edited to 
-		upload only a single language, or set of languages.)
 		</p>
 	  <p>
 	    You can test the upload with the script: 
@@ -314,7 +267,7 @@
 	  <pre>
 Query: tools/sparql/rq-ru/count-triples.rq
 ?sTotal
-45471
+33871
 Query: tools/sparql/rq-ru/list-graphs.rq
 ?g
 &lt;http://oi.uchicago.edu/aama/2013/graph/afar>
@@ -333,47 +286,127 @@ Query: tools/sparql/rq-ru/list-graphs.rq
 		  <h7>An AAMA command-line interface</h7>
 		 <p>
 		  (Some sample queries in <code>tools/sparql/rq-ru</code>
-		  and scripts in <code>tools/bin</code>. An earlier version exists with an extensive command-line application written in Perl.)</p>
+		  and scripts in <code>tools/bin</code>. An earlier version exists
+		  with an extensive command-line application written in Perl.)</p>
 		  </li>
 		<li>
-		  <h7>The Apache-Jena Fuseki interface </h7>
+		  <h7>The Apache Jena Fuseki interface </h7>
 		  <p>
 		    You can see this on your browser at 
 		    <code>localhost:3030</code> after you launch Fuseki. 
-		    SPARQL queries can be run directly against the datastore in the Fuseki Control Panel (select the <code>/aama</code>
-		    dataset when prompted). Consult 
-		  <a
-		    href="http://jena.apache.org/documentation/serving_data/#getting-started-with-fuseki">Getting Started with Fuseki</a>
+		    SPARQL queries, for example, those contained in the <code>
+		      tools/sparql/rq-ru/</code> directory can be run directly 
+		    against the datastore 
+		    in the Fuseki Control Panel on the 
+		    <code>localhost:3030/dataset.html</code> page
+		    (select the <code>/aama</code>
+		    dataset when prompted). 
 		  </p>
 		  </li>
 		<li>
 		  <h7>A web application specifically oriented to AAMA data</h7>
-		  <p>A preliminary menu-driven web application, written in Clojure, which demonstrates 
-		  use of SPARQL query templates for display and comparison of paradigms and 
-		  morpho-syntactic properties and categories, can be downloaded from
-		  	<a href="https://github.com/aama/webapp">its Github repository</a>.
+		  <p>A preliminary menu-driven web application, will have
+		    already been downloaded following the instructions outlined 
+		    above in <a href="#datatools">Download data and tools</a>.
+		    This application demonstrates the
+		    use of SPARQL query templates for display and comparison of 
+		    paradigms and morphosyntactic properties and categories. 
+		    It is written in <a href="http://clojure.org/index">Clojure</a>,
+		    a LISP dialect with a very involved
+		    community of users who have created a formidable,
+		    and constantly growing set of libraries. However essentially
+		    the same functionality could be achieved by any software
+		    framework which can provide a web interface for handling
+		    SPARQL queries submitted to an  RDF datastore,
 		  </p>
-		  <p>The application presupposes that the Fuseki AAMA data server has been launched
-		  	through the invocation of the shell-script <code>bin/fuseki.sh</code>. At present 
-		  	the application can be run in the application directory, either
-		    <ol><li>from the downloaded sorce-code, with the command <code>lein ring server</code> using 
+		  <p>The application presupposes that the Fuseki AAMA data server
+		    has been launched through the invocation of the shell-script 
+		    <code>bin/fuseki.sh</code>. At present 
+		    the application can be run in the webapp directory, either
+		    <ol><li>from the downloaded sorce-code, with the command 
+			<code>lein ring server</code> using 
 		  	<a href="http://leiningen.org">Leiningen</a></li>
-		        <li> or as a Java application from the jar file to be found in the webapp directory, with
+		        <li> or as a Java application from the jar file to be 
+			  found in the webapp directory, with
 			  the command <code>java -jar aama-webapp.jar</code>.</li>
 			</ol>
 		  </p>
-		  <p> In either case, the application can be seen on the browser at <code>localhost:3000</code>. 
-		    Note that, in order to run, the application must be initialized in either case by generating/loading 
+		  <p> In either case, the application will be seen on the browser 
+		    at <code>localhost:3000</code>. 
+		    Note that, in order to run, the application must be initialized 
+		    in either case by generating/loading 
 		    application-specific menu and index files,
-		    following the steps detailed in the <code>Help > Initialize Application</code>  menu option.
+		    following the steps detailed in the 
+		    <code>Help > Initialize Application</code>  menu option.
 		  </li>
 		</ol>
 	    </li>
 	  </ol>
 
-	  <h4>Data Schema </h4>
+	  <h4 id="dataschema"> Appendix: The Data Schema </h4>
 	  <p>Basic structure:</p>
+	      <p>In outline 
+		each language EDN file has the following structure (see any of 
+		the language .edn files for a concrete example, and see below 
+		for explanation of terms):
+		</p>
+	      <pre>
 
+{
+|-:lang         <em>"language name"</em>
+|-:sgpref       <em>"string representing 3-character ns prefix used for the 
+|                  URI of language-specific morphosyntactic properties 
+|                  and values"</em>
+|-:datasource   <em>"bibliographic source(s) for the data in the file"</em>
+|-:geodemoURL   <em>"on-line geo-/demo-graphical information about the language"</em>
+|-:geodemoTXT   <em>"short textual summary of geo-/demographcal information"</em>
+|-:schemata {	<em>"associative map of each morphosyntactic property used 
+|                  in the inflectional paradigms with a vector of its values"</em>
+|            }
+|-:morphemes {  <em>"associative map of paradigmatic 'morphemes' with summary map
+|                  of properties"</em>
+|            }
+|-:lexemes   {  <em>"associative map of paradigmatic 'lexemes' with summary map 
+|                  of properties -- a rudimentary lexicon of paradigm lexemes"</em>
+|            }
+|-:lxterms   [  <em>"label-ordered vector of lexeme-derived term-clusters/paradigms,
+                    each of which has the structure:"</em>
+|   {
+|----:label     <em>"descriptive label assigned to the term-cluster at data-entry"</em>
+|----:note
+|----:common    <em>"map of property-value pairs which all members of the
+|                 termcluster have in common"</em>
+|----:terms     <em>"vector of vectors, the first of which enumerates  the
+|                  properties which differentiate individual terms, while
+|                  the others list, in order, the value of the i-th
+|                  property -- in fact, a paradigm for the distinct property-
+|                  value pairs of the lexeme in question"</em>
+|   }
+|
+| . . .
+|
+| }
+|-:muterms #{   <em>"label-ordered vector of morpheme-derived 
+		  term-clusters/paradigms, each of which has the structure:"</em>
+|   {
+|----:label     <em>"descriptive label assigned to the term-cluster at data-entry"</em>
+|----:note
+|----:common    <em>"map of property-value pairs which all members of the
+|                 termcluster have in common"</em>
+|----:terms     <em>"vector of vectors, the first of which enumerates  the
+|                  properties which differentiate individual terms, while
+|                  the others list, in order, the value of the i-th
+|                  property -- in fact, a paradigm for the distinct property-
+|                  value pairs of the morpheme in question"</em>
+|   }
+|
+| . . .
+|
+| }
+}
+
+</pre>
+	      <p>Terminology</p>
 	  <ul>
 	    <li>Term - we use "term" to refer to both "lxterms" (i.e. words) and "muterms" (i.e. morphs/morphemes).  A basic motivation is that we then get a kind of recursive structure: a term may consist of a minimal element (morph) or may be composed of other terms, so morphs, words, and multi-word structures (e.g. "has been eating") are treated equally as terms. </li>
 	    <li>lxterm - a word or word-like unit of organization.  An lxterm may contain multiple words, e.g. English "has gone".</li>
