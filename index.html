@@ -88,7 +88,8 @@
 		    Fuseki is the SPARQL server we are using to query the dataset.  <a
 		    href="http://jena.apache.org/download/index.cgi">Download</a>
 		    the <code>apache-jena-fuseki-2.4.0-distribution</code>
-		    distribution (either the zip file or the tar file)
+		    distribution (either the zip file or the tar file; NB, make
+		    sure your Java JDK is up-to-date with the download)
 		    and store it in a convenient location.
 		    <code>~/aama/fuseki</code> is a good place.
 		   The following steps will install the <code>aama</code> dataset
@@ -231,10 +232,11 @@
 		<pre>
 ~/aama $ tools/bin/fuseki.sh
                 </pre>
-		This script, like the following, assumes that Fuseki has
+		This script, like the following, assumes that the current version
+		of Fuseki, for the moment <code>apache-jena-fuseki-2.4.0</code>, has
 		been placed in the <code>aama/fuseki</code> directory, and that
 		the file <code>tools/aamaconfig.ttl</code> has been copied
-		to that directory; the
+		to the Fuseki version directory; the
                 scripts should be edited for the correct locations if this
 		is not the case. When run for the first time, you will notice 
 		that the script, which references the configuration file 
