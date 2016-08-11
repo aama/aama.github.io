@@ -34,6 +34,7 @@
 
 	  <h5>Overview</h5>
 	  <ol>
+	    <li><a href="#project">The AAMA Project</a></li>
 	    <li><a href="#software">Install and configure required software</a></li>
 	    <li><a href="#datatools">Download data and tools</a></li>
 	    <li><a href="#ednformat">The EDN format for morphological data</a></li>
@@ -41,12 +42,71 @@
 	    <li><a href="#rdfupload">Upload RDF data to SPARQL service</a></li>
 	    <li><a href="#aamaquery">Query SPARQL service</a></li>
 	  </ol>
-	    <p><a href="#datastructure">Appendix: The Data Schema</a></p>
+	    <p><a href="#datastructure">Appendix 1: The Data Schema</a></p>
+	    <p><a href="#datafiles">Appendix 2: The Data Files</a></p>
 
 	  <h5>Details</h5>
+
 	  <ol>
+	    <li id="project"> 
+	      <h5>Introduction: The AAMA Project</h5>
+	      <p>The purpose of the AAMA Project is to create a morphological
+		archive whose data can be:
+		<ul>
+		  <li>curated (edited/created) -- and hopefully shared!</li>
+		  <li>inspected</li>
+		  <li>manipulated</li>
+		  <li>queried</li>
+		</ul>
+		on individual browsers.</p> 
+	      <p>In the first instance
+		the archive should  make available and comparable the major 
+		morphological paradigms of some forty Cushitic and Omotic languages,
+		and in the longer term help situate the morphologies of these 
+		two language families within Afroasiatic. In the longer run
+		we hope also that the archive and its accompanying software
+		may serve as a tool for exploration of typology and structure 
+		of the form of linguistic organization known as the paradigm.
+	      </p>
+	      <p>As presently configured tha AAMA project consists of 
+		three modules:</p>
+	      <ol>
+		<li><h6>Data Files</h6>
+		  <p>An open-ended archive of <a href="#datafiles">data files</a> in 
+		    <a href="#datastructure">edn</a> format.
+		    Presently archived files cover the verbal and pronominal
+		    morphological paradigms of thirty-three Cushitic and
+		    six Omotic languages. In addition there are files
+		    with parallel data covering
+		    five Semitic languages and two varieties of Egyptian --
+		    at this point there is no data from either Berber or Chadic.
+		    The intention behind the project is to extend the scope
+		    of the archive to include eventually as complete a 
+		    representation  as possible of all branches of 
+		    the Afroasiatic language complex.
+		    <em>Corrections to the existing files and submission, for on-line
+		    sharing, of new language files are hereby sollicited!</em></p>
+		</li>
+		<li><h6>RDF Datastore</h6>
+		  <p>Pending an on-line publicly 
+		    accessible RDF datastore, interested users
+		    can set up datastores on their individual computers. Instructions
+		    are given below for setting up an RDF server on an individual 
+		    machine, and loading the data into it.</p>
+		</li>
+		<li><h6>Query/Display Interface</h6>
+		  <p>There is an experimental web application for 
+		    querying and displaying data from the archive. 
+		    Below we give instructions for 
+		    downloading, launching, and initializing it. More details 
+		    are on the app are available in the aama/webapp 
+		    <a href="https://github.com/aama/webapp/blob/master/README.md">
+		      README</a> and the app <code>Help</code> menu.<p>
+		</li>
+	      </ol>
+	    </li>
 	    <li id="software">
-	      <h6>Install and configure required software</h6>
+	      <h5>Install and configure required software</h5>
 	      <ol>
 		<li>
 		  <h6>Git client</h6>
@@ -102,7 +162,7 @@
 	      </ol>
 	    </li>
 	    <li id="datatools">
-	      <h6>Download data and tools</h6>
+	      <h5>Download data and tools</h5>
 	      <ul>
 		<li>
 		  <p>Take a look at the <a
@@ -167,7 +227,7 @@
 		</pre>
 	    </li>
 	    <li id="ednformat">
-	      <h6>The EDN format for morphological data</h6>
+	      <h5>The EDN format for morphological data</h5>
 
 	      <p> The normative/persistant data format is the json-like 
 		<a href="https://github.com/edn-format/edn">edn:  Extensible 
@@ -198,7 +258,7 @@
 	       </p>
 	    </li>
 	    <li id="rdfgen">
-	      <h6>Generate RDF data from morphological data files</h6>
+	      <h5>Generate RDF data from morphological data files</h5>
 	      <p>
 		In order to convert EDN-format data files to TTL ("turtle" 
 		-- a more easily human-readable RDF format), you will
@@ -225,7 +285,7 @@
 		</p>
 	    </li>
 	    <li id="rdfupload">
-	      <h6>Upload RDF data to SPARQL service</h6>
+	      <h5>Upload RDF data to SPARQL service</h5>
 	      <p>
 		In order to upload the RDF files to Fuseki, you must
 		first start the server by running:
@@ -280,24 +340,24 @@ Query: tools/sparql/rq-ru/list-graphs.rq
 
 	    </li>
 	    <li id="aamaquery">
-	      <h6>Query SPARQL service</h6>
-	      The SPARQL service can accessed to explore the morphological
+	      <h5>Query SPARQL service</h5>
+	      A SPARQL service can accessed to explore the morphological
 	      data via three interfaces:
 	      <ol>
 		<li>
-		  <h7>An AAMA command-line interface</h7>
+		  <h6>An AAMA command-line interface</h6>
 		 <p>
 		  (Some sample queries in <code>tools/sparql/rq-ru</code>
 		  and scripts in <code>tools/bin</code>. An earlier version exists
 		  with an extensive command-line application written in Perl.)</p>
 		  </li>
 		<li>
-		  <h7>The Apache Jena Fuseki interface </h7>
+		  <h6>The Apache Jena Fuseki interface </h6>
 		  <p>
 		    You can see this on your browser at 
 		    <code>localhost:3030</code> after you launch Fuseki. 
 		    SPARQL queries, for example, those contained in the <code>
-		      tools/sparql/rq-ru/</code> directory can be run directly 
+		      tools/sparql/rq-ru/</code> directory, can be run directly 
 		    against the datastore 
 		    in the Fuseki Control Panel on the 
 		    <code>localhost:3030/dataset.html</code> page
@@ -306,7 +366,7 @@ Query: tools/sparql/rq-ru/list-graphs.rq
 		  </p>
 		  </li>
 		<li>
-		  <h7>A web application specifically oriented to AAMA data</h7>
+		  <h6>A web application specifically oriented to AAMA data</h6>
 		  <p>A preliminary menu-driven web application, will have
 		    already been downloaded following the instructions outlined 
 		    above in <a href="#datatools">Download data and tools</a>.
@@ -345,7 +405,7 @@ Query: tools/sparql/rq-ru/list-graphs.rq
 	    </li>
 	  </ol>
 
-	  <h4 id="dataschema"> Appendix: The Data Schema </h4>
+	  <h4 id="dataschema"> Appendix 1: The Data Schema </h4>
 	  <p>Basic structure:</p>
 	      <p>In outline 
 		each language EDN file has the following structure (see any of 
@@ -408,7 +468,58 @@ Query: tools/sparql/rq-ru/list-graphs.rq
 }
 
 </pre>
-	      <p>Terminology</p>
+	  <h4 id="datafiles"> Appendix 2: The Data Files </h4>
+	  <p>At present the following data files are available:</p>
+	  <ul>
+	    <li><a href="https://github.com/aama/afar">Afar</a></li>
+<li><a href="https://github.com/aama/akkadian-ob">Akkadian-ob</a></li>
+<li><a href="https://github.com/aama/alaaba">Alaaba</a></li>
+<li><a href="https://github.com/aama/arabic">Arabic</a></li>
+<li><a href="https://github.com/aama/arbore">Arbore</a></li>
+<li><a href="https://github.com/aama/awngi">Awngi</a></li>
+<li><a href="https://github.com/aama/bayso">Bayso</a></li>
+<li><a href="https://github.com/aama/beja-arteiga">Beja-arteiga</a></li>
+<li><a href="https://github.com/aama/beja-atmaan">Beja-atmaan</a></li>
+<li><a href="https://github.com/aama/beja-beniamer">Beja-beniamer</a></li>
+<li><a href="https://github.com/aama/beja-bishari">Beja-bishari</a></li>
+<li><a href="https://github.com/aama/beja-hadendowa">Beja-hadendowa</a></li>
+<li><a href="https://github.com/aama/bilin">Bilin</a></li>
+<li><a href="https://github.com/aama/boni-jara">Boni-jara</a></li>
+<li><a href="https://github.com/aama/boni-kijee-bala">Boni-kijee-bala</a></li>
+<li><a href="https://github.com/aama/boni-kilii">Boni-kilii</a></li>
+<li><a href="https://github.com/aama/burji">Burji</a></li>
+<li><a href="https://github.com/aama/burunge">Burunge</a></li>
+<li><a href="https://github.com/aama/coptic-sahidic">Coptic-sahidic</a></li>
+<li><a href="https://github.com/aama/dahalo">Dahalo</a></li>
+<li><a href="https://github.com/aama/dhaasanac">Dhaasanac</a></li>
+<li><a href="https://github.com/aama/dizi">Dizi</a></li>
+<li><a href="https://github.com/aama/egyptian-middle">Egyptian-middle</a></li>
+<li><a href="https://github.com/aama/elmolo">Elmolo</a></li>
+<li><a href="https://github.com/aama/gawwada">Gawwada</a></li>
+<li><a href="https://github.com/aama/gedeo">Gedeo</a></li>
+<li><a href="https://github.com/aama/geez">Geez</a></li>
+<li><a href="https://github.com/aama/hadiyya">Hadiyya</a></li>
+<li><a href="https://github.com/aama/hebrew">Hebrew</a></li>
+<li><a href="https://github.com/aama/iraqw">Iraqw</a></li>
+<li><a href="https://github.com/aama/kambaata">Kambaata</a></li>
+<li><a href="https://github.com/aama/kemant">Kemant</a></li>
+<li><a href="https://github.com/aama/khamtanga">Khamtanga</a></li>
+<li><a href="https://github.com/aama/koorete">Koorete</a></li>
+<li><a href="https://github.com/aama/maale">Maale</a></li>
+<li><a href="https://github.com/aama/oromo">Oromo</a></li>
+<li><a href="https://github.com/aama/rendille">Rendille</a></li>
+<li><a href="https://github.com/aama/saho">Saho</a></li>
+<li><a href="https://github.com/aama/shinassha">Shinassha</a></li>
+<li><a href="https://github.com/aama/sidaama">Sidaama</a></li>
+<li><a href="https://github.com/aama/somali-standard">Somali-standard</a></li>
+<li><a href="https://github.com/aama/syriac">Syriac</a></li>
+<li><a href="https://github.com/aama/tsamakko">Tsamakko</a></li>
+<li><a href="https://github.com/aama/wolaytta">Wolaytta</a></li>
+<li><a href="https://github.com/aama/yaaku">Yaaku</a></li>
+<li><a href="https://github.com/aama/yemsa">Yemsa</a></li>
+	  </ul>
+	  <hr>
+	      <p>Terminology Notes</p>
 	  <ul>
 	    <li>Term - we use "term" to refer to both "lxterms" (i.e. words) and "muterms" (i.e. morphs/morphemes).  A basic motivation is that we then get a kind of recursive structure: a term may consist of a minimal element (morph) or may be composed of other terms, so morphs, words, and multi-word structures (e.g. "has been eating") are treated equally as terms. </li>
 	    <li>lxterm - a word or word-like unit of organization.  An lxterm may contain multiple words, e.g. English "has gone".</li>
