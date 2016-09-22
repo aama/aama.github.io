@@ -407,6 +407,42 @@ Query: tools/sparql/rq-ru/list-graphs.rq
 		  </li>
 		</ol>
 	    </li>
+	    <li id="aamaupdate">
+	      <h5>Remote Data and Webapp Update</h5>
+	      <p>AAMA is an on-going project. Its data is constantly being updated,
+		corrected, and added-to; the accompanying webb application
+		is in a process of constant revision. 
+		To ensure that your data and web app are up-to-date you should
+		periodically run the following shell scripts, which assume that
+		git has been installed and that the data and webapp have been
+		cloned from the master version in the manner outlined above.
+	      </p>
+	      <p>The following script:
+		<pre>
+ ~/aama $ tools/bin/aama-pulldata.sh data/[LANG]
+                </pre>
+		will update the edn language data file in the
+		data/[LANG] directory.
+	      </p>
+	      <p>While:
+		<pre>
+ ~/aama $ tools/bin/aama-pulldata.sh "data/*"
+                </pre>
+		will update the edn language data files in all the
+		data/[LANG] directories.
+	      </p>
+	      <p>Once revised (or new) edn files have been installed, remember
+		to run the appropriate scripts to transform them to ttl and rdf
+		format and to load them into the SPARQL server, as outlined above.
+	      </p>
+	      <p>
+		Finally, the script:
+		<pre>
+ ~/aama $ tools/bin/aama-pullwebapp.sh 
+                </pre>
+		will update he files of the web applicagtion.
+	      </p>
+	    </li>
 	  </ol>
 
 	  <h4 id="dataschema"> Appendix 1: The Data Schema </h4>
