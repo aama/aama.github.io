@@ -316,7 +316,15 @@
  ~/aama $ tools/bin/aama-rdf2fuseki.sh "data/*"
                 </pre>
 		will load all the rdf files in <code>aama/data</code>
-		into the Fuseki server.
+		into the Fuseki server. 
+		</p>
+	      <p>
+		[NOTE: If the remote repository already
+		has data loaded into its Fuseki server, the following script:
+		<pre>
+ ~/aama $ tools/bin/fudelete.sh "data/*"
+                </pre>
+		must be run first.]
 		</p>
 	  <p>
 	    You can test the upload with the script: 
