@@ -484,7 +484,7 @@ Query: tools/sparql/rq-ru/list-graphs.rq
 |-:lexemes   {  <em>"associative map of paradigmatic 'lexemes' with summary map 
 |                  of properties -- a rudimentary lexicon of paradigm lexemes"</em>
 |            }
-|-:lxterms   [  <em>"label-ordered vector of lexeme-derived term-clusters/paradigms,
+|-:termclusters   [  <em>"label-ordered vector of lexeme-derived term-clusters/paradigms,
                     each of which has the structure:"</em>
 |   {
 |----:label     <em>"descriptive label assigned to the term-cluster at data-entry"</em>
@@ -501,30 +501,14 @@ Query: tools/sparql/rq-ru/list-graphs.rq
 | . . .
 |
 | }
-|-:muterms #{   <em>"label-ordered vector of morpheme-derived 
-		  term-clusters/paradigms, each of which has the structure:"</em>
-|   {
-|----:label     <em>"descriptive label assigned to the term-cluster at data-entry"</em>
-|----:note
-|----:common    <em>"map of property-value pairs which all members of the
-|                 termcluster have in common"</em>
-|----:terms     <em>"vector of vectors, the first of which enumerates  the
-|                  properties which differentiate individual terms, while
-|                  the others list, in order, the value of the i-th
-|                  property -- in fact, a paradigm for the distinct property-
-|                  value pairs of the morpheme in question"</em>
-|   }
-|
-| . . .
-|
-| }
 }
 
 </pre>
 	  <h4 id="datafiles"> Appendix 2: The Data Files </h4>
 	  <p>At present the following data files are available:</p>
 	  <ul>
-	    <li><a href="https://github.com/aama/afar">Afar</a></li>
+<li><a href="https://github.com/aama/afar">Afar</a></li>
+<li><a href="https://github.com/aama/aari">Aari</a></li>
 <li><a href="https://github.com/aama/akkadian-ob">Akkadian-ob</a></li>
 <li><a href="https://github.com/aama/alaaba">Alaaba</a></li>
 <li><a href="https://github.com/aama/arabic">Arabic</a></li>
@@ -536,6 +520,7 @@ Query: tools/sparql/rq-ru/list-graphs.rq
 <li><a href="https://github.com/aama/beja-beniamer">Beja-beniamer</a></li>
 <li><a href="https://github.com/aama/beja-bishari">Beja-bishari</a></li>
 <li><a href="https://github.com/aama/beja-hadendowa">Beja-hadendowa</a></li>
+<li><a href="https://github.com/aama/berber-ghadames">Berber-ghadames</a></li>
 <li><a href="https://github.com/aama/bilin">Bilin</a></li>
 <li><a href="https://github.com/aama/boni-jara">Boni-jara</a></li>
 <li><a href="https://github.com/aama/boni-kijee-bala">Boni-kijee-bala</a></li>
@@ -552,6 +537,8 @@ Query: tools/sparql/rq-ru/list-graphs.rq
 <li><a href="https://github.com/aama/gedeo">Gedeo</a></li>
 <li><a href="https://github.com/aama/geez">Geez</a></li>
 <li><a href="https://github.com/aama/hadiyya">Hadiyya</a></li>
+<li><a href="https://github.com/aama/hausa">Hausa</a></li>
+<li><a href="https://github.com/aama/hdi">Hdi</a></li>
 <li><a href="https://github.com/aama/hebrew">Hebrew</a></li>
 <li><a href="https://github.com/aama/iraqw">Iraqw</a></li>
 <li><a href="https://github.com/aama/kambaata">Kambaata</a></li>
@@ -559,6 +546,7 @@ Query: tools/sparql/rq-ru/list-graphs.rq
 <li><a href="https://github.com/aama/khamtanga">Khamtanga</a></li>
 <li><a href="https://github.com/aama/koorete">Koorete</a></li>
 <li><a href="https://github.com/aama/maale">Maale</a></li>
+<li><a href="https://github.com/aama/mubi">Mubi</a></li>
 <li><a href="https://github.com/aama/oromo">Oromo</a></li>
 <li><a href="https://github.com/aama/rendille">Rendille</a></li>
 <li><a href="https://github.com/aama/saho">Saho</a></li>
@@ -572,26 +560,6 @@ Query: tools/sparql/rq-ru/list-graphs.rq
 <li><a href="https://github.com/aama/yemsa">Yemsa</a></li>
 	  </ul>
 	  <hr>
-	      <p>Terminology Notes</p>
-	  <ul>
-	    <li>Term - we use "term" to refer to both "lxterms" (i.e. words) and "muterms" (i.e. morphs/morphemes).  A basic motivation is that we then get a kind of recursive structure: a term may consist of a minimal element (morph) or may be composed of other terms, so morphs, words, and multi-word structures (e.g. "has been eating") are treated equally as terms. </li>
-	    <li>lxterm - a word or word-like unit of organization.  An lxterm may contain multiple words, e.g. English "has gone".</li>
-	    <li>Lexeme - an abstraction that connects a collection of semantically related terms; the intuitive idea is that the "members" of a lexeme are like variations on a theme
-
-	    <ul>
-	      <li>"ordinary" lexemes like READ - joins (he) reads (present), (he) read (past), reading, etc.  In such cases the semantically related words are also related morphophonologically</li>
-	      <li>"special" cases:
-
-	      <ul>
-		<li>suppletion - lexemes whose members are drawn from groups that are not related morphophonologically.  For example the lexeme GO contains (he) goes and (he) went - "went" comes from the archaic verb "wend" and is unrelated historically to the verb "go" (except via suppletion).  Another example is good - better.</li>
-		<li>in some cases the relationship and etymology of the lexeme members may not be clear, but we put them in the same lexeme based on meaning/use. For example, pronouns are obviously similar in some sense but it's not clear what to do with them theoretically since they serve a great variety of functions in different languages.  We use a PRO lexeme in the archive for purely pragmatic purposes - it makes it easier to organize and manipulate the data.</li>
-	      </ul>
-	      </li>
-	    </ul>
-	    </li>
-	    <li>muterm - a "morph", sub-word unit of organization; e.g. the 's' in "cats", 'en' in "wooden", 'ing' in "ranting", etc.</li>
-	    <li>Morpheme - basically the morphemic counterpart to a lexeme.  Just as a lexeme can be thought of as a representation of a morpho-semantic class at the word level, the notion of morpheme is intended to represent such a class at the sub-word level.  Unfortunately the term "morpheme" is commonly used with several distinct senses; for example, /s/ and /z/ may be called morphemes, but one may also talk of the "plural morpheme" (just as one may talk of the GO lexeme).  For AAMA we would have a PL morpheme linking /s/ and /z/ muterms (or morphs).  Again, this is purely pragmatic; it makes it easier to organize and manipulate the data.</li>
-	  </ul>
 	</section>
       </div>
 
