@@ -38,6 +38,7 @@
 	    <li><a href="#software">Install and configure required software</a></li>
 	    <li><a href="#datatools">Download data and tools</a></li>
 	    <li><a href="#ednformat">The EDN format for morphological data</a></li>
+		   <li><a href="#ednformat">The EDN format for morphological data</a></li>
 	    <li><a href="#rdfgen">Generate RDF data from morphological data files</a></li>
 	    <li><a href="#rdfupload">Upload RDF data to SPARQL service</a></li>
 	    <li><a href="#aamaquery">Query SPARQL service</a></li>
@@ -64,7 +65,7 @@
 		the archive should  make available and comparable the major 
 		morphological paradigms of some forty Cushitic and Omotic languages,
 		and in the longer term help situate the morphologies of these 
-		two language families within Afroasiatic. In the longer run
+		two language families within Afroasiatic. Ultimately
 		we hope also that the archive and its accompanying software
 		may serve as a tool for exploration of typology and structure 
 		of the form of linguistic organization known as the paradigm.
@@ -73,49 +74,241 @@
 		three interconnected modules:</p>
 	      <ol>
 		<li><h6>Data Files</h6>
-		  <p>An extensible collection of <a href="#datafiles"> data 
-		      files</a>  in the json-like <a href="#datastructure">edn</a> format
-		    of morphological paradigms from Afroasiatic languages.
-		    The data is application-neutral, and could be cast into any plausible
-		    datastore format, and used in conjunction with tools and query-and-display
+		<ol>
+		<li><a href="#datafiles">Data Files</li>
+		<li><a href="#rdfdatastore">RDF Datastore</li>
+		<li><a href="#qinterface">Query/Display Interface</li>
+		</ol>
+	      <ol>
+		<li id="datafiles">
+		  <h5>Data Files</h5>
+		  <p>An extensible collection of <a href="#datafilelist">data files</a>  
+		    containing morphological paradigms from Afroasiatic languages.
+		    The data in itself is application-neutral, and could be cast 
+		    into any plausible
+		    datastore format, and used in conjunction with tools and
+		    query-and-display
 		    applications constructed using any appropriate programming tools.</p>
-		  <p>Presently archived files cover the verbal and pronominal
+		  <p>Presently archived files cover principally the verbal and pronominal
 		    morphological paradigms of thirty-three Cushitic and
 		    six Omotic languages. In addition there are files
 		    with parallel data covering five Semitic languages and two varieties
 		    of Egyptian -- limited Berber and Chadic data is in the process
-		    of being entered. The intention behind the project is to extend the scope
+		    of being entered. The intention behind the project is,
+		    with the help of collaborators, to extend the scope
 		    of the archive to include eventually as complete a 
 		    representation  as possible of all branches of 
-		    the Afroasiatic language complex.<em> Any or all the the data files
+		    the Afroasiatic language complex.</p>
+		  <p> Nominal paradigms are systematically included in the archive whenever
+		    they have been present in the underlying monographic source. However
+		    we have found that Cushitic-Omotic nominal morphosyntax does not lend 
+		    itself as exhaustively to straight-forward word-level paradigmatic 
+		    treatment as pronominal and verbal. We are experimenting with various 
+		    consistent ways to systematically treat at least case, number, 
+		    focus morphosyntax across the archive.</p>
+		  <p>Informally we can define "Paradigm" in its simplest and most obvious 
+		    sense as:
+		    <ul>
+		      <li><em>Any presentation of one or more linguistic forms 
+			  ("tokens": words, affixes, clitics, stems, etc.), which share 
+			  a set of morphological property/value pairs, and which vary 
+			  systematically along the values of another set of 
+			  properties.  </em></li>
+		    </ul>
+		  <p>For consistency within the archive, we are using as  
+		    normative/persistent paradigm format, the json-like 
+		    <a href="#ednformat"> edn</a>, a reasonable, human-readable/-editable 
+		    approximation to traditional paradigm notation. To illustrate what is 
+		    by far the most common data-structure in the archive,  the paradigm,
+		    what traditionally would be termed:</p>
+		  <ul>
+		    <li> <em>the number, person gender paradigm  of the imperfect 
+			affirmative of the  Burunge glide verb xaw-'come'</em></li>
+		  </ul>
+		  <p>In table form:</p>
+
+		  <table>
+		    <thead>
+
+		      <tr>
+			<th>Number </th><th>Person</th><th>Gender</th><th>Token</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <tr>
+			<td> Singular</td><td>Person1</td><td>Commo</td><td><em>xaw</em></td>
+		      </tr>
+		      <tr>
+			<td>Singular</td><td>Person2/>td><td>Common</td><td><em>xaydă</em></td>
+		      </tr>
+		      <tr>
+			<td>Singular</td><td>Person3</td><td>Masc</td><td><em>xay</em></td>
+		      </tr>
+		      <tr>
+			<td>Singular</td><td>Person3</td><td>Fem</td><td><em>xaydă</em></td>
+		      </tr>
+		      <tr>
+			<td>Plural</td><td>Person1</td><td>Common</td><td><em>xaynă</em></td>
+		      </tr>
+		      <tr>
+			<td>Plural</td><td>Person2</td><td>Common</td><td><em>xayday</em></td>
+		      </tr>
+		      <tr>
+			<td>Plural</td><td>Person3</td><td>Common</td><td><em>xayay</em></td>
+		      </tr>
+		    </tbody>
+		  </table>
+		  <p>Paradigms are  formally rendered  in AAMA's EDN format by a nested 
+		    data-sturucture, we call ":termcluster": where entities are either 
+		    labels/indices (prefixed by ":") or data strings (enclosed in quotes); 
+		    where square brackets ( "[ ]") enclose arrays and braces("{ }") enclose 
+		    indexed arrays. So that the paradigm just seen in table form woud be 
+		    rendered by the following data structure: </p>
+		  <pre>
+		    {:termcluster   {:label "burunge-VBaseImperfGlideStemBaseForm-xaw"
+                                     :note "Kiessling1994 ## 7.2.2,7.2.3"
+                                     :common {:vmorphClass :Finite
+                                              :polarity :Affirmative,
+                                              :lexeme :xaw,
+                                              :pos :Verb,
+                                              :stemClass :GlideStem,
+                                              :tam :Imperfect}
+                                     :terms [[:number :person :gender :token],
+                                             [:Singular :Person1 :Common "xaw"]
+                                             [:Singular :Person2 :Common "xaydă"],
+                                             [:Singular :Person3 :Masc "xay"]
+                                             [:Singular :Person3 :Fem "xaydă"]
+                                             [:Plural :Person1 :Common "xaynă"],
+                                             [:Plural :Person2 :Common "xayday"],
+                                             [:Plural :Person3 :Common "xayay"]]
+                                     }
+		    }
+		  </pre>
+		  <p> Where :termcluster is an indexed list, with a :label and :note 
+		    property; :common is an indexed list of the property=value pairs 
+		    common to every member of the paradigm, and the array :terms has as 
+		    its first member an array of the paradigm  term properties 
+		    (= paradigm column heads), while each subsequent member array 
+		    lists the values , in order, of the properties.</p>		
+		  <p><em> Any or all the the data files
 		    can be downloaded from the AAMA site, and 
 		    corrections to the existing files and submission, for on-line
 		    sharing, of new language files are hereby sollicited!</em></p>
 		</li>
-		<li><h6>RDF Datastore</h6>
+		<li id="rdfdatastore">
+		  <h5>A Resource Descripton Framework (RDF) Datastore and Related Tools</h5>
 		  <p>The data archive will hopefully serve a number of 
 		    research and reference purposes. One such purpose is the creation of a 
 		    queriable datastore, and to this end we have elected to set up such a
 		    datastore  using the W3C-sanctioned  
-		    <a href="https://www.w3.org/RDF/">RDF</a> format. 
-		    Pending an on-line publicly accessible datastore, you
+		    <a href="https://www.w3.org/RDF/">RDF</a> format. </p>
+
+		  <p>Very good introductions to RDF datastores and the associated 
+		    <a href="https://www.w3.org/tr/sparql11-overview/">SPARQL</a> query 
+		    language can be found in their respective W3C home sites. But very 
+		    basically RDF involves:</p>
+		  <ol>
+		    <li><em>Identifying units of information, and assigning them URL-like 
+			unique Uniform Resource Identifiers (URI). </em>
+		      <p>For example, in a paradigm  cited above from the  burunge-pdgms.edn 
+			file one of the possible values of the property<em> tam </em>
+			(TenseAspectMode) is <em>Imperfect</em>.  In the correspnding 
+			beja-arteiga-pdgms.rdf file, the property <em>tam</em> has the 
+			full URI:</p>
+		      <pre>
+			&lt;http://id.oi.uchicago.edu/aama/2013/burunge/tam&gt;
+		      </pre>
+		      <p>(or, in the terse notation labeled 'ttl': <em>brn:tam</em> )</p>
+		      <p>and the value <em>Imperfect</em>  has the URI:</p>
+		      <pre>
+			&lt;http://id.oi.uchicago.edu/aama/2013/burunge/Imperfect&gt;
+ 		      </pre>
+		      <p>(ttl notation: <em>brn:Imperfect</em>)</p>
+		      <p>Formal URI's are valuable for distinguishing terminologies and 
+			building nomenclatures and ontologies. But in practice they are 
+			not visibly present in the user-end of our query application.</p>
+		    </li>
+		    <li><em>Representing the complex pieces of information involving these 
+			concepts by organizing these conceptual units into tripartite 
+			statements called 'triples' </em>
+		      <p>Triples are conventionally noted:</p>
+		      <pre>
+			                s p o . 
+		      </pre>
+		      <p>and usually, but without semantic prejudice, read: </p>
+		      <pre>
+		        	subject predicate object .
+		      </pre>
+		      <p>For example, as one might expect, an extremely common triple in a 
+			datastore like AAMA is of the form:</p>
+			<pre>
+       			        paradigmTermID-s hasProperty-p withValue-o .
+			</pre>
+		      <p>Thus if the first term of the edn paradigm given above had the 
+			pdgmTermID <em>aama:d3c483b1</em> one of the (many) triples 
+			descibing it would be (in the ttl notation):</p>
+		      <pre>
+			       aama:d3c483b1 brn:tam brn:Imperfect .
+		      </pre>
+		      <p>Where <em>aama:</em> is the ttl abbreviation for  </p>
+		      <pre>
+			       &lt;http://id.oi.uchicago.edu/aama/2013/&gt;
+		      </pre>
+		      <p>Another might be:</p>
+		      <pre>
+			        aama:d3c483b1 brn:person brn:Person1 .
+		      </pre>
+		      <p>stating that 'the :person property of the term as the value 
+			:Person1'</p>
+		      <p>And so forth. A good way to see practically the relation between 
+			the EDN data file and its RDF transform is to take a look at the 
+			EDN and TTL versions of a language data file of interest 
+			(e.g. beja-arteiga-pdgms.edn and beja-arteiga-pdgms.ttl).</p>
+		    </li>
+		  </ol>
+		  <p>Not surprisingly it takes a very large number of triples to describe 
+		    even a moderately large datastore (AAMA on a recent count had 987,911).
+		    But they are very rapidly produced and indexed (a few seconds per 
+		    language using AAMA's edn2ttl program),  efficiently stored, and permit 
+		    extremely quick access to information for display, comparison, 
+		    manipulation, and reasoning. Among the RDF  tools in the on-line
+		    material, there is an executable file (with source code) for 
+		    transforming the (edn) data files into appropriate RDF datastore 
+		    (ttl/rdf) format, and a set of scripts to upload data files to a local 
+		    RDF server.</p>
+		  <p>Although RDF is an extremely interesting topic in itself, running the 
+		    relevant scripts for adding to or correcting archive-data in the edn 
+		    files (usually done via an application menu choice), requires no special 
+		    knowledge about RDF datastores. Some knowledge of the structure of an 
+		    RDF datastore and the SQL-like SPARQL query language however IS required 
+		    if you want to revise or add  a page to the webapp, submitting a new
+		    query to the datastore in order to extract new information.<p>
+		    <p>Pending an on-line publicly accessible datastore, you
 		    can set one up on your own  computer. Instructions
 		    are given below for setting up an RDF server on an individual 
 		    machine, and loading the data into it.</p>
 		</li>
-		<li><h6>Query/Display Interface</h6>
-		  <p>There is an experimental web application for 
-		    querying and displaying data from the archive. 
-		    Below we give instructions for 
-		    downloading, launching, and initializing it. More details 
-		    are on the app are available in the aama/webapp 
+		<li id="qinterface" ><h5>Query/Display Interface</h5>
+		  <p> A rather basic menu-driven application which essentially:</p>
+		  <ol>
+		    <li>gathers requested language and morphological property and value 
+		      information via the usual array of HTML form selection-list, checkbox, 
+		      and text-input mechanisms;</li>
+		    <li>formulates them into a SPARQL query, </li>
+		    <li>which it submits to the datastore, returning the response, 
+		      typically formatted into an HTML table. </li>
+		  </ol>
+		  <p>Below we give instructions for downloading, launching, and 
+		    initializing it. More details are on the app are available in the 
+		    aama/webapp 
 		    <a href="https://github.com/aama/webapp/blob/master/README.md">
-		      README</a> and the app <code>Help</code> menu.<p>
+		      README</a> and the app <code>Help</code> menu, as well as a 
+		    <a href="https://youtu.be/JNCJsR28SEE">demo video</a><p>
 		</li>
 	      </ol>
 	    </li>
 	    <li id="software">
-	      <h5>Install and configure required software</h5>
+	      <h5>How to install and configure required software</h5>
 	      <ol>
 		<li>
 		  <h6>Git client</h6>
@@ -496,6 +689,8 @@ Query: tools/sparql/rq-ru/list-graphs.rq
 |   }
 |
 | . . .
+|
+|  ]
 |
 | }
 }
