@@ -35,10 +35,10 @@
 	  <h5>Overview</h5>
 	  <ol>
 	    <li><a href="#project">The AAMA Project</a></li>
-	    <li><a href="#software">Install and configure required software</a></li>
+	    <li><a href="#software">Installing and configuring required software</a></li>
 	    <li><a href="#datatools">Download data and tools</a></li>
 	    <li><a href="#ednformat">The EDN format for morphological data</a></li>
-		   <li><a href="#ednformat">The EDN format for morphological data</a></li>
+	    <li><a href="#pdgmlabels">Paradigm Labels in the AAMA archve </a></li>
 	    <li><a href="#rdfgen">Generate RDF data from morphological data files</a></li>
 	    <li><a href="#rdfupload">Upload RDF data to SPARQL service</a></li>
 	    <li><a href="#aamaquery">Query SPARQL service</a></li>
@@ -165,23 +165,23 @@
 		    indexed arrays. So that the paradigm just seen in table form woud be 
 		    rendered by the following data structure: </p>
 		  <pre>
-{:termcluster   {:label "burunge-VBaseImperfGlideStemBaseForm-xaw"
-                 :note "Kiessling1994 ## 7.2.2,7.2.3"
-                 :common {:vmorphClass :Finite
-                          :polarity :Affirmative,
-                          :lexeme :xaw,
-                          :pos :Verb,
-                          :stemClass :GlideStem,
-                          :tam :Imperfect}
-                          :terms [[:number :person :gender :token],
-                                  [:Singular :Person1 :Common "xaw"]
-                                  [:Singular :Person2 :Common "xaydă"],
-                                  [:Singular :Person3 :Masc "xay"]
-                                  [:Singular :Person3 :Fem "xaydă"]
-                                  [:Plural :Person1 :Common "xaynă"],
-                                  [:Plural :Person2 :Common "xayday"],
-                                  [:Plural :Person3 :Common "xayay"]]
-                  }
+{:termcluster {:label "burunge-VBaseImperfGlideStemBaseForm-xaw"
+               :note "Kiessling1994 ## 7.2.2,7.2.3"
+               :common {:vmorphClass :Finite
+                        :polarity :Affirmative,
+                        :lexeme :xaw,
+                        :pos :Verb,
+                        :stemClass :GlideStem,
+                        :tam :Imperfect}
+                        :terms [[:number :person :gender :token],
+                                [:Singular :Person1 :Common "xaw"]
+                                [:Singular :Person2 :Common "xaydă"],
+                                [:Singular :Person3 :Masc "xay"]
+                                [:Singular :Person3 :Fem "xaydă"]
+                                [:Plural :Person1 :Common "xaynă"],
+                                [:Plural :Person2 :Common "xayday"],
+                                [:Plural :Person3 :Common "xayay"]]
+                }
  }
 		</pre>
 		  <p> Where :termcluster is an indexed list, with a :label and :note 
@@ -308,7 +308,7 @@ aama:d3c483b1 brn:person brn:Person1 .
 	      </ol>
 	    </li>
 	    <li id="software">
-	      <h5>How to install and configure required software</h5>
+	      <h5>Installing and configuring required software</h5>
 	      <ol>
 		<li>
 		  <h6>Git client</h6>
@@ -430,7 +430,6 @@ aama:d3c483b1 brn:person brn:Person1 .
 	    </li>
 	    <li id="ednformat">
 	      <h5>The EDN format for morphological data</h5>
-
 	      <p> The normative/persistant data format is the json-like 
 		<a href="https://github.com/edn-format/edn">edn:  Extensible 
 		  Data Notation</a>. This notation has the advantage of being
@@ -459,6 +458,32 @@ aama:d3c483b1 brn:person brn:Person1 .
 	       SPARQL server for querying.
 	       </p>
 	    </li>
+		<li id="pdgmlabels"><h5>Paradigm Labels in AAMA</h5>
+		<p>
+		  In this application, for the purposes of display, comparison, 
+		  modification, in the various select-lists, checkbox-lists, and 
+		  text-input fields, paradigms are labeled as a comma-separated string of 
+		  shared property=value components, followed, after a delimiter '%' by a 
+		  comma-separated list of the properties whose values consititute the rows
+		  of the paradigm. In the, frequently long, paradigm lists automatically 
+		  generated from the EDN file by the "Create Paradigm Lists" utility, for 
+		  ease in processing the first two properties are always pos 
+		  (part-of-speech) and morphClass, and, for ease in reading the 
+		  'property=' part of the label is omitted. Thus the label of the paradigm  
+		  illustrated above would be: 
+		</p>
+<pre>
+Verb,Finite,lex=:xaw,polarity=Affirmative,stemClass=Glide,tam=Imperfect%number,person,gender
+</pre>
+		<p> and might occur in a list as:</p>
+		<pre>.  .  .
+Verb,Finite,lex=:qadid,polarity=Affirmative,stemClass=DentalStem,tam=Perfect%number,person,gender
+Verb,Finite,lex=:qadid,polarity=Affirmative,stemClass=DentalStem,tam=Subjunctive%number,person,gender
+Verb,Finite,lex=:xaw,polarity=Affirmative,stemClass=GlideStem,tam=Imperfect%number,person,gender
+Verb,Finite,lex=:xaw,polarity=Affirmative,stemClass=GlideStem,tam=Perfect%number,person,gender
+Verb,Finite,lex=:xaw,polarity=Affirmative,stemClass=GlideStem,tam=Subjunctive%number,person,gender
+. . . </pre>
+		</li>
 	    <li id="rdfgen">
 	      <h5>Generate RDF data from morphological data files</h5>
 	      <p>
