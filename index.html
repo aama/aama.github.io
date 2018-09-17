@@ -119,13 +119,15 @@
 		    normative/persistent paradigm format, the json-like 
 		    <a href="#ednformat"> edn</a>, a reasonable, human-readable/-editable 
 		    approximation to traditional paradigm notation. To illustrate what is 
-		    by far the most common data-structure in the archive,  the paradigm,
-		    what traditionally would be termed:</p>
+		    by far the most common data-structure in the archive,  we will take a paradigm,
+		    from the Southern Cushitic language, Burunge ("Kiessling, Roland, 
+	            <em>Eine Grammatik des Burunge</em> Hamburg: Research and Progress Verlag, 1994).
+		    This paradigm:</p>
 		  <ul>
 		    <li> <em>the number, person gender paradigm  of the imperfect 
 			affirmative of the  Burunge glide verb xaw-'come'</em></li>
 		  </ul>
-		  <p>In table form:</p>
+		  <p>in table form:</p>
 
 		  <table>
 		    <thead>
@@ -158,7 +160,7 @@
 		      </tr>
 		    </tbody>
 		  </table>
-		  <p>Paradigms are  formally rendered  in AAMA's EDN format by a nested 
+		  <p>would be formally rendered  in AAMA's EDN format by a nested 
 		    data-sturucture, we call ":termcluster": where entities are either 
 		    labels/indices (prefixed by ":") or data strings (enclosed in quotes); 
 		    where square brackets ( "[ ]") enclose arrays and braces("{ }") enclose 
@@ -173,14 +175,14 @@
                         :pos :Verb,
                         :stemClass :GlideStem,
                         :tam :Imperfect}
-                        :terms [[:number :person :gender :token],
-                                [:Singular :Person1 :Common "xaw"]
-                                [:Singular :Person2 :Common "xaydă"],
-                                [:Singular :Person3 :Masc "xay"]
-                                [:Singular :Person3 :Fem "xaydă"]
-                                [:Plural :Person1 :Common "xaynă"],
-                                [:Plural :Person2 :Common "xayday"],
-                                [:Plural :Person3 :Common "xayay"]]
+                :terms [[:number :person :gender :token],
+                        [:Singular :Person1 :Common "xaw"]
+                        [:Singular :Person2 :Common "xaydă"],
+                        [:Singular :Person3 :Masc "xay"]
+                        [:Singular :Person3 :Fem "xaydă"]
+                        [:Plural :Person1 :Common "xaynă"],
+                        [:Plural :Person2 :Common "xayday"],
+                        [:Plural :Person3 :Common "xayay"]]
                 }
  }
 		</pre>
