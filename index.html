@@ -32,7 +32,7 @@
 
 	  <h4>Getting Started</h4>
 
-	  <h5>Overview</h5>
+	  <h4>Overview</h4>
 	  <ol>
 	    <li><a href="#project">The AAMA Project</a></li>
 	    <li><a href="#software">Installing and configuring required software</a></li>
@@ -47,11 +47,9 @@
 	    <p><a href="#datastructure">Appendix 1: The Data Schema</a></p>
 	    <p><a href="#datafiles">Appendix 2: The Data Files</a></p>
 
-	  <h5>Details</h5>
-
 	  <ol>
 	    <li id="project"> 
-	      <h5>Introduction: The AAMA Project</h5>
+	      <h4>Introduction: The AAMA Project</h4>
 	      <p>The purpose of the AAMA Project is to create a morphological
 		archive whose data can be:
 		<ul>
@@ -318,10 +316,10 @@ aama:d3c483b1 brn:person brn:Person1 .
 	      </ol>
 	    </li>
 	    <li id="software">
-	      <h5>Installing and configuring required software</h5>
+	      <h4>Installing and configuring required software</h4>
 	      <ol>
 		<li>
-		  <h6>Git client</h6>
+		  <h5>Git client</h5>
 		  <p>The aama project uses <a
 		  href="http://github.com">GitHub</a> to store data
 		  and tools; you'll need a git client in order to
@@ -346,7 +344,7 @@ aama:d3c483b1 brn:person brn:Person1 .
 		  </p>
 		</li>
 		<li>
-		  <h6>rdf2rdf.jar</h6>
+		  <h5>rdf2rdf.jar</h5>
 		  <p>We use this tool to convert RDF files to various
 		  formats.  <a
 		  href="http://www.l3s.de/~minack/rdf2rdf/">Download
@@ -355,7 +353,7 @@ aama:d3c483b1 brn:person brn:Person1 .
 		  </p>
 		</li>
 		<li>
-		  <h6>Fuseki</h6>
+		  <h5>Fuseki</h5>
 		  <p>
 		    Fuseki is the SPARQL server we are using to query the dataset.  <a
 		    href="http://jena.apache.org/download/index.cgi">Download</a>
@@ -374,7 +372,7 @@ aama:d3c483b1 brn:person brn:Person1 .
 	      </ol>
 	    </li>
 	    <li id="datatools">
-	      <h5>Download data, tools, and application code</h5>
+	      <h4>Download data, tools, and application code</h4>
 	      <ul>
 		<li>
 		  <p>Take a look at the <a
@@ -439,7 +437,7 @@ aama:d3c483b1 brn:person brn:Person1 .
 		</pre>
 	    </li>
 	    <li id="ednformat">
-	      <h5>The EDN format for morphological data</h5>
+	      <h4>The EDN format for morphological data</h4>
 	      <p> The normative/persistant data format is the json-like 
 		<a href="https://github.com/edn-format/edn">Extensible 
 		  Data Notation (EDN)</a>. This notation has the advantage of being
@@ -468,7 +466,7 @@ aama:d3c483b1 brn:person brn:Person1 .
 	       SPARQL server for querying.
 	       </p>
 	    </li>
-		<li id="pdgmlabels"><h5>Paradigm Labels in AAMA</h5>
+		<li id="pdgmlabels"><h4>Paradigm Labels in AAMA</h4>
 		<p>
 		  In this application, for the purposes of display, comparison, 
 		  modification, in the various select-lists, checkbox-lists, and 
@@ -495,7 +493,7 @@ Verb,Finite,lex=:xaw,polarity=Affirmative,stemClass=GlideStem,tam=Subjunctive%nu
 . . . </pre>
 		</li>
 	    <li id="rdfgen">
-	      <h5>Generate RDF data from morphological data files</h5>
+	      <h4>Generate RDF data from morphological data files</h4>
 	      <p>
 		In order to convert EDN-format data files to TTL ("turtle" 
 		-- a more easily human-readable RDF format), you will
@@ -522,7 +520,7 @@ Verb,Finite,lex=:xaw,polarity=Affirmative,stemClass=GlideStem,tam=Subjunctive%nu
 		</p>
 	    </li>
 	    <li id="rdfupload">
-	      <h5>Upload RDF data to SPARQL service</h5>
+	      <h4>Upload RDF data to SPARQL service</h4>
 	      <p>
 		In order to upload the RDF files to Fuseki, you must
 		first start the server by running:
@@ -585,19 +583,19 @@ Query: tools/sparql/rq-ru/list-graphs.rq
 
 	    </li>
 	    <li id="aamaquery">
-	      <h5>Query SPARQL service</h5>
+	      <h4>Query SPARQL service</h4>
 	      A SPARQL service can accessed to explore the morphological
 	      data via three interfaces:
 	      <ol>
 		<li>
-		  <h6>An AAMA command-line interface</h6>
+		  <h5>An AAMA command-line interface</h5>
 		 <p>
 		  (Some sample queries in <code>tools/sparql/rq-ru</code>
 		  and scripts in <code>tools/bin</code>. An earlier version exists
 		  with an extensive command-line application written in Perl.)</p>
 		  </li>
 		<li>
-		  <h6>The Apache Jena Fuseki interface </h6>
+		  <h5>The Apache Jena Fuseki interface </h5>
 		  <p>
 		    You can see this on your browser at 
 		    <code>localhost:3030</code> after you launch Fuseki. 
@@ -611,7 +609,7 @@ Query: tools/sparql/rq-ru/list-graphs.rq
 		  </p>
 		  </li>
 		<li>
-		  <h6>A web application specifically oriented to AAMA data</h6>
+		  <h5>A web application specifically oriented to AAMA data</h5>
 		  <p>A preliminary menu-driven web application, will have
 		    already been downloaded following the instructions outlined 
 		    above in <a href="#datatools">Download data, tools, and application code</a>.
@@ -649,7 +647,7 @@ Query: tools/sparql/rq-ru/list-graphs.rq
 		</ol>
 	    </li>
 	    <li id="aamaupdate">
-	      <h5>Remote Data and Webapp Update</h5>
+	      <h4>Remote Data and Webapp Update</h4>
 	      <p>AAMA is an on-going project. Its data is constantly being updated,
 		corrected, and added-to; the accompanying webb application
 		is in a process of constant revision. 
