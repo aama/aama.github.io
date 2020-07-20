@@ -32,24 +32,26 @@
 
 	  <h4>Getting Started</h4>
 
-	  <h4>Overview</h4>
-	  <ol>
-	    <li><a href="#project">The AAMA Project</a></li>
-	    <li><a href="#software">Installing and configuring required software</a></li>
-	    <li><a href="#datatools">Download data and tools</a></li>
-	    <li><a href="#ednformat">The EDN format for morphological data</a></li>
-	    <li><a href="#pdgmlabels">Paradigm Labels in the AAMA archve </a></li>
-	    <li><a href="#rdfgen">Generate RDF data from morphological data files</a></li>
-	    <li><a href="#rdfupload">Upload RDF data to SPARQL service</a></li>
-	    <li><a href="#aamaquery">Query SPARQL service</a></li>
-	    <li><a href="#aamaupdate">Remote Data and Webapp Update</a></li>
-	  </ol>
+	  <h5>Overview</h5>
+	  <ul style="list-style-type:none;">
+	    <li><a href="#project">1. The AAMA Project</a></li>
+	    <li><a href="#software">2. Install and configure required software</a></li>
+	    <li><a href="#datatools">3. Download data and tools</a></li>
+	    <li><a href="#ednformat">4. The EDN format for morphological data</a></li>
+	    <li><a href="#pdgmlabels">5. Paradigm Labels in the AAMA archve </a></li>
+	    <li><a href="#rdfgen">6. Generate RDF data from morphological data files</a></li>
+	    <li><a href="#rdfupload">7.Upload RDF data to SPARQL service</a></li>
+	    <li><a href="#aamaquery">8. Query SPARQL service</a></li>
+	    <li><a href="#aamaupdate">9. Remote Data and Webapp Update</a></li>
+	  </ul>
 	    <p><a href="#datastructure">Appendix 1: The Data Schema</a></p>
-	    <p><a href="#datafiles">Appendix 2: The Data Files</a></p>
+	    <p><a href="#datafilelist">Appendix 2: The Data Files</a></p>
 
-	  <ol>
+	  <h5>Details</h5>
+
+	  <ul style="list-style-type:none;">
 	    <li id="project"> 
-	      <h4>Introduction: The AAMA Project</h4>
+	      <h5>1. Introduction: The AAMA Project</h5>
 	      <p>The purpose of the AAMA Project is to create a morphological
 		archive whose data can be:
 		<ul>
@@ -69,17 +71,15 @@
 		of the form of linguistic organization known as the paradigm.
 	      </p>
 	      <p>As presently configured tha AAMA project consists of 
-		three interconnected modules:
-	      
-		<ol>
+		three interconnected modules:</p>
+		<ul>
 		<li><a href="#datafiles">Data Files</li>
 		<li><a href="#rdfdatastore">RDF Datastore</li>
 		<li><a href="#qinterface">Query/Display Interface</li>
-		</ol>
-		</p>
-	      <ol>
+		</ul>
+	      <ul style="list-style-type:none;">
 		<li id="datafiles">
-		  <h5>Data Files</h5>
+		  <h5>1.1 Data Files</h5>
 		  <p>An extensible collection of <a href="#datafilelist">data files</a>  
 		    containing morphological paradigms from Afroasiatic languages.
 		    The data in itself is application-neutral, and could be cast 
@@ -117,15 +117,13 @@
 		    normative/persistent paradigm format, the json-like 
 		    <a href="#ednformat"> edn</a>, a reasonable, human-readable/-editable 
 		    approximation to traditional paradigm notation. To illustrate what is 
-		    by far the most common data-structure in the archive,  we will take a paradigm,
-		    from the Southern Cushitic language, Burunge ("Kiessling, Roland, 
-	            <em>Eine Grammatik des Burunge</em> Hamburg: Research and Progress Verlag, 1994, 7.2.2-3).
-		    This paradigm:</p>
+		    by far the most common data-structure in the archive,  the paradigm,
+		    what traditionally would be termed:</p>
 		  <ul>
 		    <li> <em>the number, person gender paradigm  of the imperfect 
 			affirmative of the  Burunge glide verb xaw-'come'</em></li>
 		  </ul>
-		  <p>in table form:</p>
+		  <p>In table form:</p>
 
 		  <table>
 		    <thead>
@@ -139,7 +137,7 @@
 			<td> Singular</td><td>Person1</td><td>Commo</td><td><em>xaw</em></td>
 		      </tr>
 		      <tr>
-			<td>Singular</td><td>Person2</td><td>Common</td><td><em>xaydă</em></td>
+			<td>Singular</td><td>Person2/>td><td>Common</td><td><em>xaydă</em></td>
 		      </tr>
 		      <tr>
 			<td>Singular</td><td>Person3</td><td>Masc</td><td><em>xay</em></td>
@@ -158,32 +156,32 @@
 		      </tr>
 		    </tbody>
 		  </table>
-		  <p>would be formally rendered  in AAMA's EDN format by a nested 
+		  <p>Paradigms are  formally rendered  in AAMA's EDN format by a nested 
 		    data-sturucture, we call ":termcluster": where entities are either 
 		    labels/indices (prefixed by ":") or data strings (enclosed in quotes); 
 		    where square brackets ( "[ ]") enclose arrays and braces("{ }") enclose 
 		    indexed arrays. So that the paradigm just seen in table form woud be 
 		    rendered by the following data structure: </p>
 		  <pre>
-{:termcluster {:label "burunge-VBaseImperfGlideStemBaseForm-xaw"
-               :note "Kiessling1994 ## 7.2.2,7.2.3"
-               :common {:vmorphClass :Finite
-                        :polarity :Affirmative,
-                        :lexeme :xaw,
-                        :pos :Verb,
-                        :stemClass :GlideStem,
-                        :tam :Imperfect}
-                :terms [[:number :person :gender :token],
-                        [:Singular :Person1 :Common "xaw"]
-                        [:Singular :Person2 :Common "xaydă"],
-                        [:Singular :Person3 :Masc "xay"]
-                        [:Singular :Person3 :Fem "xaydă"]
-                        [:Plural :Person1 :Common "xaynă"],
-                        [:Plural :Person2 :Common "xayday"],
-                        [:Plural :Person3 :Common "xayay"]]
-                }
+{:termcluster   {:label "burunge-VBaseImperfGlideStemBaseForm-xaw"
+                 :note "Kiessling1994 ## 7.2.2,7.2.3"
+                 :common {:vmorphClass :Finite
+                          :polarity :Affirmative,
+                          :lexeme :xaw,
+                          :pos :Verb,
+                          :stemClass :GlideStem,
+                          :tam :Imperfect}
+                          :terms [[:number :person :gender :token],
+                                  [:Singular :Person1 :Common "xaw"]
+                                  [:Singular :Person2 :Common "xaydă"],
+                                  [:Singular :Person3 :Masc "xay"]
+                                  [:Singular :Person3 :Fem "xaydă"]
+                                  [:Plural :Person1 :Common "xaynă"],
+                                  [:Plural :Person2 :Common "xayday"],
+                                  [:Plural :Person3 :Common "xayay"]]
+                  }
  }
-		</pre>
+		  </pre>
 		  <p> Where :termcluster is an indexed list, with a :label and :note 
 		    property; :common is an indexed list of the property=value pairs 
 		    common to every member of the paradigm, and the array :terms has as 
@@ -196,7 +194,7 @@
 		    sharing, of new language files are hereby sollicited!</em></p>
 		</li>
 		<li id="rdfdatastore">
-		  <h5>A Resource Descripton Framework (RDF) Datastore and Related Tools</h5>
+		  <h6>1.2 A Resource Descripton Framework (RDF) Datastore and Related Tools</h5>
 		  <p>The data archive will hopefully serve a number of 
 		    research and reference purposes. One such purpose is the creation of a 
 		    queriable datastore, and to this end we have elected to set up such a
@@ -212,23 +210,21 @@
 			unique Uniform Resource Identifiers (URI). </em>
 		      <p>For example, in a paradigm  cited above from the  burunge-pdgms.edn 
 			file one of the possible values of the property<em> tam </em>
-			(TenseAspectMode) is <em>Imperfect</em>.  In the corresponding 
+			(TenseAspectMode) is <em>Imperfect</em>.  In the correspnding 
 			full rdf/xml format file beja-arteiga-pdgms.rdf file, the property 
 			<em>tam</em> has the full URI:</p>
 		      <pre>
 &lt;http://id.oi.uchicago.edu/aama/2013/burunge/tam&gt;
 		      </pre>
-		      <p>(In the more readable
-		      <a href="https://www.w3.org/TeamSubmission/turtle/">TTL</a>
+		      <p>In the more readable TTL 
+			( <a href="https://www.w3.org/TeamSubmission/turtle/">TTL</a>
 			 RDF notation format,
-			this URI would appear as <em>brn:tam</em>,
-			      where the prefix <em>brn:</em> is an abbreviation for
-			      &lt;http://id.oi.uchicago.edu/aama/2013/burunge/&gt;)</p>
+			this URI would be notated <em>brn:tam</em>.</p>
 		      <p>and the value <em>Imperfect</em>  has the URI:</p>
 		      <pre>
 &lt;http://id.oi.uchicago.edu/aama/2013/burunge/Imperfect&gt;
  		      </pre>
-		      <p>(in TTL notation <em>brn:Imperfect</em>)</p>
+		      <p>(in ttl notation <em>brn:Imperfect</em>)</p>
 		      <p>Formal URI's are valuable for distinguishing terminologies and 
 			building nomenclatures and ontologies. But in practice they are 
 			not visibly present in the user-end of our query application.</p>
@@ -251,11 +247,11 @@ paradigmTermID-s hasProperty-p withValue-o .
 			</pre>
 		      <p>Thus if the first term of the edn paradigm given above had the 
 			pdgmTermID <em>aama:d3c483b1</em> one of the (many) triples 
-			descibing it would be (using the TTL notation):</p>
+			descibing it would be (in the ttl notation):</p>
 		      <pre>
 aama:d3c483b1 brn:tam brn:Imperfect .
 		      </pre>
-		      <p>Where <em>aama:</em> is the TTL abbreviation for  </p>
+		      <p>Where <em>aama:</em> is the ttl abbreviation for  </p>
 		      <pre>
 &lt;http://id.oi.uchicago.edu/aama/2013/&gt;
 		      </pre>
@@ -263,15 +259,12 @@ aama:d3c483b1 brn:tam brn:Imperfect .
 		      <pre>
 aama:d3c483b1 brn:person brn:Person1 .
 		      </pre>
-			    <p>stating that 'the <em>:person</em> property of the term has the value 
-			<em>:Person1</em>'</p>
+		      <p>stating that 'the :person property of the term as the value 
+			:Person1'</p>
 		      <p>And so forth. A good way to see practically the relation between 
 			the EDN data file and its RDF transform is to take a look at the 
 			EDN and TTL versions of a language data file of interest 
-			(e.g. <a href="https://github.com/aama/beja-arteiga/blob/master/beja-arteiga-pdgms.edn">
-			beja-arteiga-pdgms.edn</a> and 
-			<a href="https://github.com/aama/beja-arteiga/blob/master/beja-arteiga-pdgms.ttl">
-			beja-arteiga-pdgms.ttl</a>).</p>
+			(e.g. beja-arteiga-pdgms.edn and beja-arteiga-pdgms.ttl).</p>
 		    </li>
 		  </ol>
 		  <p>Not surprisingly it takes a very large number of triples to describe 
@@ -296,7 +289,7 @@ aama:d3c483b1 brn:person brn:Person1 .
 		    are given below for setting up an RDF server on an individual 
 		    machine, and loading the data into it.</p>
 		</li>
-		<li id="qinterface" ><h5>Query/Display Interface</h5>
+		<li id="qinterface" ><h5>1.3 Query/Display Interface</h5>
 		  <p> A rather basic menu-driven application which essentially:</p>
 		  <ol>
 		    <li>gathers requested language and morphological property and value 
@@ -313,13 +306,13 @@ aama:d3c483b1 brn:person brn:Person1 .
 		      README</a> and the app <code>Help</code> menu, as well as a 
 		    <a href="https://youtu.be/JNCJsR28SEE">demo video</a><p>
 		</li>
-	      </ol>
+	      </ul>
 	    </li>
 	    <li id="software">
-	      <h4>Installing and configuring required software</h4>
-	      <ol>
+	      <h5>2. How to Install and configure required software</h5>
+	      <ul style="list-style-type:none;">
 		<li>
-		  <h5>Git client</h5>
+		  <h6>2.1 Git client</h6>
 		  <p>The aama project uses <a
 		  href="http://github.com">GitHub</a> to store data
 		  and tools; you'll need a git client in order to
@@ -335,6 +328,7 @@ aama:d3c483b1 brn:person brn:Person1 .
 		  </p>
 		</li>
 		<li>
+		  <h6>2.2 aama directory</h6>
 		  <p>
 		    Create and switch to an <code>aama</code> directory
 		    structure on your local drive, e.g.
@@ -344,7 +338,7 @@ aama:d3c483b1 brn:person brn:Person1 .
 		  </p>
 		</li>
 		<li>
-		  <h5>rdf2rdf.jar</h5>
+		  <h6>2.3 rdf2rdf.jar</h6>
 		  <p>We use this tool to convert RDF files to various
 		  formats.  <a
 		  href="http://www.l3s.de/~minack/rdf2rdf/">Download
@@ -353,7 +347,7 @@ aama:d3c483b1 brn:person brn:Person1 .
 		  </p>
 		</li>
 		<li>
-		  <h5>Fuseki</h5>
+		  <h6>2.4 Fuseki</h6>
 		  <p>
 		    Fuseki is the SPARQL server we are using to query the dataset.  <a
 		    href="http://jena.apache.org/download/index.cgi">Download</a>
@@ -369,11 +363,11 @@ aama:d3c483b1 brn:person brn:Person1 .
 		    <a href="http://jena.apache.org/index.html"> Apache Jena</a> 
 		    site. </p>
 		</li>
-	      </ol>
+	      </ul>
 	    </li>
 	    <li id="datatools">
-	      <h4>Download data, tools, and application code</h4>
-	      <ul>
+	      <h5>3. Download data, tools, and application code</h5>
+	      <ul style="list-style-type:none;">
 		<li>
 		  <p>Take a look at the <a
 		  href="https://github.com/aama">Aama repositories</a> and
@@ -437,11 +431,12 @@ aama:d3c483b1 brn:person brn:Person1 .
 		</pre>
 	    </li>
 	    <li id="ednformat">
-	      <h4>The EDN format for morphological data</h4>
+	      <h5>4. The EDN format for morphological data</h5>
+
 	      <p> The normative/persistant data format is the json-like 
-		<a href="https://github.com/edn-format/edn">Extensible 
-		  Data Notation (EDN)</a>. This notation has the advantage of being
-		a rigorously defined system of terms (<code>:term</code>),
+		<a href="https://github.com/edn-format/edn">edn:  Extensible 
+		  Data Notation</a>. This notation has the advantage of being
+		rigorously defined system of terms (<code>:term</code>),
 		strings (<code>"string"</code>), vectors 
 		(<code>[a b c d]</code> maps (<code>{a b, c d}</code> and sets 
 		(<code>#{a b c d}</code>, and thus reliably transformable 
@@ -466,7 +461,7 @@ aama:d3c483b1 brn:person brn:Person1 .
 	       SPARQL server for querying.
 	       </p>
 	    </li>
-		<li id="pdgmlabels"><h4>Paradigm Labels in AAMA</h4>
+		<li id="pdgmlabels"><h5>5. Paradigm Labels in AAMA</h5>
 		<p>
 		  In this application, for the purposes of display, comparison, 
 		  modification, in the various select-lists, checkbox-lists, and 
@@ -493,7 +488,7 @@ Verb,Finite,lex=:xaw,polarity=Affirmative,stemClass=GlideStem,tam=Subjunctive%nu
 . . . </pre>
 		</li>
 	    <li id="rdfgen">
-	      <h4>Generate RDF data from morphological data files</h4>
+	      <h5>6. Generate RDF data from morphological data files</h5>
 	      <p>
 		In order to convert EDN-format data files to TTL ("turtle" 
 		-- a more easily human-readable RDF format), you will
@@ -520,7 +515,7 @@ Verb,Finite,lex=:xaw,polarity=Affirmative,stemClass=GlideStem,tam=Subjunctive%nu
 		</p>
 	    </li>
 	    <li id="rdfupload">
-	      <h4>Upload RDF data to SPARQL service</h4>
+	      <h5>7. Upload RDF data to SPARQL service</h5>
 	      <p>
 		In order to upload the RDF files to Fuseki, you must
 		first start the server by running:
@@ -583,19 +578,19 @@ Query: tools/sparql/rq-ru/list-graphs.rq
 
 	    </li>
 	    <li id="aamaquery">
-	      <h4>Query SPARQL service</h4>
+	      <h5>8. Query SPARQL service</h5>
 	      A SPARQL service can accessed to explore the morphological
 	      data via three interfaces:
-	      <ol>
+	      <ul style="list-style-type:none;">
 		<li>
-		  <h5>An AAMA command-line interface</h5>
+		  <h6>8.1 An AAMA command-line interface</h6>
 		 <p>
 		  (Some sample queries in <code>tools/sparql/rq-ru</code>
 		  and scripts in <code>tools/bin</code>. An earlier version exists
 		  with an extensive command-line application written in Perl.)</p>
 		  </li>
 		<li>
-		  <h5>The Apache Jena Fuseki interface </h5>
+		  <h6>8.2 The Apache Jena Fuseki interface </h6>
 		  <p>
 		    You can see this on your browser at 
 		    <code>localhost:3030</code> after you launch Fuseki. 
@@ -609,7 +604,7 @@ Query: tools/sparql/rq-ru/list-graphs.rq
 		  </p>
 		  </li>
 		<li>
-		  <h5>A web application specifically oriented to AAMA data</h5>
+		  <h6>8.3 A web application specifically oriented to AAMA data</h6>
 		  <p>A preliminary menu-driven web application, will have
 		    already been downloaded following the instructions outlined 
 		    above in <a href="#datatools">Download data, tools, and application code</a>.
@@ -647,7 +642,7 @@ Query: tools/sparql/rq-ru/list-graphs.rq
 		</ol>
 	    </li>
 	    <li id="aamaupdate">
-	      <h4>Remote Data and Webapp Update</h4>
+	      <h5>9. Remote Data and Webapp Update</h5>
 	      <p>AAMA is an on-going project. Its data is constantly being updated,
 		corrected, and added-to; the accompanying webb application
 		is in a process of constant revision. 
@@ -707,7 +702,7 @@ Query: tools/sparql/rq-ru/list-graphs.rq
 |-:lexemes   {  <em>"associative map of paradigmatic 'lexemes' with summary map 
 |                  of properties -- a rudimentary lexicon of paradigm lexemes"</em>
 |            }
-|-:termclusters   [  <em>"label-ordered vector of lexeme-derived term-clusters/paradigms,
+|-:termclusters   [  <em>"label-ordered vector of  term-clusters/paradigms,
                     each of which has the structure:"</em>
 |   {
 |----:label     <em>"descriptive label assigned to the term-cluster at data-entry"</em>
@@ -723,66 +718,64 @@ Query: tools/sparql/rq-ru/list-graphs.rq
 |
 | . . .
 |
-|  ]
-|
-| }
+| ]
 }
 
 </pre>
-	  <h4 id="datafiles"> Appendix 2: The Data Files </h4>
+	  <h4 id="datafilelist"> Appendix 2: The Data Files </h4>
 	  <p>At present the following data files are available:</p>
 	  <ul>
-<li><a href="https://github.com/aama/aari">Aari</a></li>
-<li><a href="https://github.com/aama/afar">Afar</a></li>
-<li><a href="https://github.com/aama/akkadian-ob">Akkadian-ob</a></li>
-<li><a href="https://github.com/aama/alaaba">Alaaba</a></li>
-<li><a href="https://github.com/aama/arabic">Arabic</a></li>
-<li><a href="https://github.com/aama/arbore">Arbore</a></li>
-<li><a href="https://github.com/aama/awngi">Awngi</a></li>
-<li><a href="https://github.com/aama/bayso">Bayso</a></li>
-<li><a href="https://github.com/aama/beja-arteiga">Beja-arteiga</a></li>
-<li><a href="https://github.com/aama/beja-atmaan">Beja-atmaan</a></li>
-<li><a href="https://github.com/aama/beja-beniamer">Beja-beniamer</a></li>
-<li><a href="https://github.com/aama/beja-bishari">Beja-bishari</a></li>
-<li><a href="https://github.com/aama/beja-hadendowa">Beja-hadendowa</a></li>
-<li><a href="https://github.com/aama/berber-ghadames">Berber-ghadames</a></li>
-<li><a href="https://github.com/aama/bilin">Bilin</a></li>
-<li><a href="https://github.com/aama/boni-jara">Boni-jara</a></li>
-<li><a href="https://github.com/aama/boni-kijee-bala">Boni-kijee-bala</a></li>
-<li><a href="https://github.com/aama/boni-kilii">Boni-kilii</a></li>
-<li><a href="https://github.com/aama/burji">Burji</a></li>
-<li><a href="https://github.com/aama/burunge">Burunge</a></li>
-<li><a href="https://github.com/aama/coptic-sahidic">Coptic-sahidic</a></li>
-<li><a href="https://github.com/aama/dahalo">Dahalo</a></li>
-<li><a href="https://github.com/aama/dhaasanac">Dhaasanac</a></li>
-<li><a href="https://github.com/aama/dizi">Dizi</a></li>
-<li><a href="https://github.com/aama/egyptian-middle">Egyptian-middle</a></li>
-<li><a href="https://github.com/aama/elmolo">Elmolo</a></li>
-<li><a href="https://github.com/aama/gawwada">Gawwada</a></li>
-<li><a href="https://github.com/aama/gedeo">Gedeo</a></li>
-<li><a href="https://github.com/aama/geez">Geez</a></li>
-<li><a href="https://github.com/aama/hadiyya">Hadiyya</a></li>
-<li><a href="https://github.com/aama/hausa">Hausa</a></li>
-<li><a href="https://github.com/aama/hdi">Hdi</a></li>
-<li><a href="https://github.com/aama/hebrew">Hebrew</a></li>
-<li><a href="https://github.com/aama/iraqw">Iraqw</a></li>
-<li><a href="https://github.com/aama/kambaata">Kambaata</a></li>
-<li><a href="https://github.com/aama/kemant">Kemant</a></li>
-<li><a href="https://github.com/aama/khamtanga">Khamtanga</a></li>
-<li><a href="https://github.com/aama/koorete">Koorete</a></li>
-<li><a href="https://github.com/aama/maale">Maale</a></li>
-<li><a href="https://github.com/aama/mubi">Mubi</a></li>
-<li><a href="https://github.com/aama/oromo">Oromo</a></li>
-<li><a href="https://github.com/aama/rendille">Rendille</a></li>
-<li><a href="https://github.com/aama/saho">Saho</a></li>
-<li><a href="https://github.com/aama/shinassha">Shinassha</a></li>
-<li><a href="https://github.com/aama/sidaama">Sidaama</a></li>
-<li><a href="https://github.com/aama/somali-standard">Somali-standard</a></li>
-<li><a href="https://github.com/aama/syriac">Syriac</a></li>
-<li><a href="https://github.com/aama/tsamakko">Tsamakko</a></li>
-<li><a href="https://github.com/aama/wolaytta">Wolaytta</a></li>
-<li><a href="https://github.com/aama/yaaku">Yaaku</a></li>
-<li><a href="https://github.com/aama/yemsa">Yemsa</a></li>
+	    <li><a href="https://github.com/aama/aari">Aari</a></li>
+	    <li><a href="https://github.com/aama/afar">Afar</a></li>
+	    <li><a href="https://github.com/aama/akkadian-ob">Akkadian-ob</a></li>
+	    <li><a href="https://github.com/aama/alaaba">Alaaba</a></li>
+	    <li><a href="https://github.com/aama/arabic">Arabic</a></li>
+	    <li><a href="https://github.com/aama/arbore">Arbore</a></li>
+	    <li><a href="https://github.com/aama/awngi">Awngi</a></li>
+	    <li><a href="https://github.com/aama/bayso">Bayso</a></li>
+	    <li><a href="https://github.com/aama/beja-arteiga">Beja-arteiga</a></li>
+	    <li><a href="https://github.com/aama/beja-atmaan">Beja-atmaan</a></li>
+	    <li><a href="https://github.com/aama/beja-beniamer">Beja-beniamer</a></li>
+	    <li><a href="https://github.com/aama/beja-bishari">Beja-bishari</a></li>
+	    <li><a href="https://github.com/aama/beja-hadendowa">Beja-hadendowa</a></li>
+	    <li><a href="https://github.com/aama/berber-ghadames">Berber-ghadames</a></li>
+	    <li><a href="https://github.com/aama/bilin">Bilin</a></li>
+	    <li><a href="https://github.com/aama/boni-jara">Boni-jara</a></li>
+	    <li><a href="https://github.com/aama/boni-kijee-bala">Boni-kijee-bala</a></li>
+	    <li><a href="https://github.com/aama/boni-kilii">Boni-kilii</a></li>
+	    <li><a href="https://github.com/aama/burji">Burji</a></li>
+	    <li><a href="https://github.com/aama/burunge">Burunge</a></li>
+	    <li><a href="https://github.com/aama/coptic-sahidic">Coptic-sahidic</a></li>
+	    <li><a href="https://github.com/aama/dahalo">Dahalo</a></li>
+	    <li><a href="https://github.com/aama/dhaasanac">Dhaasanac</a></li>
+	    <li><a href="https://github.com/aama/dizi">Dizi</a></li>
+	    <li><a href="https://github.com/aama/egyptian-middle">Egyptian-middle</a></li>
+	    <li><a href="https://github.com/aama/elmolo">Elmolo</a></li>
+	    <li><a href="https://github.com/aama/gawwada">Gawwada</a></li>
+	    <li><a href="https://github.com/aama/gedeo">Gedeo</a></li>
+	    <li><a href="https://github.com/aama/geez">Geez</a></li>
+	    <li><a href="https://github.com/aama/hadiyya">Hadiyya</a></li>
+	    <li><a href="https://github.com/aama/hausa">Hausa</a></li>
+	    <li><a href="https://github.com/aama/hdi">Hdi</a></li>
+	    <li><a href="https://github.com/aama/hebrew">Hebrew</a></li>
+	    <li><a href="https://github.com/aama/iraqw">Iraqw</a></li>
+	    <li><a href="https://github.com/aama/kambaata">Kambaata</a></li>
+	    <li><a href="https://github.com/aama/kemant">Kemant</a></li>
+	    <li><a href="https://github.com/aama/khamtanga">Khamtanga</a></li>
+	    <li><a href="https://github.com/aama/koorete">Koorete</a></li>
+	    <li><a href="https://github.com/aama/maale">Maale</a></li>
+	    <li><a href="https://github.com/aama/mubi">Mubi</a></li>
+	    <li><a href="https://github.com/aama/oromo">Oromo</a></li>
+	    <li><a href="https://github.com/aama/rendille">Rendille</a></li>
+	    <li><a href="https://github.com/aama/saho">Saho</a></li>
+	    <li><a href="https://github.com/aama/shinassha">Shinassha</a></li>
+	    <li><a href="https://github.com/aama/sidaama">Sidaama</a></li>
+	    <li><a href="https://github.com/aama/somali-standard">Somali-standard</a></li>
+	    <li><a href="https://github.com/aama/syriac">Syriac</a></li>
+	    <li><a href="https://github.com/aama/tsamakko">Tsamakko</a></li>
+	    <li><a href="https://github.com/aama/wolaytta">Wolaytta</a></li>
+	    <li><a href="https://github.com/aama/yaaku">Yaaku</a></li>
+	    <li><a href="https://github.com/aama/yemsa">Yemsa</a></li>
 	  </ul>
 	  <hr>
 	</section>
@@ -799,3 +792,4 @@ Query: tools/sparql/rq-ru/list-graphs.rq
 
     </body>
   </html>
+
