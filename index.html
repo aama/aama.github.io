@@ -37,7 +37,7 @@
 	    <li><a href="#project">1. The AAMA Project</a></li>
 	    <li><a href="#software">2. Install and configure required software</a></li>
 	    <li><a href="#datatools">3. Download data and tools</a></li>
-	    <li><a href="#ednformat">4. The EDN format for morphological data</a></li>
+	    <li><a href="#jsonformat">4. The EDN format for morphological data</a></li>
 	    <li><a href="#pdgmlabels">5. Paradigm Labels in the AAMA archve </a></li>
 	    <li><a href="#rdfgen">6. Generate RDF data from morphological data files</a></li>
 	    <li><a href="#rdfupload">7.Upload RDF data to SPARQL service</a></li>
@@ -75,7 +75,7 @@
 		<ul>
 		<li><a href="#datafiles">Data Files</li>
 		<li><a href="#rdfdatastore">RDF Datastore</li>
-		<li><a href="#qinterface">Query/Display Interface</li>
+		<li><a href="#qinterface">Provisional Query/Display Interface</li>
 		</ul>
 	      <ul style="list-style-type:none;">
 		<li id="datafiles">
@@ -90,7 +90,7 @@
 		  <p>Presently archived files cover principally the verbal and pronominal
 		    morphological paradigms of thirty-three Cushitic and
 		    six Omotic languages. In addition there are files
-		    with parallel data covering five Semitic languages and two varieties
+		    with parallel sample data covering five Semitic languages and two varieties
 		    of Egyptian -- limited Berber and Chadic data is in the process
 		    of being entered. The intention behind the project is,
 		    with the help of collaborators, to extend the scope
@@ -113,9 +113,9 @@
 			  systematically along the values of another set of 
 			  properties.  </em></li>
 		    </ul>
-		  <p>For consistency within the archive, we are using as  
-		    normative/persistent paradigm format, the json-like 
-		    <a href="#ednformat"> edn</a>, a reasonable, human-readable/-editable 
+		  <p>For consistency within the archive, we are using JSON  as  
+		    normative/persistent paradigm format, which allows 
+		     a reasonable, human-readable/-editable 
 		    approximation to traditional paradigm notation. To illustrate what is 
 		    by far the most common data-structure in the archive,  the paradigm,
 		    what traditionally would be termed:</p>
@@ -156,35 +156,37 @@
 		      </tr>
 		    </tbody>
 		  </table>
-		  <p>Paradigms are  formally rendered  in AAMA's EDN format by a nested 
+		  <p>Paradigms are  formally rendered  in AAMA's JSON format by a nested 
 		    data-sturucture, we call ":termcluster": where entities are either 
-		    labels/indices (prefixed by ":") or data strings (enclosed in quotes); 
+		    labels/indices  or data strings (enclosed in quotes); 
 		    where square brackets ( "[ ]") enclose arrays and braces("{ }") enclose 
 		    indexed arrays. So that the paradigm just seen in table form woud be 
 		    rendered by the following data structure: </p>
 		  <pre>
-{:termcluster   {:label "burunge-VBaseImperfGlideStemBaseForm-xaw"
-                 :note "Kiessling1994 ## 7.2.2,7.2.3"
-                 :common {:vmorphClass :Finite
-                          :polarity :Affirmative,
-                          :lexeme :xaw,
-                          :pos :Verb,
-                          :stemClass :GlideStem,
-                          :tam :Imperfect}
-                          :terms [[:number :person :gender :token],
-                                  [:Singular :Person1 :Common "xaw"]
-                                  [:Singular :Person2 :Common "xaydă"],
-                                  [:Singular :Person3 :Masc "xay"]
-                                  [:Singular :Person3 :Fem "xaydă"]
-                                  [:Plural :Person1 :Common "xaynă"],
-                                  [:Plural :Person2 :Common "xayday"],
-                                  [:Plural :Person3 :Common "xayay"]]
+{"termcluster":   {"label": "burunge-VBaseImperfGlideStemBaseForm-xaw",
+                 "note": "Kiessling1994 ## 7.2.2,7.2.3",
+                 "common": {
+                          "polarity": "Affirmative",
+                          "lexeme": "xaw",
+                          "pos": "Verb",
+                          "stemClass": "GlideStem",
+                          "tam": "Imperfect"
+                          },
+                          "terms": [["number", "person", "gender", "token"],
+                                  ["Singular", "Person1", "Common, "xaw"]
+                                  ["Singular", "Person2", "Common, "xaydă"],
+                                  ["Singular", "Person3", "Masc, "xay"]
+                                  ["Singular", "Person3", "Fem, "xaydă"]
+                                  ["Plural", "Person1", "Common, "xaynă"],
+                                  ["Plural", "Person2", "Common, "xayday"],
+                                  ["Plural", "Person3", "Common, "xayay"]]
                   }
  }
 		  </pre>
-		  <p> Where :termcluster is an indexed list, with a :label and :note 
-		    property; :common is an indexed list of the property=value pairs 
-		    common to every member of the paradigm, and the array :terms has as 
+		  <p> Where "termcluster" is an indexed list, with a unique "label" and a "note" 
+		    property, which always indicates the paradigm's published source; 
+                   "common" is an indexed list of the property=value pairs 
+		    common to every member of the paradigm, and the array "terms" has as 
 		    its first member an array of the paradigm  term properties 
 		    (= paradigm column heads), while each subsequent member array 
 		    lists the values , in order, of the properties.</p>		
@@ -197,9 +199,11 @@
 		  <h4>1.2 A Resource Descripton Framework (RDF) Datastore and Related Tools</h4>
 		  <p>The data archive will hopefully serve a number of 
 		    research and reference purposes. One such purpose is the creation of a 
-		    queriable datastore, and to this end we have elected to set up such a
+		    queriable datastore, which will enable easy maiipulation and combination and comparison
+                    of morphological information within and between different languages and language families. 
+                    To this end we have elected to set up such a
 		    datastore  using the W3C-sanctioned  
-		    <a href="https://www.w3.org/RDF/">RDF</a> format. </p>
+		    <a href=https://www.w3.org/RDF</a> format. </p>
 
 		  <p>Very good introductions to RDF datastores and the associated 
 		    <a href="https://www.w3.org/tr/sparql11-overview/">SPARQL</a> query 
@@ -216,16 +220,21 @@
 		      <pre>
 &lt;http://id.oi.uchicago.edu/aama/2013/burunge/tam&gt;
 		      </pre>
-		      <p>In the more readable TTL 
-			( <a href="https://www.w3.org/TeamSubmission/turtle/">TTL</a>
+		      <p>Since the first part of this URI is common to all Burunge morphological 
+                        properties and values, in the more readable TTL 
+			( <a href="https://www.w3.org/TeamSubmission/turtle/">TTL</a>)
 			 RDF notation format,
-			this URI would be notated <em>brn:tam</em>.</p>
-		      <p>and the value <em>Imperfect</em>  has the URI:</p>
+			this URI would be notated <em>brn:tam</em>. and the Burunge TTL file, would
+                      contain in a brief abbreviation section (typically five to ten items) the entry:</p>
+<pre>
+&lt;@prefix brn:     <http://id.oi.uchicago.edu/aama/2013/burunge/>&gt;
+</pre>
+		      <p>Similarly, the value <em>Imperfect</em>, which has the URI:</p>
 		      <pre>
 &lt;http://id.oi.uchicago.edu/aama/2013/burunge/Imperfect&gt;
  		      </pre>
-		      <p>(in ttl notation <em>brn:Imperfect</em>)</p>
-		      <p>Formal URI's are valuable for distinguishing terminologies and 
+		      <p>would be in ttl notation <em>brn:Imperfect</em>)</p>
+		      <p>Formal URIs are valuable for distinguishing terminologies and 
 			building nomenclatures and ontologies. But in practice they are 
 			not visibly present in the user-end of our query application.</p>
 		    </li>
@@ -262,21 +271,26 @@ aama:d3c483b1 brn:person brn:Person1 .
 		      <p>stating that 'the :person property of the term as the value 
 			:Person1'</p>
 		      <p>And so forth. A good way to see practically the relation between 
-			the EDN data file and its RDF transform is to take a look at the 
-			EDN and TTL versions of a language data file of interest 
-			(e.g. beja-arteiga-pdgms.edn and beja-arteiga-pdgms.ttl).</p>
+			the JSON data file and its RDF transform is to take a look at the 
+			JSON and TTL versions of a language data file of interest 
+			(e.g. beja-hud-pdgms.json and beja-hud-pdgms.ttl).</p>
 		    </li>
-		  </ol>
+                    </ol>
+
 		  <p>Not surprisingly it takes a very large number of triples to describe 
 		    even a moderately large datastore (AAMA on a recent count had 987,911).
 		    But they are very rapidly produced and indexed (a few seconds per 
-		    language using AAMA's edn2ttl program),  efficiently stored, and permit 
-		    extremely quick access to information for display, comparison, 
-		    manipulation, and reasoning. Among the RDF  tools in the on-line
-		    material, there is an executable file (with source code) for 
-		    transforming the (edn) data files into appropriate RDF datastore 
-		    (ttl/rdf) format, and a set of scripts to upload data files to a local 
-		    RDF server.</p>
+		    language using the AAMA pdgmDict-json2ttl.py program),  efficiently stored, 
+                    and permit  extremely quick access to information for display, comparison, 
+		    manipulation, and reasoning. As mentioned, among the RDF  tools in the on-line
+		    material, there is a Python script for 
+		    transforming the (json) data files into appropriate RDF datastore 
+		    (ttl) format, and a set of scripts to upload data files to a local 
+		    Fuseki  RDF server.</p>
+                   </li>
+		  </ol>
+
+
 		  <p>Although RDF is an extremely interesting topic in itself, running the 
 		    relevant scripts for adding to or correcting archive-data in the edn 
 		    files (usually done via an application menu choice), requires no special 
@@ -289,22 +303,45 @@ aama:d3c483b1 brn:person brn:Person1 .
 		    are given below for setting up an RDF server on an individual 
 		    machine, and loading the data into it.</p>
 		</li>
-		<li id="qinterface" ><h4>1.3 Query/Display Interface</h4>
-		  <p> A rather basic menu-driven application which essentially:</p>
+		<li id="qinterface" ><h4>1.3 Query/Display User Interface</h4>
+		  <p> The directory 'webappy' contains a set of Python scripts which contitute 
+                    the elements of a rather basic 'proof-of-concept'  application:</p>
 		  <ol>
-		    <li>gathers requested language and morphological property and value 
-		      information via the usual array of HTML form selection-list, checkbox, 
+		    <li>A set of scripts which index the paradigm files, set up the matrerial for the menu
+                      and select lists and input forms,  and programatically transform the json files into
+                      ttl. These are principally:
+                      <pre>
+pdgmDict-pvlists.py
+pdgmDict-json2ttlpy
+                      </pre>
+                      </li>
+                    <li>
+                      A set of scripts to choose, display, and manipulate morphological material within
+                      and between language families. For the moment we are using the native Python 
+                      Tcl/tk-derived  tkinter graphic library, although we plan to return to a unified menu-based
+                      browser application, similar to our earlier Clojure-based application. The principal Python
+                      scripts in this version are::
+                      <pre>
+pdgmDispUI-ltsource.py
+pdgmDispUI-formsearch.py
+                      </pre>
+                      These scripts generally work as follows:
+                      <ol>
+                        <li>They gather requested language and morphological property and value 
+		      information via an array of form selection-list, checkbox, 
 		      and text-input mechanisms;</li>
-		    <li>formulates them into a SPARQL query, </li>
-		    <li>which it submits to the datastore, returning the response, 
-		      typically formatted into an HTML table. </li>
-		  </ol>
+		    <li>formulate them into a SPARQL query, </li>
+		    <li>which is submitted to the datastore, returning a CSV response,</li> 
+                      <li>which in turn is typically formatted into one or more tables
+                      using 'pandas' and other Python libraries.</li>
+                      </ol>
+		  </ul>
 		  <p>Below we give instructions for downloading, launching, and 
 		    initializing it. More details are on the app are available in the 
 		    aama/webapp 
 		    <a href="https://github.com/aama/webapp/blob/master/README.md">
-		      README</a> and the app <code>Help</code> menu, as well as a 
-		    <a href="https://youtu.be/JNCJsR28SEE">demo video</a><p>
+		      README</a> . Also, a brief demo video of the earlier HTML version can be seen at 
+		    <a href="https://youtu.be/JNCJsR28SEE"></a>
 		</li>
 	      </ul>
 	    </li>
@@ -315,9 +352,9 @@ aama:d3c483b1 brn:person brn:Person1 .
 		  <h4>2.1 Git client</h4>
 		  <p>The aama project uses <a
 		  href="http://github.com">GitHub</a> to store data
-		  and tools; you'll need a git client in order to
+		  and tools; you wll need a git client in order to
 		  download the tools repository and the data
-		  repositories you're interested in.  Follow the
+		  repositories you are interested in.  Follow the
 		  instructions at <a
 		  href="https://help.github.com/articles/set-up-git#platform-mac">Set
 		  Up Git</a>.
@@ -330,24 +367,22 @@ aama:d3c483b1 brn:person brn:Person1 .
 		<li>
 		  <h4>2.2 aama directory</h4>
 		  <p>
-		    Create and switch to an <code>aama</code> directory
+		    We will assume that the data is plaed in a directory called 'aama-data'
+                    and application software is to be placed in a directory called 
+                    'webappy'. So Create and switch to an <code>aama</code> directory
 		    structure on your local drive, e.g.
 		    <pre>
-~/ $ mkdir aama
-~/ $ cd aama</pre>
+~/ $ mkdir aama-data
+~/ $ mkdir webappy
+~/ $ cd webappy
+~/webappy/ $ mkdir bin
+~/ $ cd aama-data
+~/aama-data/ $ mkdir data
+                    </pre>
 		  </p>
 		</li>
-		<li>
-		  <h4>2.3 rdf2rdf.jar</h4>
-		  <p>We use this tool to convert RDF files to various
-		  formats.  <a
-		  href="http://www.l3s.de/~minack/rdf2rdf/">Download
-		  it</a> and save it someplace convenient -
-		  <code>~/aama/jar</code> is a good place.
-		  </p>
-		</li>
-		<li>
-		  <h4>2.4 Fuseki</h4>
+                <li>
+                  <h4>2.4 Fuseki</h4>
 		  <p>
 		    Fuseki is the SPARQL server we are using to query the dataset.  <a
 		    href="http://jena.apache.org/download/index.cgi">Download</a>
@@ -355,14 +390,15 @@ aama:d3c483b1 brn:person brn:Person1 .
 		    distribution (either the zip file or the tar file; NB, make
 		    sure your Java JDK is up-to-date with the download)
 		    and store it in a convenient location.
-		    <code>~/aama/fuseki</code> is a good place.
+		    <code>~/fuseki</code> is a good place.
 		   The following steps will install the <code>aama</code> dataset
 		    and verify that it runs. Futher information about Fuseki, 
 		    as well as information and links about RDF linked data and
 		    the SPARQL query language can be found at the
 		    <a href="http://jena.apache.org/index.html"> Apache Jena</a> 
 		    site. </p>
-		</li>
+                  </li>
+
 	      </ul>
 	    </li>
 	    <li id="datatools">
@@ -386,10 +422,10 @@ aama:d3c483b1 brn:person brn:Person1 .
 		  each language repository into the data directory:
 		  </p>
 		  <pre>
-~/ $ cd aama/data
-~/aama/data $ git clone https://github.com/aama/afar.git
-~/aama/data $ git clone https://github.com/aama/geez.git
-~/aama/data $ git clone https://github.com/aama/yemsa.git</pre>
+~/ $ cd aama-data/data
+~/aama-data/data $ git clone https://github.com/aama/afar.git
+~/aama-data/data $ git clone https://github.com/aama/geez.git
+~/aama-data/data $ git clone https://github.com/aama/yemsa.git</pre>
 		  <p>
 		    Alternatively, you can create a personal github
 		    account, <i>fork</i> the aama repositories (copy them
@@ -401,37 +437,33 @@ aama:d3c483b1 brn:person brn:Person1 .
 		</li>
 		<li>
 		  <p>
-		    In the same <code>aama</code> directory, clone the
-		    aama <a href="https://github.com/aama/tools">tools
-		    repository</a>:
+		    In the  <code>webappy</code> directory, clone the
+		    aama <a href="https://github.com/aama/webappy"> Python web application
+		    repository, with the shell scripts, which should be later moved to
+                    the 'bin' subdirectory</a>:
 		    <pre>
-~/aama $ git clone https://github.com/aama/tools.git</pre>
-		    and the <a href="https://github.com/aama/webapp"> web
-		      application</a>:
-		    <pre>
-~/aama $ git clone https://github.com/aama/webapp.git</pre>
+~/aama $ git clone https://github.com/aama/webappy.git</pre>
 		  </p>
 		</li>
 	      </ul>
 	      <p>
-		When you're done, your directory structure should look
+		When youhave finished, your directory structure should look
 		like this (assuming you have cloned afar, geez, and
 		yemsa):
 	      </p>
 		<pre>
-   aama
-   |-data
+   ~/
+   |-aama-data
    |---afar
    |---geez
    |---yemsa
    |-fuseki
-   |-jar
-   |-tools
-   |-webapp
+   |-webappy
+   |---bin
 		</pre>
 	    </li>
-	    <li id="ednformat">
-	      <h4>4. The EDN format for morphological data</h4>
+	    <li id="jsonformat">
+	      <h4>4. The JSON format for morphological data</h4>
 
 	      <p> The normative/persistant data format is the json-like 
 		<a href="https://github.com/edn-format/edn">edn:  Extensible 
@@ -445,17 +477,17 @@ aama:d3c483b1 brn:person brn:Person1 .
 		inspection.
 	      </p>
 	      <p>
-		Our current EDN structure (cf. <a href="#datastructure">below</a>)
+		Our current JSON structure (cf. <a href="#datastructure">below</a>)
 		while open to extension and revision,
 		seems to provide a natural notation for the verbal and 
 		pronominal inflectional paradigms encountered in Afroasiatic,
 		and perhaps for inflectional paradigms generally. </p>
              <p>
-	       Since the EDN file is the normative/persistant data format,
+	       Since the JSON file is the normative/persistant data format,
 	       any corrections or additions you want to make must be made 
 	       in this file, from which you will then generate new TTL/RDF 
 	       files to be  uploaded to the SPARQL server. And in fact, as 
-	       long as you observe the above structure for EDN 
+	       long as you observe the above structure for JSON 
 	       files, you can create any number of new language files of your
 	       own, transform them to RDF format, and upload them to the
 	       SPARQL server for querying.
@@ -469,50 +501,35 @@ aama:d3c483b1 brn:person brn:Person1 .
 		  shared property=value components, followed, after a delimiter '%' by a 
 		  comma-separated list of the properties whose values consititute the rows
 		  of the paradigm. In the, frequently long, paradigm lists automatically 
-		  generated from the EDN file by the "Create Paradigm Lists" utility, for 
+		  generated from the JSON file by the "Create Paradigm Lists" utility, for 
 		  ease in processing the first two properties are always pos 
 		  (part-of-speech) and morphClass, and, for ease in reading the 
 		  'property=' part of the label is omitted. Thus the label of the paradigm  
 		  illustrated above would be: 
 		</p>
 <pre>
-Verb,Finite,lex=:xaw,polarity=Affirmative,stemClass=Glide,tam=Imperfect%number,person,gender
+pos=Verb,lex=xaw,polarity=Affirmative,stemClass=Glide,tam=Imperfect%number,person,gender
 </pre>
 		<p> and might occur in a list as:</p>
 		<pre>.  .  .
-Verb,Finite,lex=:qadid,polarity=Affirmative,stemClass=DentalStem,tam=Perfect%number,person,gender
-Verb,Finite,lex=:qadid,polarity=Affirmative,stemClass=DentalStem,tam=Subjunctive%number,person,gender
-Verb,Finite,lex=:xaw,polarity=Affirmative,stemClass=GlideStem,tam=Imperfect%number,person,gender
-Verb,Finite,lex=:xaw,polarity=Affirmative,stemClass=GlideStem,tam=Perfect%number,person,gender
-Verb,Finite,lex=:xaw,polarity=Affirmative,stemClass=GlideStem,tam=Subjunctive%number,person,gender
+pos=Verb,lex=qadid,polarity=Affirmative,stemClass=DentalStem,tam=Perfect%number,person,gender
+pos=Verb,lex=qadid,polarity=Affirmative,stemClass=DentalStem,tam=Subjunctive%number,person,gender
+pos=Verb,lex=xaw,polarity=Affirmative,stemClass=GlideStem,tam=Imperfect%number,person,gender
+pos=Verb,lex=xaw,polarity=Affirmative,stemClass=GlideStem,tam=Perfect%number,person,gender
+pos=Verb,lex=xaw,polarity=Affirmative,stemClass=GlideStem,tam=Subjunctive%number,person,gender
 . . . </pre>
 		</li>
 	    <li id="rdfgen">
 	      <h4>6. Generate RDF data from morphological data files</h4>
 	      <p>
-		In order to convert EDN-format data files to TTL ("turtle" 
+		In order to convert JSON-format data files to TTL ("turtle" 
 		-- a more easily human-readable RDF format), you will
-		need the <code>aama-edn2ttl.jar</code> file.
-		You will find this file in the <code>~/aama/tools/clj</code> 
-		directory, which also contains its source-code. You should
-		move this file to wherever you saved the rdf2rdf.jar file
-		(for example in <code>~/aama/jar</code>), which in turn will
-		convert the .ttl file to the rdf-xml which is needed for
+		use the <code>pdgmDict-pdgm2ttl.py</code> file in the
+		 <code>webappy</code> directory. The <code>aama-datastore-update.sh</code>
+                shell script will call  <code>aama-ttl2fuseki.sh</code> which in turn
+		will convert the .ttl file to the rdf-xml which is needed for
 		uploading to the Fuseki SPARQL service.
 	      </p>
-	      <p>
-		The EDN->TTL->RDF conversion can be effected by running:
-		<pre>
-~/aama $ tools/bin/aama-edn2rdf.sh "data/*"
-                </pre>
-		which will make a .ttl and .rdf file for every .edn file
-		in the data/ directory. This script presumes that the two
-		jar files have been placed in <code>~/aama/jar</code>; you
-		should edit it if the jar files have been located elsewhere.
-		(The conversion of a single language file can be effected by
-		substituting, e.g., <code>data/oromo</code> for 
-		<code>"data/*"</code>.) 
-		</p>
 	    </li>
 	    <li id="rdfupload">
 	      <h4>7. Upload RDF data to SPARQL service</h4>
@@ -520,11 +537,11 @@ Verb,Finite,lex=:xaw,polarity=Affirmative,stemClass=GlideStem,tam=Subjunctive%nu
 		In order to upload the RDF files to Fuseki, you must
 		first start the server by running:
 		<pre>
-~/aama $ tools/bin/fuseki.sh
+~/aama $ webappy/bin/fuseki.sh
                 </pre>
 		This script, like the following, assumes that the current version
-		of Fuseki, for the moment <code>apache-jena-fuseki-2.4.0</code>, has
-		been placed in the <code>aama/fuseki</code> directory, and that
+		of Fuseki, for the moment <code>apache-jena-fuseki-3.16.0</code>, has
+		been placed in the <code>fuseki</code> directory, and that
 		the file <code>tools/aamaconfig.ttl</code> has been copied
 		to the Fuseki version directory; the
                 scripts should be edited for the correct locations if this
@@ -533,42 +550,30 @@ Verb,Finite,lex=:xaw,polarity=Affirmative,stemClass=GlideStem,tam=Subjunctive%nu
 		<code>tools/aamaconfig.ttl</code>, will have placed a, 
 		for the moment empty, data
 		sub-directory <code>aama</code> in the 
-		<code>fuseki/apache-jena-fuseki-2.4.0/</code> directory.
+		<code>fuseki/apache-jena-fuseki-3.16.0/</code> directory.
 		</p>
 	      <p>
 		The following script:
 		<pre>
- ~/aama $ tools/bin/aama-rdf2fuseki.sh "data/*"
+ ~/aama $ webappy/bin/aama-datastore-update.sh "../aama-datadata/[LANG]"
                 </pre>
-		will load all the rdf files in <code>aama/data</code>
+		will load the relevant ttl file in <code>aama-data/data/[LANG]</code>
 		into the Fuseki server. 
 		</p>
-	      <p>
-		[NOTE: If the remote repository already
-		has data loaded into its Fuseki server, the following script:
-		<pre>
- ~/aama $ tools/bin/fudelete.sh "data/*"
-                </pre>
-		must be run first.]
-		</p>
 	  <p>
-	    You can test the upload with the script: 
-	    <pre>
-~/aama $ tools/bin/fuqueries.sh
-            </pre>
-	    which runs the queries <code>count-triples.rq</code>
+	    It also automatically runs the queries <code>count-triples.rq</code>
 	    ("How many triples are there in the datastore?") and 
 	    <code>list-graphs.rq</code> ("What are the URIs of the 
 	    language subgraphs?"), from the directory 
-	    <code>tools/sparql/rq-ru</code>.
+	    <code>webappy/bin</code>.
 	    If the upload has been successful, you will see an output such as
 	    the following (assuming again that afar, geez, and yemsa are the 
 	    languages which have been cloned into aama/data/).</p>
 	  <pre>
-Query: tools/sparql/rq-ru/count-triples.rq
+Query: bin/fuquery-gen.sh bin/count-triples.rq
 ?sTotal
 33871
-Query: tools/sparql/rq-ru/list-graphs.rq
+Query: bin/fuquery-gen.sh bin/list-graphs.rq
 ?g
 &lt;http://oi.uchicago.edu/aama/2013/graph/afar>
 &lt;http://oi.uchicago.edu/aama/2013/graph/geez>
@@ -585,8 +590,7 @@ Query: tools/sparql/rq-ru/list-graphs.rq
 		<li>
 		  <h4>8.1 An AAMA command-line interface</h4>
 		 <p>
-		  (Some sample queries in <code>tools/sparql/rq-ru</code>
-		  and scripts in <code>tools/bin</code>. An earlier version exists
+		  (Some sample queries in <code>webappy/bin</code>. An earlier version exists
 		  with an extensive command-line application written in Perl.)</p>
 		  </li>
 		<li>
@@ -600,19 +604,21 @@ Query: tools/sparql/rq-ru/list-graphs.rq
 		    in the Fuseki Control Panel on the 
 		    <code>localhost:3030/dataset.html</code> page
 		    (select the <code>/aama</code>
-		    dataset when prompted). 
+		    dataset when prompted). Also the <code>pdgmDispUI-...</code>
+                    scripts automatically write to the terminal all SPARQL queries geneerated
+                    in the course of the computation. These queries can be copied and
+                    pasted into the Fuseki panel for inspection and debugging.
 		  </p>
 		  </li>
 		<li>
 		  <h4>8.3 A web application specifically oriented to AAMA data</h4>
-		  <p>A preliminary menu-driven web application, will have
+		  <p>A preliminary menu-driven GUI application, will have
 		    already been downloaded following the instructions outlined 
 		    above in <a href="#datatools">Download data, tools, and application code</a>.
 		    This application demonstrates the
 		    use of SPARQL query templates for display and comparison of 
 		    paradigms and morphosyntactic properties and categories. 
-		    It is written in <a href="http://clojure.org/index">Clojure</a>,
-		    a LISP dialect with a very involved
+		    It is written in Python, which has a very involved
 		    community of users who have created a formidable,
 		    and constantly growing set of libraries. However essentially
 		    the same functionality could be achieved by any software
@@ -621,23 +627,7 @@ Query: tools/sparql/rq-ru/list-graphs.rq
 		  </p>
 		  <p>The application presupposes that the Fuseki AAMA data server
 		    has been launched through the invocation of the shell-script 
-		    <code>bin/fuseki.sh</code>. At present 
-		    the application can be run in the webapp directory, either
-		    <ol><li>from the downloaded sorce-code, with the command 
-			<code>lein ring server</code> using 
-		  	<a href="http://leiningen.org">Leiningen</a></li>
-		        <li> or as a Java application from the jar file to be 
-			  found in the webapp directory, with
-			  the command <code>java -jar aama-webapp.jar</code>.</li>
-			</ol>
-		  </p>
-		  <p> In either case, the application will be seen on the browser 
-		    at <code>localhost:3000</code>. 
-		    Note that, in order to run, the application must be initialized 
-		    in either case by generating/loading 
-		    application-specific menu and index files,
-		    following the steps detailed in the 
-		    <code>Help > Initialize Application</code>  menu option.
+		    <code>bin/fuseki.sh</code>. ication</code>  menu option.
 		  </li>
 		</ol>
 	    </li>
@@ -655,24 +645,24 @@ Query: tools/sparql/rq-ru/list-graphs.rq
 		<pre>
  ~/aama $ tools/bin/aama-pulldata.sh data/[LANG]
                 </pre>
-		will update the edn language data file in the
+		will update the json language data file in the
 		data/[LANG] directory.
 	      </p>
 	      <p>While:
 		<pre>
  ~/aama $ tools/bin/aama-pulldata.sh "data/*"
                 </pre>
-		will update the edn language data files in all the
+		will update the json language data files in all the
 		data/[LANG] directories.
 	      </p>
 	      <p>Once revised (or new) edn files have been installed, remember
-		to run the appropriate scripts to transform them to ttl and rdf
+		to run the appropriate scripts to transform them to ttl 
 		format and to load them into the SPARQL server, as outlined above.
 	      </p>
 	      <p>
 		Finally, the script:
 		<pre>
- ~/aama $ tools/bin/aama-pullwebapp.sh 
+ ~/aama $ tools/bin/aama-pullwebappy.sh 
                 </pre>
 		will update he files of the web applicagtion.
 	      </p>
@@ -682,7 +672,7 @@ Query: tools/sparql/rq-ru/list-graphs.rq
 	  <h4 id="dataschema"> Appendix 1: The Data Schema </h4>
 	  <p>Basic structure:</p>
 	      <p>In outline 
-		each language EDN file has the following structure (see any of 
+		each language JSON file has the following structure (see any of 
 		the language .edn files for a concrete example, and see below 
 		for explanation of terms):
 		</p>
@@ -733,11 +723,12 @@ Query: tools/sparql/rq-ru/list-graphs.rq
 	    <li><a href="https://github.com/aama/arbore">Arbore</a></li>
 	    <li><a href="https://github.com/aama/awngi">Awngi</a></li>
 	    <li><a href="https://github.com/aama/bayso">Bayso</a></li>
+	    <li><a href="https://github.com/aama/beja-alm">Beja-alm</a></li>
 	    <li><a href="https://github.com/aama/beja-hud">Beja-hud</a></li>
-	    <li><a href="https://github.com/aama/beja-atmaan">Beja-atmaan</a></li>
-	    <li><a href="https://github.com/aama/beja-beniamer">Beja-beniamer</a></li>
-	    <li><a href="https://github.com/aama/beja-bishari">Beja-bishari</a></li>
-	    <li><a href="https://github.com/aama/beja-hadendowa">Beja-hadendowa</a></li>
+	    <li><a href="https://github.com/aama/beja-rei">Beja-rei</a></li>
+	    <li><a href="https://github.com/aama/beja-rop">Beja-rop</a></li>
+	    <li><a href="https://github.com/aama/beja-van">Beja-van</a></li>
+	    <li><a href="https://github.com/aama/beja-wed">Beja-wed</a></li>
 	    <li><a href="https://github.com/aama/berber-ghadames">Berber-ghadames</a></li>
 	    <li><a href="https://github.com/aama/bilin">Bilin</a></li>
 	    <li><a href="https://github.com/aama/boni-jara">Boni-jara</a></li>
