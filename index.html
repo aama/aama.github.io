@@ -37,7 +37,7 @@
 	    <li><a href="#project">1. The AAMA Project</a></li>
 	    <li><a href="#software">2. Install and configure required software</a></li>
 	    <li><a href="#datatools">3. Download data and tools</a></li>
-	    <li><a href="#jsonformat">4. The EDN format for morphological data</a></li>
+	    <li><a href="#jsonformat">4. The JSON format for morphological data</a></li>
 	    <li><a href="#pdgmlabels">5. Paradigm Labels in the AAMA archve </a></li>
 	    <li><a href="#rdfgen">6. Generate RDF data from morphological data files</a></li>
 	    <li><a href="#rdfupload">7.Upload RDF data to SPARQL service</a></li>
@@ -375,9 +375,9 @@ pdgmDispUI-formsearch.py
 ~/ $ mkdir aama-data
 ~/ $ mkdir webappy
 ~/ $ cd webappy
-~/webappy/ $ mkdir bin
+~/ $ webappy/mkdir bin
 ~/ $ cd aama-data
-~/aama-data/ $ mkdir data
+~/ $ aama-data/mkdir data
                     </pre>
 		  </p>
 		</li>
@@ -465,9 +465,8 @@ pdgmDispUI-formsearch.py
 	    <li id="jsonformat">
 	      <h4>4. The JSON format for morphological data</h4>
 
-	      <p> The normative/persistant data format is the json-like 
-		<a href="https://github.com/edn-format/edn">edn:  Extensible 
-		  Data Notation</a>. This notation has the advantage of being
+	      <p> For the normative/persistant data format we are using
+		json. This notation has the advantage of being
 		rigorously defined system of terms (<code>:term</code>),
 		strings (<code>"string"</code>), vectors 
 		(<code>[a b c d]</code> maps (<code>{a b, c d}</code> and sets 
