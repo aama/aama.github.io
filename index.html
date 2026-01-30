@@ -255,7 +255,7 @@ subject predicate object .
 			<pre>
 paradigmTermID-s hasProperty-p withValue-o .
 			</pre>
-		      <p>Thus if the first term of the json paradigm given above had the 
+		      <p>Thus if the first term of the JSON paradigm given above had the 
 			pdgmTermID <em>aama:d3c483b1</em> one of the (many) triples 
 			descibing it would be (in the ttl notation):</p>
 		      <pre>
@@ -289,7 +289,7 @@ burunge-pdgms:{termclusters:[{label:"brn-VerbGlideStem-xaw-ImperfectAffirmative"
                     and permit  extremely quick access to information for display, comparison, 
 		    manipulation, and reasoning. As mentioned, among the RDF  tools in the on-line
 		    material, there is a Python script for 
-		    transforming the (json) data files into appropriate RDF datastore 
+		    transforming the (JSON) data files into appropriate RDF datastore 
 		    (ttl) format, and a set of scripts to upload data files to a local 
 		    Fuseki  RDF server.</p>
                    </li>
@@ -313,7 +313,7 @@ burunge-pdgms:{termclusters:[{label:"brn-VerbGlideStem-xaw-ImperfectAffirmative"
                     the elements of a rather basic 'proof-of-concept'  application:</p>
 		  <ol>
 		    <li>A set of scripts which index the paradigm files, set up the matrerial for the menu
-                      and select lists and input forms,  and programatically transform the json files into
+                      and select lists and input forms,  and programatically transform the JSON files into
                       ttl. These are principally:
                       <pre>
 pdgmDict-schemata.py
@@ -476,7 +476,7 @@ pdgmDispUI-formsearch.py
 	      <h4>4. The JSON format for morphological data</h4>
 
 	      <p> For the normative/persistant data format we are using
-		json. This notation has the advantage of being
+		JSON. This notation has the advantage of being
 		rigorously defined system of terms (<code>:term</code>),
 		strings (<code>"string"</code>), vectors 
 		(<code>[a b c d]</code> maps (<code>{a b, c d}</code> and sets 
@@ -654,17 +654,17 @@ Query: bin/fuquery-gen.sh bin/list-graphs.rq
 		<pre>
  ~/aama $ tools/bin/aama-pulldata.sh data/[LANG]
                 </pre>
-		will update the json language data file in the
+		will update the JSON language data file in the
 		data/[LANG] directory.
 	      </p>
 	      <p>While:
 		<pre>
  ~/aama $ tools/bin/aama-pulldata.sh "data/*"
                 </pre>
-		will update the json language data files in all the
+		will update the JSON language data files in all the
 		data/[LANG] directories.
 	      </p>
-	      <p>Once revised (or new) json files have been installed, remember
+	      <p>Once revised (or new) JSON files have been installed, remember
 		to run the appropriate scripts to transform them to ttl 
 		format and to load them into the SPARQL server, as outlined above.
 	      </p>
@@ -682,7 +682,7 @@ Query: bin/fuquery-gen.sh bin/list-graphs.rq
 	  <p>Basic structure:</p>
 	      <p>In outline 
 		each language JSON file has the following structure (see any of 
-		the language .json files for a concrete example, and see below 
+		the LANGUAGE-pdgms.json files for a concrete example, and see below 
 		for explanation of terms):
 		</p>
 	      <pre>
