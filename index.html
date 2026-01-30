@@ -137,7 +137,7 @@
 			<td> Singular</td><td>Person1</td><td>Commo</td><td><em>xaw</em></td>
 		      </tr>
 		      <tr>
-			<td>Singular</td><td>Person2/>td><td>Common</td><td><em>xaydă</em></td>
+			<td>Singular</td><td>Person2</td><td>Common</td><td><em>xaydă</em></td>
 		      </tr>
 		      <tr>
 			<td>Singular</td><td>Person3</td><td>Masc</td><td><em>xay</em></td>
@@ -206,13 +206,14 @@
 		    <a href=https://www.w3.org/RDF</a> format. </p>
 
 		  <p>Very good introductions to RDF datastores and the associated 
-		    <a href="https://www.w3.org/tr/sparql11-overview/">SPARQL</a> query 
-		    language can be found in their respective W3C home sites. But very 
-		    basically RDF involves:</p>
+		    SPARQL</a> query 
+		    language can be found in their respective
+			  <a href="https://www.w3.org/tr/sparql11-overview/">W3C</a> home sites. But, very 
+		    basically, RDF involves:</p>
 		  <ol>
 		    <li><em>Identifying units of information, and assigning them URL-like 
 			unique Uniform Resource Identifiers (URI). </em>
-		      <p>For example, in a paradigm  cited above from the  burunge-pdgms.edn 
+		      <p>For example, in a paradigm  cited above from the  burunge-pdgms.json 
 			file one of the possible values of the property<em> tam </em>
 			(TenseAspectMode) is <em>Imperfect</em>.  In the correspnding 
 			full rdf/xml format file beja-arteiga-pdgms.rdf file, the property 
@@ -227,7 +228,7 @@
 			this URI would be notated <em>brn:tam</em>. and the Burunge TTL file, would
                       contain in a brief abbreviation section (typically five to ten items) the entry:</p>
 <pre>
-&lt;@prefix brn:     <http://id.oi.uchicago.edu/aama/2013/burunge/>&gt;
+@prefix brn:     &lt;http://id.oi.uchicago.edu/aama/2013/burunge/&gt;
 </pre>
 		      <p>Similarly, the value <em>Imperfect</em>, which has the URI:</p>
 		      <pre>
@@ -254,7 +255,7 @@ subject predicate object .
 			<pre>
 paradigmTermID-s hasProperty-p withValue-o .
 			</pre>
-		      <p>Thus if the first term of the edn paradigm given above had the 
+		      <p>Thus if the first term of the json paradigm given above had the 
 			pdgmTermID <em>aama:d3c483b1</em> one of the (many) triples 
 			descibing it would be (in the ttl notation):</p>
 		      <pre>
@@ -268,12 +269,16 @@ aama:d3c483b1 brn:tam brn:Imperfect .
 		      <pre>
 aama:d3c483b1 brn:person brn:Person1 .
 		      </pre>
-		      <p>stating that 'the :person property of the term as the value 
+		      <p>stating that 'the :person property of the term has the value 
 			:Person1'</p>
 		      <p>And so forth. A good way to see practically the relation between 
-			the JSON data file and its RDF transform is to take a look at the 
-			JSON and TTL versions of a language data file of interest 
-			(e.g. beja-hud-pdgms.json and beja-hud-pdgms.ttl).</p>
+			the JSON data file and its RDF transform is to take a look at a paradigm
+			of interest in the 
+			JSON and TTL versions of a language data file of interest: e.g.
+		     <pre>
+burunge-pdgms:{termclusters:[{label:"brn-VerbGlideStem-xaw-ImperfectAffirmative"}]} 
+		     </pre>
+			and its corresponding RDF transformation in the `burunge-pdgms.ttl` file.</p>
 		    </li>
                     </ol>
 
@@ -292,7 +297,7 @@ aama:d3c483b1 brn:person brn:Person1 .
 
 
 		  <p>Although RDF is an extremely interesting topic in itself, running the 
-		    relevant scripts for adding to or correcting archive-data in the edn 
+		    relevant scripts for adding to or correcting archive-data in the json 
 		    files (usually done via an application menu choice), requires no special 
 		    knowledge about RDF datastores. Some knowledge of the structure of an 
 		    RDF datastore and the SQL-like SPARQL query language however IS required 
@@ -311,8 +316,10 @@ aama:d3c483b1 brn:person brn:Person1 .
                       and select lists and input forms,  and programatically transform the json files into
                       ttl. These are principally:
                       <pre>
+pdgmDict-schemata.py
+pdgmDict-lexemespy						  
 pdgmDict-pvlists.py
-pdgmDict-json2ttlpy
+pdgmDict-json2ttl.py
                       </pre>
                       </li>
                     <li>
@@ -322,7 +329,8 @@ pdgmDict-json2ttlpy
                       browser application, similar to our earlier Clojure-based application. The principal Python
                       scripts in this version are::
                       <pre>
-pdgmDispUI-ltsource.py
+pdgmDisp-baseApp-PDGM.py
+pdgmDisp-baseApp-GPDGM.py
 pdgmDispUI-formsearch.py
                       </pre>
                       These scripts generally work as follows:
@@ -337,11 +345,12 @@ pdgmDispUI-formsearch.py
                       </ol>
 		  </ul>
 		  <p>Below we give instructions for downloading, launching, and 
-		    initializing it. More details are on the app are available in the 
-		    aama/webapp 
-		    <a href="https://github.com/aama/webapp/blob/master/README.md">
-		      README</a> . Also, a brief demo video of the earlier HTML version can be seen at 
-		    <a href="https://youtu.be/JNCJsR28SEE"></a>
+		    initializing the app. More details on the app are available in the 
+		    aama/webappy
+			<a href="https://github.com/aama/webappy/edit/main/README.md">README</a>
+		    <a href="https://github.com/aama/webapp/blob/master/README.md">README</a> . 
+			  Also, a brief demo video of the earlier HTML/CLOJURE version can be seen at 
+		    <a href="https://youtu.be/JNCJsR28SEE">AAMA DEMO</a>
 		</li>
 	      </ul>
 	    </li>
@@ -367,9 +376,9 @@ pdgmDispUI-formsearch.py
 		<li>
 		  <h4>2.2 aama directory</h4>
 		  <p>
-		    We will assume that the data is plaed in a directory called 'aama-data'
+		    We will assume that the data is placed in a directory called 'aama-data'
                     and application software is to be placed in a directory called 
-                    'webappy'. So Create and switch to an <code>aama</code> directory
+                    'webappy'. So create and switch to an <code>aama</code> directory
 		    structure on your local drive, e.g.
 		    <pre>
 ~/ $ mkdir aama-data
@@ -390,7 +399,7 @@ pdgmDispUI-formsearch.py
 		    distribution (either the zip file or the tar file; NB, make
 		    sure your Java JDK is up-to-date with the download)
 		    and store it in a convenient location.
-		    <code>~/fuseki</code> is a good place.
+		    <code>~/jena</code> is a good place.
 		   The following steps will install the <code>aama</code> dataset
 		    and verify that it runs. Futher information about Fuseki, 
 		    as well as information and links about RDF linked data and
@@ -410,9 +419,11 @@ pdgmDispUI-formsearch.py
 		  decide which languages interest you.  In general we use
 		  one repository per language, or in some cases, language 
 		  variety, e.g. <a
-		  href="https://github.com/aama/beja-arteiga">beja-arteiga</a>,
+		  href="https://github.com/aama/beja-hud">beja-huda</a> is the
+			  variety of Beja described by Richard Hudson in . . .
 		  <a
-		      href="https://github.com/aama/beja-bishari">beja-bishari</a>,
+		      href="https://github.com/aama/beja-van">beja-van</a> is the
+			  variety of Beja described by . . . Verhove ub . . .
 		  etc.
 		  </p>
 		  <p>Now you need to download the data to your local
@@ -457,7 +468,7 @@ pdgmDispUI-formsearch.py
    |---afar
    |---geez
    |---yemsa
-   |-fuseki
+   |-jena
    |-webappy
    |---bin
 		</pre>
@@ -523,7 +534,7 @@ pos=Verb,lex=xaw,polarity=Affirmative,stemClass=GlideStem,tam=Subjunctive%number
 	      <p>
 		In order to convert JSON-format data files to TTL ("turtle" 
 		-- a more easily human-readable RDF format), you will
-		use the <code>pdgmDict-pdgm2ttl.py</code> file in the
+		use the <code>pdgmDict-json2ttl.py</code> file in the
 		 <code>webappy</code> directory. The <code>aama-datastore-update.sh</code>
                 shell script will call  <code>aama-ttl2fuseki.sh</code> which in turn
 		will convert the .ttl file to the rdf-xml which is needed for
@@ -540,23 +551,23 @@ pos=Verb,lex=xaw,polarity=Affirmative,stemClass=GlideStem,tam=Subjunctive%number
                 </pre>
 		This script, like the following, assumes that the current version
 		of Fuseki, for the moment <code>apache-jena-fuseki-3.16.0</code>, has
-		been placed in the <code>fuseki</code> directory, and that
-		the file <code>tools/aamaconfig.ttl</code> has been copied
+		been placed in the <code>jena</code> directory, and that
+		the file <code>aamaconfig.ttl</code> has been copied
 		to the Fuseki version directory; the
                 scripts should be edited for the correct locations if this
 		is not the case. When run for the first time, you will notice 
 		that the script, which references the configuration file 
-		<code>tools/aamaconfig.ttl</code>, will have placed a, 
+		<code>aamaconfig.ttl</code>, will have placed a, 
 		for the moment empty, data
 		sub-directory <code>aama</code> in the 
-		<code>fuseki/apache-jena-fuseki-3.16.0/</code> directory.
+		<code>jena/apache-jena-fuseki-3.16.0/</code> directory.
 		</p>
 	      <p>
 		The following script:
 		<pre>
  ~/aama $ webappy/bin/aama-datastore-update.sh "../aama-datadata/[LANG]"
                 </pre>
-		will load the relevant ttl file in <code>aama-data/data/[LANG]</code>
+		will load the relevant LANG-pdgms.ttl file in <code>aama-data/data/[LANG]</code>
 		into the Fuseki server. 
 		</p>
 	  <p>
@@ -583,7 +594,7 @@ Query: bin/fuquery-gen.sh bin/list-graphs.rq
 	    </li>
 	    <li id="aamaquery">
 	      <h4>8. Query SPARQL service</h4>
-	      A SPARQL service can accessed to explore the morphological
+	      A SPARQL service can be accessed to explore the morphological
 	      data via three interfaces:
 	      <ul style="list-style-type:none;">
 		<li>
@@ -597,27 +608,27 @@ Query: bin/fuquery-gen.sh bin/list-graphs.rq
 		  <p>
 		    You can see this on your browser at 
 		    <code>localhost:3030</code> after you launch Fuseki. 
-		    SPARQL queries, for example, those contained in the <code>
-		      tools/sparql/rq-ru/</code> directory, can be run directly 
+		    SPARQL queries, for example, . . . , can be run directly 
 		    against the datastore 
 		    in the Fuseki Control Panel on the 
 		    <code>localhost:3030/dataset.html</code> page
 		    (select the <code>/aama</code>
-		    dataset when prompted). Also the <code>pdgmDispUI-...</code>
-                    scripts automatically write to the terminal all SPARQL queries geneerated
+		    dataset when prompted). Also the <code>pdgmDisp-...</code>
+                    scripts automatically write to the terminal all SPARQL queries generated
                     in the course of the computation. These queries can be copied and
                     pasted into the Fuseki panel for inspection and debugging.
 		  </p>
 		  </li>
 		<li>
-		  <h4>8.3 A web application specifically oriented to AAMA data</h4>
+		  <h4>8.3 An application specifically oriented to AAMA data</h4>
+			<p> ### REVISE! ### </p>
 		  <p>A preliminary menu-driven GUI application, will have
 		    already been downloaded following the instructions outlined 
 		    above in <a href="#datatools">Download data, tools, and application code</a>.
 		    This application demonstrates the
 		    use of SPARQL query templates for display and comparison of 
 		    paradigms and morphosyntactic properties and categories. 
-		    It is written in Python, which has a very involved
+		    It is written in Python, which has a very engaged
 		    community of users who have created a formidable,
 		    and constantly growing set of libraries. However essentially
 		    the same functionality could be achieved by any software
@@ -654,7 +665,7 @@ Query: bin/fuquery-gen.sh bin/list-graphs.rq
 		will update the json language data files in all the
 		data/[LANG] directories.
 	      </p>
-	      <p>Once revised (or new) edn files have been installed, remember
+	      <p>Once revised (or new) json files have been installed, remember
 		to run the appropriate scripts to transform them to ttl 
 		format and to load them into the SPARQL server, as outlined above.
 	      </p>
@@ -672,7 +683,7 @@ Query: bin/fuquery-gen.sh bin/list-graphs.rq
 	  <p>Basic structure:</p>
 	      <p>In outline 
 		each language JSON file has the following structure (see any of 
-		the language .edn files for a concrete example, and see below 
+		the language .json files for a concrete example, and see below 
 		for explanation of terms):
 		</p>
 	      <pre>
@@ -686,19 +697,19 @@ Query: bin/fuquery-gen.sh bin/list-graphs.rq
 |-:geodemoURL   <em>"on-line geo-/demo-graphical information about the language"</em>
 |-:geodemoTXT   <em>"short textual summary of geo-/demographcal information"</em>
 |-:schemata {	<em>"associative map of each morphosyntactic property used 
-|                  in the inflectional paradigms with a vector of its values"</em>
+|                  in the inflectional paradigms with a list of its values"</em>
 |            }
 |-:lexemes   {  <em>"associative map of paradigmatic 'lexemes' with summary map 
 |                  of properties -- a rudimentary lexicon of paradigm lexemes"</em>
 |            }
-|-:termclusters   [  <em>"label-ordered vector of  term-clusters/paradigms,
+|-:termclusters   [  <em>"label-ordered list of  term-clusters/paradigms,
                     each of which has the structure:"</em>
 |   {
 |----:label     <em>"descriptive label assigned to the term-cluster at data-entry"</em>
 |----:note
 |----:common    <em>"map of property-value pairs which all members of the
 |                 termcluster have in common"</em>
-|----:terms     <em>"vector of vectors, the first of which enumerates  the
+|----:terms     <em>"list of lists, the first of which enumerates  the
 |                  properties which differentiate individual terms, while
 |                  the others list, in order, the value of the i-th
 |                  property -- in fact, a paradigm for the distinct property-
@@ -760,7 +771,7 @@ Query: bin/fuquery-gen.sh bin/list-graphs.rq
 	    <li><a href="https://github.com/aama/saho">Saho</a></li>
 	    <li><a href="https://github.com/aama/shinassha">Shinassha</a></li>
 	    <li><a href="https://github.com/aama/sidaama">Sidaama</a></li>
-	    <li><a href="https://github.com/aama/somali-standard">Somali-standard</a></li>
+	    <li><a href="https://github.com/aama/somali">Somali</a></li>
 	    <li><a href="https://github.com/aama/syriac">Syriac</a></li>
 	    <li><a href="https://github.com/aama/tsamakko">Tsamakko</a></li>
 	    <li><a href="https://github.com/aama/wolaytta">Wolaytta</a></li>
