@@ -226,7 +226,11 @@
                         properties and values. In the more readable  
 			 <a href="https://www.w3.org/TeamSubmission/turtle/">TTL</a>
 			 RDF notation format,
-			this URI would be notated <em>brn:tam</em>. and the Burunge TTL file, would
+			this URI would be notated:
+				  <pre>
+<em>brn:tam</em>					  
+				  </pre>
+				  . while the Burunge TTL file would
                       contain in a brief abbreviation section (typically five to ten items) the entry:</p>
 <pre>
 @prefix brn:     &lt;http://id.oi.uchicago.edu/aama/2013/burunge/&gt;
@@ -235,10 +239,11 @@
 		      <pre>
 &lt;http://id.oi.uchicago.edu/aama/2013/burunge/Imperfect&gt;
  		      </pre>
-		      <p>would be in ttl notation <em>brn:Imperfect</em>)</p>
-		      <p>Formal URIs are valuable for distinguishing terminologies and 
-			building nomenclatures and ontologies. But in practice they are 
-			not visibly present in the user-end of our query application.</p>
+		      <p>would be in ttl notation:
+				  <pre>
+	<em>brn:Imperfect</em>)				  
+				  </pre>
+				  </p>
 		    </li>
 		    <li><em>Representing the complex pieces of information involving these 
 			concepts by organizing these conceptual units into tripartite 
@@ -297,13 +302,19 @@ burunge-pdgms:{termclusters:[{label:"brn-VerbGlideStem-xaw-ImperfectAffirmative"
 		  </ol>
 
 
-		  <p>Although RDF is an extremely interesting topic in itself, running the 
-		    relevant scripts for adding to or correcting archive-data in the json 
+		  <p>Transformation of morphological properties and values to formal URIs, and organization
+				  into sets of triples is necessary 
+				  in order to build a SPARQL-queriable datastore, and also
+				  valuable for distinguishing terminologies and 
+			building nomenclatures and ontologies. But in practice, although RDF is an extremely interesting topic in itself, 
+			  running the 
+		    relevant scripts for transforming, adding to ,or correcting archive-data from the json 
 		    files (usually done via an application menu choice), requires no special 
 		    knowledge about RDF datastores. Some knowledge of the structure of an 
 		    RDF datastore and the SQL-like SPARQL query language however IS required 
-		    if you want to revise or add  a page to the webapp, submitting a new
+		    if you want to revise or add  a page to the webapp, submitting a new genre of
 		    query to the datastore in order to extract new information.<p>
+				
 		    <p>Pending an on-line publicly accessible datastore, you
 		    can set one up on your own  computer. Instructions
 		    are given below for setting up an RDF server on an individual 
@@ -346,7 +357,7 @@ pdgmDispUI-formsearch.py
                       </ol>
 		  </ul>
 		  <p>Below we give instructions for downloading, launching, and 
-		    initializing the app. More details on the app are available in the 
+		    initializing the app. More details on the script are available in the 
 		    aama/webappy
 			<a href="https://github.com/aama/webappy/edit/main/README.md">README</a> .
 			  Also, a brief demo video of the earlier HTML/CLOJURE version can be seen at 
