@@ -196,6 +196,41 @@
 		    corrections to the existing files and submission, for on-line
 		    sharing, of new language files are hereby sollicited!</em></p>
 		</li>
+		<li id="pdgmlabels"><h4>Note on Paradigm Labels in AAMA</h4>
+		<p>
+		  In this application, for the purposes of display, comparison, 
+		  modification, in the various select-lists, checkbox-lists, and 
+		  text-input fields, paradigms are labeled as a comma-separated string of 
+		  the shared value components of the paradigm. The property associated  with
+		  each value is automatic, since we follow the convention that no two property names share
+		  an identical value name. If the properties whose values consititute the rows
+		  of the paradigm are not `number', `person/case`. `gender`(far and away the most frequent case), 
+		they are given in a comma-separated list after a delimiter '%'.
+			In the, frequently long, paradigm lists automatically 
+		  generated from the JSON file by the "Create Paradigm Lists" utility, for 
+		  ease in processing the first two properties are always pos 
+		  (part-of-speech) and morphClass, and, for ease in reading the 
+		  'property=' part of the label is omitted. Thus the full form of the label of the paradigm  
+		  illustrated above would be: 
+		</p>
+<pre>
+pos=Verb,lex=xaw,polarity=Affirmative,stemClass=Glide,tam=Imperfect%number,person,gender
+</pre>
+		In paractice it would be listed as:
+<pre>
+Verb,xaw,Affirmative,Glide,Imperfect
+</pre>
+			
+		<p> and might occur in a list as:</p>
+		<pre>.  .  .
+Verb,qadid,Affirmative,DentalStem,Perfect
+Verb,qadid,Affirmative,DentalStem,Subjunctive
+Verb,xaw,Affirmative,GlideStem,Imperfect
+Verb,xaw,Affirmative,GlideStem,Perfect
+Verb,xaw,Affirmative,GlideStem,Subjunctive
+. . . </pre>
+		</li>
+
 		<li id="rdfdatastore">
 		  <h4>1.2 A Resource Descripton Framework (RDF) Datastore and Related Tools</h4>
 		  <p>The data archive will hopefully serve a number of 
@@ -415,7 +450,7 @@ pdgmDispUI-formsearch.py
 ~/ $ mkdir aama-data
 ~/ $ mkdir webappy
 ~/ $ cd webappy
-~/ $ webappy/mkdir bin
+~/webappy/ $ mkdir bin
 ~/ $ cd aama-data
 ~/ $ aama-data/mkdir data
                     </pre>
@@ -426,7 +461,7 @@ pdgmDispUI-formsearch.py
 		  <p>
 		    Fuseki is the SPARQL server we are using to query the dataset.  <a
 		    href="http://jena.apache.org/download/index.cgi">Download</a>
-		    the <code>apache-jena-fuseki-2.4.0-distribution</code>
+		    the current <code>apache-jena-fuseki-N.N.N-distribution</code>
 		    distribution (either the zip file or the tar file; NB, make
 		    sure your Java JDK is up-to-date with the download)
 		    and store it in a convenient location.
@@ -442,7 +477,7 @@ pdgmDispUI-formsearch.py
 	      </ul>
 	    </li>
 	    <li id="datatools">
-	      <h4>3. Download data, tools, and application code</h4>
+	      <h4>3. Download data</h4>
 	      <ul style="list-style-type:none;">
 		<li>
 		  <p>Take a look at the <a
@@ -476,38 +511,7 @@ pdgmDispUI-formsearch.py
 		    href="https://help.github.com/articles/fork-a-repo">Fork
 		    a Repo</a> for details.
 		  </p>
-		</li>
-		<li>
-		  <p>
-		    In the  <code>webappy</code> directory, clone the
-		    aama <a href="https://github.com/aama/webappy"> Python web application
-		    repository, with the shell scripts, which should be later moved to
-                    the 'bin' subdirectory</a>:
-		    <pre>
-~/aama $ git clone https://github.com/aama/webappy.git</pre>
-		  </p>
-		</li>
-	      </ul>
-	      <p>
-		When youhave finished, your directory structure should look
-		like this (assuming you have cloned afar, geez, and
-		yemsa):
-	      </p>
-		<pre>
-   ~/
-   |-aama-data
-   |---afar
-   |---geez
-   |---yemsa
-   |-jena
-   |-webappy
-   |---bin
-		</pre>
-	    </li>
-	    <li id="jsonformat">
-	      <h4>4. The JSON format for morphological data</h4>
-
-	      <p> For the normative/persistant data format we are using
+				      <p> For the normative/persistant data format we are using
 		JSON. This notation has the advantage of being
 		rigorously defined system of terms (<code>:term</code>),
 		strings (<code>"string"</code>), vectors 
@@ -523,45 +527,46 @@ pdgmDispUI-formsearch.py
 		seems to provide a natural notation for the verbal and 
 		pronominal inflectional paradigms encountered in Afroasiatic,
 		and perhaps for inflectional paradigms generally. </p>
-             <p>
-	       Since the JSON file is the normative/persistant data format,
-	       any corrections or additions you want to make must be made 
-	       in this file, from which you will then generate new TTL/RDF 
-	       files to be  uploaded to the SPARQL server. And in fact, as 
-	       long as you observe the above structure for JSON 
-	       files, you can create any number of new language files of your
-	       own, transform them to RDF format, and upload them to the
-	       SPARQL server for querying.
-	       </p>
-	    </li>
-		<li id="pdgmlabels"><h4>5. Paradigm Labels in AAMA</h4>
-		<p>
-		  In this application, for the purposes of display, comparison, 
-		  modification, in the various select-lists, checkbox-lists, and 
-		  text-input fields, paradigms are labeled as a comma-separated string of 
-		  shared property=value components, followed, after a delimiter '%' by a 
-		  comma-separated list of the properties whose values consititute the rows
-		  of the paradigm. In the, frequently long, paradigm lists automatically 
-		  generated from the JSON file by the "Create Paradigm Lists" utility, for 
-		  ease in processing the first two properties are always pos 
-		  (part-of-speech) and morphClass, and, for ease in reading the 
-		  'property=' part of the label is omitted. Thus the label of the paradigm  
-		  illustrated above would be: 
-		</p>
-<pre>
-pos=Verb,lex=xaw,polarity=Affirmative,stemClass=Glide,tam=Imperfect%number,person,gender
-</pre>
-		<p> and might occur in a list as:</p>
-		<pre>.  .  .
-pos=Verb,lex=qadid,polarity=Affirmative,stemClass=DentalStem,tam=Perfect%number,person,gender
-pos=Verb,lex=qadid,polarity=Affirmative,stemClass=DentalStem,tam=Subjunctive%number,person,gender
-pos=Verb,lex=xaw,polarity=Affirmative,stemClass=GlideStem,tam=Imperfect%number,person,gender
-pos=Verb,lex=xaw,polarity=Affirmative,stemClass=GlideStem,tam=Perfect%number,person,gender
-pos=Verb,lex=xaw,polarity=Affirmative,stemClass=GlideStem,tam=Subjunctive%number,person,gender
-. . . </pre>
 		</li>
+		<li>
+		<h4>4. Download Application Code</h4>
+
+		  <p>
+		    In the  <code>~/webappy</code> directory, clone the
+		    aama <a href="https://github.com/aama/webappy"> application
+		    repository::
+		    <pre>
+~/aama $ git clone https://github.com/aama/webappy.git
+			</pre>
+		  </p>
+			<p>
+			The Python scripts (`.py`) will remain in this directory, while the shell and query scripts (`.sh`. `.q`) should be moved to
+                    the `~/webappy/bin` subdirectory</a>
+			</p>
+			  
+		</li>
+	      </ul>
+	      <p>
+		When you have finished, your directory structure should look
+		like this (assuming you have cloned afar, geez, and
+		yemsa):
+	      </p>
+		<pre>
+   ~/ 
+   |-aama-data
+   |--data
+   |---afar: `afar.json`, `afar.ttl`
+   |---geez: `geez.json`, `geez.ttl`	
+   |---yemsa: `yemsa.json`, `jemsa.ttl`
+`   |-jena
+   |--apache-jena-fuseki-N.N.N: `aamaconfig.ttl`, . . .	
+   |-webappy: `pdgmDict-...py`,  `pdgmDisp-...py`
+   |---bin: `... .sh`, `... .q`
+		</pre>
+	    </li>
+		
 	    <li id="rdfgen">
-	      <h4>6. Generate RDF data from morphological data files</h4>
+	      <h4>5. Generate RDF data from morphological data files</h4>
 	      <p>
 		In order to convert JSON-format data files to TTL ("turtle" 
 		-- a more easily human-readable RDF format), you will
@@ -571,9 +576,23 @@ pos=Verb,lex=xaw,polarity=Affirmative,stemClass=GlideStem,tam=Subjunctive%number
 		will convert the .ttl file to the rdf-xml which is needed for
 		uploading to the Fuseki SPARQL service.
 	      </p>
+			             <p>
+		   For convenience, an already-generated TTL version is included
+		   with each language's JSON file.
+	       Since the JSON file is the normative/persistant data format,
+	       any corrections or additions you want to make should be made 
+	       in this file; and if any changes are made to the SON file, you must then generate new TTL/RDF 
+	       files to be  uploaded to the SPARQL server. And in fact, as 
+	       long as you observe the above structure for JSON 
+	       files, you can create any number of new language files of your
+	       own, transform them to RDF format, and upload them to the
+	       SPARQL server for querying.
+	       </p>
+
+
 	    </li>
 	    <li id="rdfupload">
-	      <h4>7. Upload RDF data to SPARQL service</h4>
+	      <h4>6. Upload RDF data to SPARQL service</h4>
 	      <p>
 		In order to upload the RDF files to Fuseki, you must
 		first start the server by running:
@@ -624,18 +643,18 @@ Query: bin/fuquery-gen.sh bin/list-graphs.rq
 
 	    </li>
 	    <li id="aamaquery">
-	      <h4>8. Query SPARQL service</h4>
+	      <h4>7. Query SPARQL service</h4>
 	      A SPARQL service can be accessed to explore the morphological
 	      data via three interfaces:
 	      <ul style="list-style-type:none;">
 		<li>
-		  <h4>8.1 An AAMA command-line interface</h4>
+		  <h4>7.1 An AAMA command-line interface</h4>
 		 <p>
 		  (Some sample queries in <code>webappy/bin</code>. An earlier version exists
 		  with an extensive command-line application written in Perl.)</p>
 		  </li>
 		<li>
-		  <h4>8.2 The Apache Jena Fuseki interface </h4>
+		  <h4>7.2 The Apache Jena Fuseki interface </h4>
 		  <p>
 		    You can see this on your browser at 
 		    <code>localhost:3030</code> after you launch Fuseki. 
@@ -651,7 +670,7 @@ Query: bin/fuquery-gen.sh bin/list-graphs.rq
 		  </p>
 		  </li>
 		<li>
-		  <h4>8.3 An application specifically oriented to AAMA data</h4>
+		  <h4>7.3 An application specifically oriented to AAMA data</h4>
 			<p> ### REVISE! ### </p>
 		  <p>A preliminary menu-driven GUI application, will have
 		    already been downloaded following the instructions outlined 
@@ -673,7 +692,7 @@ Query: bin/fuquery-gen.sh bin/list-graphs.rq
 		</ol>
 	    </li>
 	    <li id="aamaupdate">
-	      <h4>9. Remote Data and Webapp Update</h4>
+	      <h4>8. Remote Data and Webapp Update</h4>
 	      <p>AAMA is an on-going project. Its data is constantly being updated,
 		corrected, and added-to; the accompanying webb application
 		is in a process of constant revision. 
