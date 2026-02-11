@@ -44,7 +44,7 @@
 	    <li><a href="#aamaquery">8. Query SPARQL service</a></li>
 	    <li><a href="#aamaupdate">9. Remote Data and Webapp Update</a></li>
 	  </ul>
-	    <p><a href="#datastructure">Appendix 1: The Data Schema</a></p>
+	    <p><a href="#dataschema">Appendix 1: The Data Schema</a></p>
 	    <p><a href="#datafilelist">Appendix 2: The Data Files</a></p>
 
 	  <h5>Details</h5>
@@ -157,6 +157,22 @@
 		      </tr>
 		    </tbody>
 		  </table>
+		<p> For the normative/persistant data format we are using
+		JSON. This notation has the advantage of being
+		rigorously defined system of terms (<code>:term</code>),
+		strings (<code>"string"</code>), vectors 
+		(<code>[a b c d]</code> maps (<code>{a b, c d}</code> and sets 
+		(<code>#{a b c d}</code>, and thus reliably transformable 
+		into a consistent RDF notation, while  at the same time 
+		providing a human-readable natural format for data-entry and 
+		inspection.
+	      </p>
+	      <p>
+		Our current JSON structure (cf. <a href="#datastructure">below</a>)
+		while open to extension and revision,
+		seems to provide a natural notation for the verbal and 
+		pronominal inflectional paradigms encountered in Afroasiatic,
+		and perhaps for inflectional paradigms generally. </p>
 		  <p>Paradigms are  formally rendered  in AAMA's JSON format by a nested 
 		    data-sturucture, we call ":termcluster": where entities are either 
 		    labels/indices  or data strings (enclosed in quotes); 
@@ -511,30 +527,13 @@ pdgmDispUI-formsearch.py
 		    href="https://help.github.com/articles/fork-a-repo">Fork
 		    a Repo</a> for details.
 		  </p>
-				      <p> For the normative/persistant data format we are using
-		JSON. This notation has the advantage of being
-		rigorously defined system of terms (<code>:term</code>),
-		strings (<code>"string"</code>), vectors 
-		(<code>[a b c d]</code> maps (<code>{a b, c d}</code> and sets 
-		(<code>#{a b c d}</code>, and thus reliably transformable 
-		into a consistent RDF notation, while  at the same time 
-		providing a human-readable natural format for data-entry and 
-		inspection.
-	      </p>
-	      <p>
-		Our current JSON structure (cf. <a href="#datastructure">below</a>)
-		while open to extension and revision,
-		seems to provide a natural notation for the verbal and 
-		pronominal inflectional paradigms encountered in Afroasiatic,
-		and perhaps for inflectional paradigms generally. </p>
 		</li>
 		<li>
 		<h4>2.4. Download Application Code</h4>
 
 		  <p>
 		    In the  <code>~/webappy</code> directory, clone the
-		    aama <a href="https://github.com/aama/webappy"> application
-		    repository::
+		    aama kgithub application repository:
 		    <pre>
 ~/aama $ git clone https://github.com/aama/webappy.git
 			</pre>
@@ -553,15 +552,15 @@ pdgmDispUI-formsearch.py
 	      </p>
 		<pre>
    ~/ 
-   |-aama-data
-   |--data
-   |---afar: `afar.json`, `afar.ttl`
-   |---geez: `geez.json`, `geez.ttl`	
-   |---yemsa: `yemsa.json`, `jemsa.ttl`
-`   |-jena
-   |--apache-jena-fuseki-N.N.N: `aamaconfig.ttl`, . . .	
-   |-webappy: `pdgmDict-...py`,  `pdgmDisp-...py`
-   |---bin: `... .sh`, `... .q`
+   |-aama-data/
+   |--data/
+   |---afar/ `afar.json`, `afar.ttl`
+   |---geez/ `geez.json`, `geez.ttl`	
+   |---yemsa/ `yemsa.json`, `jemsa.ttl`
+`  |-jena/
+   |--apache-jena-fuseki-n.n.n/ aamaconfig.ttl, . . .	
+   |-webappy/ pdgmDict-schemata.py, . . . ,  pdgmDisp-baseApp.py, . . .
+   |---bin: fuseki.sh, . . . list-graphs.rq, . . .
 		</pre>
 	    </li>
 	      <h4>3. Configuring Appication</h4>
@@ -734,31 +733,37 @@ Query: bin/fuquery-gen.sh bin/list-graphs.rq
 	      <pre>
 
 {
-|-:lang         <em>"language name"</em>
-|-:sgpref       <em>"string representing 3-character ns prefix used for the 
-|                  URI of language-specific morphosyntactic properties 
-|                  and values"</em>
-|-:datasource   <em>"bibliographic source(s) for the data in the file"</em>
-|-:geodemoURL   <em>"on-line geo-/demo-graphical information about the language"</em>
-|-:geodemoTXT   <em>"short textual summary of geo-/demographcal information"</em>
-|-:schemata {	<em>"associative map of each morphosyntactic property used 
-|                  in the inflectional paradigms with a list of its values"</em>
-|            }
-|-:lexemes   {  <em>"associative map of paradigmatic 'lexemes' with summary map 
-|                  of properties -- a rudimentary lexicon of paradigm lexemes"</em>
-|            }
-|-:termclusters   [  <em>"label-ordered list of  term-clusters/paradigms,
-                    each of which has the structure:"</em>
-|   {
-|----:label     <em>"descriptive label assigned to the term-cluster at data-entry"</em>
-|----:note
-|----:common    <em>"map of property-value pairs which all members of the
-|                 termcluster have in common"</em>
-|----:terms     <em>"list of lists, the first of which enumerates  the
-|                  properties which differentiate individual terms, while
-|                  the others list, in order, the value of the i-th
-|                  property -- in fact, a paradigm for the distinct property-
-|                  value pairs of the lexeme in question"</em>
+|-"lang;"        <em>"language name"</em>
+|-"subfamily;"	<em>"language subfamily name"</em>			 
+|-"lgpref:"       <em>"string representing 3-character ns prefix used for the 
+/                  URI of language-specific morphosyntactic properties 
+/                  and values"</em>
+|-"datasource:"   <em>"bibliographic source(s) for the data in the file"</em>
+|-"datasourceNotes:" <em>"remarks, if necessary, about darasource"</em>
+|-"transcription:"  <em>"remarks, if necessary about how the transcription should be interpreted
+/						w.r.t. normative AAMA transcription. (The transcription of the 'LANG-pdgms.json' file 
+/	 					is always that of the datasource.)"</em>
+|-"geodemoURL:"   <em>"on-line geo-/demo-graphical information about the language"</em>
+|-"geodemoTXT:"   <em>"short textual summary of geo-/demographcal information"</em>
+|-"schemata:" {	<em>"associative map of each morphosyntactic property used 
+/                  in the inflectional paradigms with a list of its values"</em>>}
+|-"lexemes:"   {  <em>"associative map of each paradigmatic 'lexeme'-ID with an indication of 
+/					its lemma, gloss, part-of-speech and possibly other properties relevant to the
+/				     collection of paradigms -- a provisional stand-in for a reference to a true digital lexicon".</em>}
+|-"pdgmPropOrder:"  <em>"list of paradigm properties in the order their values are to be listed in paradigm labels
+/		  	           (can be programatically altered)"</em>
+|-"termclusters:"   {  <em>"label-ordered list of  term-clusters/paradigms,
+/                   each of which has the structure:"</em>}
+|----"label:"     <em>"descriptive label assigned to the term-cluster at data-entry"</em>
+|----"note:"      <em>"bibliographic reference to source of paradigm data; plus other
+/					remarks, if necessary"</em>
+|----"common:"    <em>"map of property-value pairs which all members of the
+/                 termcluster have in common"</em>
+|----"terms:"     <em>"list of lists, the first of which enumerates  the
+/                  properties which differentiate individual terms, while
+/                  the others list, in order, the value of the i-th
+/                  property -- in fact, a property-value-table realization of the distinct property-
+/                  value pairs of the lexeme in question"</em>
 |   }
 |
 | . . .
