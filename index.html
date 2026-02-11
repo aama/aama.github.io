@@ -35,9 +35,10 @@
 	  <h5>Overview</h5>
 	  <ul style="list-style-type:none;">
 	    <li><a href="#project">1. The AAMA Project</a></li>
-	    <li><a href="#software">2. Install and configure required software</a></li>
-	    <li><a href="#datatools">3. Download data and tools</a></li>
-	    <li><a href="#jsonformat">4. The JSON format for morphological data</a></li>
+	    <li><a href="#software">2. Install required software</a></li>
+	    <li><a href="#rdfgen">3. Configure Application</a></li>
+	    <li><a href="#aamaquery">4. Run Application</a></li>
+	  
 	    <li><a href="#pdgmlabels">5. Paradigm Labels in the AAMA archve </a></li>
 	    <li><a href="#rdfgen">6. Generate RDF data from morphological data files</a></li>
 	    <li><a href="#rdfupload">7.Upload RDF data to SPARQL service</a></li>
@@ -566,7 +567,19 @@ pdgmDispUI-formsearch.py
 	      <h4>3. Configuring Appication</h4>
 
 	    <li id="rdfgen">
-	      <h4>3.1 Generate RDF data from morphological data files</h4>
+		<h4>3.1 Prepare data lists and indices</h4>
+			<ol>
+				<li>
+					<p>pdgmDict-schemata.py</p>
+				</li>
+				<li>
+					<p>pdgmDict-lexemes.py</p>
+				</li>
+				<li>
+					<p>pdgmDict-pvlists.py</p>
+				</li>
+			</ol>
+	      <h4>3.2 Generate RDF data from morphological data files</h4>
 	      <p>
 		In order to convert JSON-format data files to TTL ("turtle" 
 		-- a more easily human-readable RDF format), you will
@@ -591,8 +604,8 @@ pdgmDispUI-formsearch.py
 
 
 	    </li>
-	    <li id="rdfupload">
-	      <h4>3.2 Upload RDF data to SPARQL service</h4>
+	    <li>
+	      <h4>3.3 Upload RDF data to SPARQL service</h4>
 	      <p>
 		In order to upload the RDF files to Fuseki, you must
 		first start the server by running:
@@ -679,9 +692,20 @@ Query: bin/fuquery-gen.sh bin/list-graphs.rq
 		    framework which can provide a web interface for handling
 		    SPARQL queries submitted to an  RDF datastore,
 		  </p>
-		  <p>The application presupposes that the Fuseki AAMA data server
-		    has been launched through the invocation of the shell-script 
-		    <code>bin/fuseki.sh</code>. ication</code>  menu option.
+		  <pThere are at present three major options for paradigm/mmorphology
+		  	display and manipulation governed by three Python scripts. They can
+		  be invoked through a menu choice, or run independently as a Python script.
+		  All of them involve lining up a data framework, converting this into a
+		  SPARQL query by one of the functions in <code>pdgmDispQuery.py</code>, running
+		  the SkPARQL query, and displaying the result in some appropriate format.</p>
+			  <p>The three governing functions are:</p>
+			  <ol>
+				  <li>pdgmDisp-baseApp-PDGM<.py/li>
+				  <li>pdgmDisp-baseApp-GPDGM.py</li>
+				  <li>pdgmDisp-formSearch.py</li>
+			  </ol>
+			  <p>To these can be added <code>pdgmDisp-i</code></p>
+			  
 		  </li>
 		</ol>
 	    </li>
