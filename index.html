@@ -695,10 +695,10 @@ Query: bin/fuquery-gen.sh bin/list-graphs.rq
 			  <p>There are three governing functions:</p>
 			  <ol>
 				  <li>
-					  A basic paradigm display function
+					  <h5>A basic paradigm display function</h5>
 					  <p>The function:
 					  <pre>
-						  <pdgmDisp-baseApp-PDGM.py
+<pdgmDisp-baseApp-PDGM.py
 					  </pre>
 				has as graphic setup a two-colum
 				display with, in the left column, a language select-list, where a language
@@ -709,55 +709,39 @@ Query: bin/fuquery-gen.sh bin/list-graphs.rq
 				bottom of the column results in a sequentially numbered display in
 				the right text-box of the paradigm name, source, notes if present, 
 				and the paradigm itself. 
-			  </p>
-				<p>				  
-				If one wishes to see a sequential or side-by-side disiplay of two 
-				(or more) paradigms, at the bottom of the right-hand side allows the 
-				entering of a comma-separated list of the sequence-numbers of two or more
-				 displayed paradigms, followed by a colon, followed by an indication
-				of the 'pivot' category to be compared.
-				</p>
-				<p> 
-				For example if the third and fifth paradigm displayed were the Present
-				and Perfedt 'tam' value of the Afar Class1 Verb Affirmative  uduur, and 
-				one wanted a side-by-side display of these tam forms, one wou;d
-				enter *3,5:tam*  in the text box, push the 'Combine Paradigms' button,
-				and see (for the moment, first) a sequential display of the paradigms, and a
-				display 'pivoted' on the value for 'tam'.
-				 </p>
-  				</li>
-				  <li>
-					  A generalization of the concept: Paradigm
-					<p>
-						The function:
-					 <pre>
-					  pdgmDisp-baseApp-GPDGM.py
-				  </pre>
-				  as its name suggests, offers a generalization of the notion 
-				"paradigm". In many grammatical traditions (cf. the familiar
-				 "APPENDIX: PARADIGMS" of the standard Indoeuropean and Afroasiatic grammars, 
+               </p>
+				<p>
+	"APPENDIX: PARADIGMS" of the standard Indoeuropean and Afroasiatic grammars, 
 				but also, e.g. 2nd millennium B.C. Sumerian [OIP; Gragg]), this is a complete 
 				enumeration of the forms considered to model/exemplify a morphological system. 
 				This is realized as an exhaustive set of tabular presentations each giving, 
 				e.g.:
+				</p>
 				<ol>
 				<li>
-				1) for one possible combination out of all the relevant morphological 
+				for one possible combination out of all the relevant morphological 
 				catefories: `part-of-speech`, `tense`, `aspect`, 'mood', `case`, 'inflectional
 				 class`, etc. (= the `property: value' list given in the `common` portion of 
 				each `termcluster` in `LANG-pdgms.json' )
 					</li>
 				    <li>
-				    2) the forms associated with the possible combinations of (e.g., for verbs)
+				    the forms associated with the possible combinations of (e.g., for verbs)
 				 the `number`, `person`, `gender` properties ( = the 'terms' table [list of 
 				lists] of the lexemes characterized by the 'common' property set.
 					</li>
 				</ol>
 			  </p>
+			<li>
+			<h5>A generalization of the notion 'paradigm'</h5>
 				<p>
-				In 'pdgmDisp-baseApp-GPDGM.py` we have this same structure of a set of 'common'
-				 property-value pairs and a "table" of 'terms', except that the `commmon` and 
-				`terms` except that the set of property-values associated with each is 
+					In the function
+					<pre>
+				pdgmDisp-baseApp-GPDGM.py
+					</pre>
+						we have this same structure of a set of 'common'
+				 property-value pairs and a "table" of 'terms', except that for the 
+				properties <code>commmon</code> and 
+				<code>terms</code> the set of property-values associated with each is 
 				completely at the discretion of the investigator. Obviously the regular 
 				paradigms of the 'LANG-pdgms.json' files are a special case of GPDGM displays, 
 				as are a very large number of `common`-`term` combinations which do not 
@@ -770,10 +754,11 @@ Query: bin/fuquery-gen.sh bin/list-graphs.rq
 				  </li>
 			  
 				  <li>
-					 A function to search morphological features acrod the whole datastore:
-					  <p>The function: 
+					 <h5>A function to search morphological features acrod the whole datastore</h5>
+					  <p>
+						  The function: 
 						  <pre>
-					  pdgmDisp-formSearch.py
+pdgmDisp-formSearch.py
 						  </pre>
 					  is for the comparison of
 realizations of a given property/value combination in different
@@ -802,23 +787,25 @@ the paradigms as in the baseApp script.
 </p>
 			  </li>
 		<li>
-    A paradigm-name generation function
+    <h5>A paradigm-name generation function</h5>
 			<p>
 				The function:
 			<pre>
-		pdgmDisp-pnames.py
+pdgmDisp-pnames.py
 				</pre>
 
 simply enables the uiser to generate and display, presumably on 
 an experimental basis, a "paradigm-name" list in a different order from that 
 dictated by the `pdgmPropOrder` feature of the `LANG-pdgms.json` file.
-			  </p></ol><li>
+			  </p>
+	</li>
 <li>
-	The function called by the each of the above to generates SPaRQL queries
+	<h5>A Query-Generating Function</h5>
 	<p>
+	The function called by the each of the above to generates SPaRQL queries
 	
 	<pre>
-    	pdgmDispQuery.py 
+pdgmDispQuery.py 
     </pre>
 Each of the display scripts, 3.1, 3.2, and 3.3,
 finds the data it displays by running a SPARQL query against the AAMA datastore.
@@ -830,7 +817,7 @@ for the moment printed to the terrminal (or eventually to a log file).
 </li>
 
 		<li>
-			  
+			 <h5>Generate Alternate Paradigm Name Ssequence</h5> 
 			  <p>To these can be added: 
 				  <pre>
 					  pdgmDisp-pnames
