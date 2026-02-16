@@ -695,7 +695,7 @@ Query: bin/fuquery-gen.sh bin/list-graphs.rq
 			  <p>
 				  There are three governing functions (v1,v2):
 			  <ol>
-				  <li> A basic paradigm display function
+				  <li> <h4>A basic paradigm display function</h4>
 					  <p>The function:
 					  <pre>
 <pdgmDisp-baseApp-PDGM.py
@@ -717,21 +717,26 @@ Query: bin/fuquery-gen.sh bin/list-graphs.rq
 				This is realized as an exhaustive set of tabular presentations each giving, 
 				e.g.:
 				</p>
-				<ol>
+				<ul>
 				<li>
+					<p>
 				for one possible combination out of all the relevant morphological 
 				catefories: `part-of-speech`, `tense`, `aspect`, 'mood', `case`, 'inflectional
 				 class`, etc. (= the `property: value' list given in the `common` portion of 
 				each `termcluster` in `LANG-pdgms.json' )
+						</p>
 					</li>
 				    <li>
+						<p>
 				    the forms associated with the possible combinations of (e.g., for verbs)
 				 the `number`, `person`, `gender` properties ( = the 'terms' table [list of 
 				lists] of the lexemes characterized by the 'common' property set.
+							</p>
 					</li>
-				</ol>
+				</ul>
 			  </p>
-			<li>nA generalization of the notion 'paradigm'
+			</li>
+			<li><h4>A generalization of the notion 'paradigm'</h4>
 				<p>
 					In the function
 					<pre>
@@ -752,7 +757,7 @@ Query: bin/fuquery-gen.sh bin/list-graphs.rq
 
 				  </li>
 			  
-				  <li> A function to search morphological features acrod the whole datastore
+				  <li> <h4>A function to search morphological features acrod the whole datastore</h4>
 					  <p>
 						  The function: 
 						  <pre>
@@ -784,7 +789,7 @@ box. For moore precise comparison one could then go on to 'combine'
 the paradigms as in the baseApp script.
 </p>
 			  </li>
-		<li>A paradigm-name generation function
+		<li><h4>A paradigm-name generation function</h4>
 			<p>
 				The function:
 			<pre>
@@ -796,7 +801,7 @@ an experimental basis, a "paradigm-name" list in a different order from that
 dictated by the `pdgmPropOrder` feature of the `LANG-pdgms.json` file.
 			  </p>
 	</li>
-<li>A Query-Generating Function
+<li><h4>A Query-Generating Function</h4>
 	<p>
 	The function called by the each of the above to generates SPaRQL queries
 	
@@ -813,10 +818,10 @@ for the moment printed to the terrminal (or eventually to a log file).
 </li>
 
 		<li>
-			 <h4></h4>Generate Alternate Paradigm Name Sequence</h4>
+			 <h4>Generate Alternate Paradigm Name Sequence</h4>
 			  <p>To these can be added: 
 				  <pre>
-					  pdgmDisp-pnames
+pdgmDisp-pnames
 				  </pre>
 			This program simply enables the uiser to generate and display, presumably on 
 an experimental basis, a "paradigm-name" list in a different order from that 
