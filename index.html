@@ -564,13 +564,48 @@ pdgmDispUI-formsearch.py
 		<h4>3.1 Prepare data lists and indices</h4>
 			<ol>
 				<li>pdgmDict-schemata.py
-					<p>. . .</p>
+					<p>
+This script generates a json 
+property:value-list dictionary `pvlists/[LANG]-schemata.json` to be
+substituted into the `[LANG]-pdgms.json` file every time a property
+or value is added or changed in any way. It also generates a more
+succinct version of the schemata dictionary, `pvlists/[LANG]-pdgm-PVN.txt`, 
+which is used in the basic paradigm display, along with the current
+value of the `pdgmPropOrder` variable from the `[LANG]-pdgms.json` file, 
+and which determines the order of the properties whose values constitute
+the paradigm 'name'.
+
+					</p>
 				</li>
 				<li>pdgmDict-lexemes.py
-					<p>. . .</p>
+					<p>
+						The lexemes associated with paradigms in the `LANG-pdgms.json` (and 
+corresponding `LANG-pdgms.ttl`) files are identified by a `lexemeID` which 
+could in principle be any arbitrary alphanumeric symbol sequence, but which in 
+practice and for memnonic convenience are lower-ascii approximations of the 
+lexeme's lemma. This script, in conjunction with `pdgmDict-lexCheck.py` and 
+`pdgmDict-lexRev.py`, generates a `lexemes` section consisting of   dummy 
+lexeme  entries (e.g., `lemma = '[x]', gloss = '[y]'`) for every lexemeID. 
+This 'lexemes' section must be subsequently filled out by hand (or in an ideal 
+case be linked programmatically with a digital lexicon of the language in 
+question).
+
+					</p>
 				</li>
 				<li>pdgmDict-pvlists.py
-					<p>. . .</p>
+					<p>
+												This script generates a file 
+each paradigm, consisting of a comma-separated list of the values of
+each of the morphological properties enumerated in the <code>common</code> section
+of the term cluster - thus uniquely identifying each paradigm within
+the language, and, with the addition of a language designation, within
+the whole AAMA paradigm corpus. It also generates two `db` files, 
+<code>pvlists/[LANG]-pdgmdb.db</code> and <code>pvlists[LANG]-labldb.db</code>, which link
+each paradigm 'name' respectively with a full 'property:value' list 
+and a paradigm 'label' more-or-less arbitrarily assigned to the paradigm 
+when the json file was first created.
+
+					</p>
 				</li>
 			</ol>
 	      <h4>3.2 Generate RDF data from morphological data files</h4>
