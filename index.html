@@ -562,8 +562,16 @@ pdgmDispUI-formsearch.py
 
 	    <li id="rdfgen">
 		<h4>3.1 Prepare data lists and indices</h4>
+			<p>
+				The <code>schemata</code> and <code>lexemes</code> sections of the downloaded
+				json files can be transformed to RDF and incorporated innto the datastore
+				as is. However if any chages are made to the property, value, or lexeme inventories,
+				the relevant <code>pdgmDict</code> scripts should be run. the <code>pdgmDict-pvlist</code>
+				script must be run when a language-file is first incorporatd into the datastore in order to
+				generate a pick-list of paradigms.
+			</p>
 			<ol>
-				<li>pdgmDict-schemata.py
+				<li><em>pdgmDict-schemata.py</em>
 					<p>
 This script generates a json 
 property:value-list dictionary `pvlists/[LANG]-schemata.json` to be
@@ -577,7 +585,7 @@ the paradigm 'name'.
 
 					</p>
 				</li>
-				<li>pdgmDict-lexemes.py
+				<li><em>pdgmDict-lexemes.py</em>
 					<p>
 						The lexemes associated with paradigms in the `LANG-pdgms.json` (and 
 corresponding `LANG-pdgms.ttl`) files are identified by a `lexemeID` which 
@@ -592,7 +600,7 @@ question).
 
 					</p>
 				</li>
-				<li>pdgmDict-pvlists.py
+				<li><em>pdgmDict-pvlists.py</em>
 					<p>
 												This script generates a file 
 each paradigm, consisting of a comma-separated list of the values of
