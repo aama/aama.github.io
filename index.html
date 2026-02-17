@@ -342,8 +342,8 @@ burunge-pdgms:{termclusters:[{label:"brn-VerbGlideStem-xaw-ImperfectAffirmative"
 		    even a moderately large datastore (AAMA on a recent count had 987,911).
 		    But they are very rapidly produced and indexed (a few seconds per 
 		    language using the AAMA pdgmDict-json2ttl.py program),  efficiently stored, 
-                    and permit  extremely quick access to information for display, comparison, 
-		    manipulation, and reasoning. As mentioned, among the RDF  tools in the on-line
+                    and permit  extremely quick adccess to information for display, comparison, 
+		    manipulation, and reasoning. As mentiondd, among the RDF  tools in the on-line
 		    material, there is a Python script for 
 		    transforming the (JSON) data files into appropriate RDF datastore 
 		    (ttl) format, and a set of scripts to upload data files to a local 
@@ -693,9 +693,8 @@ Query: bin/fuquery-gen.sh bin/list-graphs.rq
 		  SPARQL query by one of the functions in <code>pdgmDispQuery.py</code>, running
 		  the SkPARQL query, and displaying the result in some appropriate format.</p>
 			  <ol>
-				  <li> A basic paradigm display function
-			        <p>                                                                                                                                     		  <p>
-	            The function:
+				  <li> <em>A basic paradigm display function</em>
+			        <p>                                                                                                                                     		  
 					  <pre>
 pdgmDisp-baseApp-PDGM.py
 					  </pre>
@@ -717,8 +716,7 @@ pdgmDisp-baseApp-PDGM.py
 				e.g.:
 				
 				<ul>
-				<li>
-					
+				<li>					
 				for one possible combination out of all the relevant morphological 
 				catefories: `part-of-speech`, `tense`, `aspect`, 'mood', `case`, 'inflectional
 				 class`, etc. (= the `property: value' list given in the `common` portion of 
@@ -728,16 +726,14 @@ pdgmDisp-baseApp-PDGM.py
 				    the forms associated with the possible combinations of (e.g., for verbs)
 				 the `number`, `person`, `gender` properties ( = the 'terms' table [list of 
 				lists] of the lexemes characterized by the 'common' property set.
-			
 					</li>
 				</ul>
 			  </p>
 			</li>
-			<li>A generalization of the notion 'paradigm'	
+			<li><em>A generalization of the notion 'paradigm'</em>	
 				<p>
-					In the function
 					<pre>
-				pdgmDisp-baseApp-GPDGM.py
+pdgmDisp-baseApp-GPDGM.py
 					</pre>
 						we have this same structure of a set of 'common'
 				 property-value pairs and a "table" of 'terms', except that for the 
@@ -754,9 +750,8 @@ pdgmDisp-baseApp-PDGM.py
 
 				  </li>
 			  
-				  <li> A function to search morphological features acrod the whole datastore
-					  <p>
-						  The function: 
+				  <li> <em>A function to search morphological features acrod the whole datastore</em>
+					  <p> 
 						  <pre>
 pdgmDisp-formSearch.py
 						  </pre>
@@ -786,9 +781,8 @@ box. For moore precise comparison one could then go on to 'combine'
 the paradigms as in the baseApp script.
 </p>
 			  </li>
-		<li>A paradigm-name generation function
+		<li><em>A paradigm-name generation function</em>
 			<p>
-				The function:
 			<pre>
 pdgmDisp-pnames.py
 				</pre>
@@ -798,9 +792,9 @@ an experimental basis, a "paradigm-name" list in a different order from that
 dictated by the `pdgmPropOrder` feature of the `LANG-pdgms.json` file.
 			  </p>
 	</li>
-<li>The Query-Generating Function
+<li><em>The Query-Generating Function</em>
 	<p>
-	The function called by the each of the above to generates SPaRQL queries
+	This function is called by the each of the above scripts to generate SPaRQL queries
 	
 	<pre>
 pdgmDispQuery.py 
@@ -813,22 +807,18 @@ into the display script. The query itself, and its CSV output, are
 for the moment printed to the terrminal (or eventually to a log file).
 		  </p>
 </li>
+	<li><em>A Script to Generate Alternate Paradigm Name Sequences</em>
 
-		<li>
-			 Generate Alternate Paradigm Name Sequence
-			  <p>To these can be added: 
 				  <pre>
-pdgmDisp-pnames
+pdgmDisp-pnames.py
 				  </pre>
 			This program simply enables the uiser to generate and display, presumably on 
 an experimental basis, a "paradigm-name" list in a different order from that 
 dictated by the `pdgmPropOrder` feature of the `LANG-pdgms.json` file.
 		  </p>
-			  
 		  </li>
-		
 	    <li id="aamaupdate">
-	      Note: Remote Data and Webapp Update
+	      <em>Note: Remote Data and Webapp Update</em>
 	      <p>AAMA is an on-going project. Its data is constantly being updated,
 		corrected, and added-to; the accompanying webb application
 		is in a process of constant revision. 
