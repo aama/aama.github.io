@@ -348,8 +348,8 @@ burunge-pdgms:{termclusters:[{label:"brn-VerbGlideStem-xaw-ImperfectAffirmative"
 		    transforming the (JSON) data files into appropriate RDF datastore 
 		    (ttl) format, and a set of scripts to upload data files to a local 
 		    Fuseki  RDF server.</p>
-                   </li>
-		  </ol>
+                   
+		  
 
 
 		  <p>Transformation of morphological properties and values to formal URIs, and organization
@@ -414,7 +414,7 @@ pdgmDispUI-formsearch.py
                       <li>which in turn is typically formatted into one or more tables
                       using 'pandas' and other Python libraries.</li>
                       </ol>
-		  </ul>
+		
 		  <p>Below we give instructions for downloading, launching, and 
 		    initializing the app. More details on the scripts are available in the 
 		    aama/webappy
@@ -486,12 +486,12 @@ pdgmDispUI-formsearch.py
 		    site. </p>
                   </li>
 
-	      </ul>
-	    </li>
+	      
+	    
 	    <li id="datatools">
 	      <h4>2.3. Download data</h4>
-	      <ul style="list-style-type:none;">
-		<li>
+	      
+		
 		  <p>Take a look at the <a
 		  href="https://github.com/aama">Aama repositories</a> and
 		  decide which languages interest you.  In general we use
@@ -509,12 +509,13 @@ pdgmDispUI-formsearch.py
 		  inside the <code>aama</code> directory,
 		  e.g. <code>~/aama $ mkdir data</code>. Then clone
 		  each language repository into the data directory:
-		  </p>
+		  
 		  <pre>
 ~/ $ cd aama-data/data
 ~/aama-data/data $ git clone https://github.com/aama/afar.git
 ~/aama-data/data $ git clone https://github.com/aama/geez.git
 ~/aama-data/data $ git clone https://github.com/aama/yemsa.git</pre>
+	 </p>
 		  <p>
 		    Alternatively, you can create a personal github
 		    account, <i>fork</i> the aama repositories (copy them
@@ -535,8 +536,9 @@ pdgmDispUI-formsearch.py
 			</pre>
 		  </p>
 			<p>
-			The Python scripts (`.py`) will remain in this directory, while the shell and query scripts (`.sh`. `.q`) should be moved to
-                    the `~/webappy/bin` subdirectory</a>
+			The Python scripts (<code>. . . .py</code>) will remain in this directory, while the 
+				shell and query scripts (<code>. . . .sh</code>. <code>. . . .q</code>) should be moved to
+                    the <code>~/webappy/bin</code> subdirectory</a>
 			</p>
 			  
 		</li>
@@ -545,7 +547,7 @@ pdgmDispUI-formsearch.py
 		When you have finished, your directory structure should look
 		like this (assuming you have cloned afar, geez, and
 		yemsa):
-	      </p>
+	    
 		<pre>
    ~/ 
    |-aama-data/
@@ -558,6 +560,7 @@ pdgmDispUI-formsearch.py
    |-webappy/ pdgmDict-schemata.py, . . . ,  pdgmDisp-baseApp.py, . . .
    |---bin: fuseki.sh, . . . list-graphs.rq, . . .
 		</pre>
+	  </p>
 	    </li>
 	      <h4>3. Configuring Appication</h4>
 
@@ -640,9 +643,6 @@ when the json file was first created.
 	       SPARQL server for querying.
 	       </p>
 
-
-	    </li>
-	    <li>
 	      <h4>3.3 Upload RDF data to SPARQL service</h4>
 	      <p>
 		In order to upload the RDF files to Fuseki, you must
@@ -679,7 +679,7 @@ when the json file was first created.
 	    <code>webappy/bin</code>.
 	    If the upload has been successful, you will see an output such as
 	    the following (assuming again that afar, geez, and yemsa are the 
-	    languages which have been cloned into aama/data/).</p>
+	    languages which have been cloned into aama/data/).
 	  <pre>
 Query: bin/fuquery-gen.sh bin/count-triples.rq
 ?sTotal
@@ -716,8 +716,8 @@ Query: bin/fuquery-gen.sh bin/list-graphs.rq
 		  </li>
 		<li>
 		  <h4>4.2 An application specifically oriented to AAMA data</h4>
-			<p> ### REVISE!(v3) ### </p>
-		  <p>A preliminary menu-driven GUI application, will have
+		  <p>
+			  A preliminary menu-driven GUI application, will have
 		    already been downloaded following the instructions outlined 
 		    above in <a href="#datatools">Download data, tools, and application code</a>.
 		    This application demonstrates the
@@ -752,34 +752,13 @@ pdgmDisp-baseApp-PDGM.py
 				the right text-box of the paradigm name, source, notes if present, 
 				and the paradigm itself. 
                </p>
-				<p>
-	            "APPENDIX: PARADIGMS" of the standard Indoeuropean and Afroasiatic grammars, 
-				but also, e.g. 2nd millennium B.C. Sumerian [OIP; Gragg]), this is a complete 
-				enumeration of the forms considered to model/exemplify a morphological system. 
-				This is realized as an exhaustive set of tabular presentations each giving, 
-				e.g.:
-				
-				<ul>
-				<li>					
-				for one possible combination out of all the relevant morphological 
-				catefories: `part-of-speech`, `tense`, `aspect`, 'mood', `case`, 'inflectional
-				 class`, etc. (= the `property: value' list given in the `common` portion of 
-				each `termcluster` in `LANG-pdgms.json' )
-					</li>
-				    <li>
-				    the forms associated with the possible combinations of (e.g., for verbs)
-				 the `number`, `person`, `gender` properties ( = the 'terms' table [list of 
-				lists] of the lexemes characterized by the 'common' property set.
-					</li>
-				</ul>
-			  </p>
 			</li>
 			<li><em>A generalization of the notion 'paradigm'</em>	
 				<p>
 					<pre>
 pdgmDisp-baseApp-GPDGM.py
 					</pre>
-						we have this same structure of a set of 'common'
+					Here	we have this same structure of a set of 'common'
 				 property-value pairs and a "table" of 'terms', except that for the 
 				properties <code>commmon</code> and 
 				<code>terms</code> the set of property-values associated with each is 
@@ -838,7 +817,8 @@ dictated by the `pdgmPropOrder` feature of the `LANG-pdgms.json` file.
 	</li>
 <li><em>The Query-Generating Function</em>
 	<p>
-	This function is called by the each of the above scripts to generate SPaRQL queries
+	This function is called by the each of the above scripts to generate the
+		appropriateSPaRQL queries.
 	
 	<pre>
 pdgmDispQuery.py 
@@ -846,7 +826,7 @@ pdgmDispQuery.py
 Each of the display scripts, 3.1, 3.2, and 3.3,
 finds the data it displays by running a SPARQL query against the AAMA datastore.
 These queries are formed from the display data request by one or more of the
- `query()` functions contained in this script and which have been imported
+ <code>query()</code> functions contained in this script and which have been imported
 into the display script. The query itself, and its CSV output, are
 for the moment printed to the terrminal (or eventually to a log file).
 		  </p>
@@ -898,6 +878,8 @@ dictated by the `pdgmPropOrder` feature of the `LANG-pdgms.json` file.
 	      </p>
 	    </li>
 	  </ol>
+	  </li>
+	  </ul>
 
 	  <h4 id="dataschema"> Appendix 1: The Data Schema </h4>
 	  <p>Basic structure:</p>
