@@ -30,13 +30,13 @@
           <h3>
 	  <a name="welcome-to-aama---the-afro-asiatic-morphology-archive" class="anchor" href="#welcome-to-aama---the-afro-asiatic-morphology-archive"><span class="octicon octicon-link"></span></a>Welcome to AAMA - the Afro-Asiatic Morphology Archive.</h3>
 
-	  <h4>Getting Started(v5)</h4>
+	  <h4>Getting Started(v6)</h4>
 
 	  <h5>Overview</h5>
 	  <ul style="list-style-type:none;">
 	    <li><a href="#project">1. The AAMA Project</a></li>
 	    <li><a href="#software">2. Install required software</a></li>
-	    <li><a href="#rdfgen">3. Configure Application</a></li>
+	    <li><a href="#config">3. Configure Application</a></li>
 	    <li><a href="#aamaquery">4. Run Application</a></li>
 	    <li><a href="#aamaupdate">5. Remote Data and Webapp Update</a></li>
 	  </ul>
@@ -72,9 +72,9 @@ e      </p>
 	      <p>As presently configured tha AAMA project consists of 
 		three interconnected modules:</p>
 		<ul>
-		<li><a href="#datafiles">Data Files</li>
-		<li><a href="#rdfdatastore">RDF Datastore</li>
-		<li><a href="#qinterface">Provisional Query/Display Interface</li>
+		<li><a href="#datafiles">Data Files</a></li>
+		<li><a href="#rdfdatastore">RDF Datastore</a></li>
+		<li><a href="#qinterface">Provisional Query/Display Interface</a></li>
 		</ul>
 	      <ul style="list-style-type:none;">
 		<li id="datafiles">
@@ -219,7 +219,7 @@ e      </p>
 		    corrections to the existing files and submission, for on-line
 		    sharing, of new language files are hereby sollicited!</em></p>
 		</li>
-		<li id="pdgmlabels"><h4>Note on Paradigm Labels in AAMA</h4>
+		<li ><h4>Note on Paradigm Labels in AAMA</h4>
 		<p>
 		  In this application, for the purposes of display, comparison, 
 		  modification, in the various select-lists, checkbox-lists, and 
@@ -227,7 +227,7 @@ e      </p>
 		  the shared value components of the paradigm. The property associated  with
 		  each value is automatic, since we follow the convention that no two property names share
 		  an identical value name. If the properties whose values consititute the rows
-		  of the paradigm are not `number', `person/case`. `gender`(far and away the most frequent case), 
+		  of the paradigm are not <code>number, person, case. gender</code>(far and away the most frequent case), 
 		they are given in a comma-separated list after a delimiter '%'.
 			In the, frequently long, paradigm lists automatically 
 		  generated from the JSON file by the "Create Paradigm Lists" utility, for 
@@ -445,7 +445,7 @@ pdgmDispUI-formsearch.py
 			most users will want to download the application and a selection (or all!) of the data, and work
 			with it on their own machine, perhaps including data of their own, which they might wish to propose uploading
 			to the home site, along with proposals for modifications and additions to the data-manipulation software.</p>
-			<p>At the moment, pending the creation of an executable of the `.exe` or '.jar` type what we can propose, in addition
+			<p>At the moment, pending the creation of an executable of the <code>.exe</code> or <code>.jar</code> type what we can propose, in addition
 				to the downloading of a choice of the data files of interest, is the downloading and running of the set of scripts which constitute the
 				application.</p>
 		  <p><h5>Note on Git client</h5>
@@ -569,7 +569,7 @@ pdgmDispUI-formsearch.py
    |---afar/ <em><afar.json, afar.ttl </em>
    |---geez/ <em><geez.json, geez.ttl</em>	
    |---yemsa/ <em><yemsa.json, jemsa.ttl</em>
-`  |-jena/
+   |-jena/
    |--apache-jena-fuseki-n.n.n/ <em>aamaconfig.ttl, . . .	</em>
    |-webappy/ <em>pdgmDict-schemata.py, . . . ,  pdgmDisp-baseApp.py, . . .</em>
    |---bin: <em>fuseki.sh, . . . list-graphs.rq, . . .</em>
@@ -578,7 +578,7 @@ pdgmDispUI-formsearch.py
 	    </li>
 	      <h4>3. Configuring Appication</h4>
 
-	    <li id="rdfgen">
+	    <li id="config">
 		<h4>3.1 Prepare data lists and indices</h4>
 			<p>
 				The <code>schemata</code> and <code>lexemes</code> sections of the downloaded
@@ -592,12 +592,12 @@ pdgmDispUI-formsearch.py
 				<li><em>pdgmDict-schemata.py</em>
 					<p>
 This script generates a json 
-property:value-list dictionary `pvlists/[LANG]-schemata.json` to be
-substituted into the `[LANG]-pdgms.json` file every time a property
+property:value-list dictionary <code>pvlists/[LANG]-schemata.json</code> to be
+substituted into the <code>[LANG]-pdgms.json</code> file every time a property
 or value is added or changed in any way. It also generates a more
-succinct version of the schemata dictionary, `pvlists/[LANG]-pdgm-PVN.txt`, 
+succinct version of the schemata dictionary, <code>pvlists/[LANG]-pdgm-PVN.txt</code>, 
 which is used in the basic paradigm display, along with the current
-value of the `pdgmPropOrder` variable from the `[LANG]-pdgms.json` file, 
+value of the <code>pdgmPropOrder</code> variable from the <code>[LANG]-pdgms.json</code> file, 
 and which determines the order of the properties whose values constitute
 the paradigm 'name'.
 
@@ -605,13 +605,13 @@ the paradigm 'name'.
 				</li>
 				<li><em>pdgmDict-lexemes.py</em>
 					<p>
-						The lexemes associated with paradigms in the `LANG-pdgms.json` (and 
-corresponding `LANG-pdgms.ttl`) files are identified by a `lexemeID` which 
+						The lexemes associated with paradigms in the <code>LANG-pdgms.json</code> (and 
+corresponding <code>LANG-pdgms.ttl</code>) files are identified by a <code>lexemeID</code> which 
 could in principle be any arbitrary alphanumeric symbol sequence, but which in 
 practice and for memnonic convenience are lower-ascii approximations of the 
-lexeme's lemma. This script, in conjunction with `pdgmDict-lexCheck.py` and 
-`pdgmDict-lexRev.py`, generates a `lexemes` section consisting of   dummy 
-lexeme  entries (e.g., `lemma = '[x]', gloss = '[y]'`) for every lexemeID. 
+lexeme's lemma. This script, in conjunction with <code>pdgmDict-lexCheck.py</code> and 
+<code>pdgmDict-lexRev.py</code>, generates a <code>lexemes</code> section consisting of   dummy 
+lexeme  entries (e.g., <code>lemma = '[x]', gloss = '[y]'</code>) for every lexemeID. 
 This 'lexemes' section must be subsequently filled out by hand (or in an ideal 
 case be linked programmatically with a digital lexicon of the language in 
 question).
@@ -625,7 +625,7 @@ each paradigm, consisting of a comma-separated list of the values of
 each of the morphological properties enumerated in the <code>common</code> section
 of the term cluster - thus uniquely identifying each paradigm within
 the language, and, with the addition of a language designation, within
-the whole AAMA paradigm corpus. It also generates two `db` files, 
+the whole AAMA paradigm corpus. It also generates two <code>db</code> files, 
 <code>pvlists/[LANG]-pdgmdb.db</code> and <code>pvlists[LANG]-labldb.db</code>, which link
 each paradigm 'name' respectively with a full 'property:value' list 
 and a paradigm 'label' more-or-less arbitrarily assigned to the paradigm 
@@ -778,7 +778,7 @@ pdgmDisp-baseApp-GPDGM.py
 				<code>terms</code> the set of property-values associated with each is 
 				completely at the discretion of the investigator. Obviously the regular 
 				paradigms of the 'LANG-pdgms.json' files are a special case of GPDGM displays, 
-				as are a very large number of `common`-`term` combinations which do not 
+				as are a very large number of <code>common</code>-<code>term</code> combinations which do not 
 				correspond to any possible or occurring form. But by exploring occurring 
 				combinations of interest, including ones which involve distinct languages, 
 				this dislay routine opens up the possibility of many potentially interesting 
@@ -796,7 +796,7 @@ pdgmDisp-formSearch.py
 realizations of a given property/value combination in different
 languages. Two or more languages can be selected from the upper-right
 language-selection list. In an Entry box below a list of
-desired property=value combinations can be entered. A `Find Form` button
+desired property=value combinations can be entered. A <code>Find Form</code> button
 will display a list of paradigms in the designated languages where
 the property=value combination list occurs. One or more of these 
 paradigms can be selected, and registered by the 'Choose Paradigm' button, 
@@ -809,7 +809,7 @@ For example one could want to see whether second-person, feminine,
 pronominal forms, singular or plural, are distinguished in Arabic and 
 Coptic-Sahidic, and compare the way they are marked. One would choose 
 Arabic and Coptic-Sahidic in the language select-list, enter
- `person=Person2,gender=Fem,pos=Pronoun,number=?number` in the 'Entry'
+ <code>person=Person2,gender=Fem,pos=Pronoun,number=?number</code> in the 'Entry'
  box, push the 'Find Forms' button and see in the upper right select
 box the relevant forms, and the label  of the paradigm in which each 
 form occurs. One could then select any paradigms of interest and see
@@ -826,7 +826,7 @@ pdgmDisp-pnames.py
 
 simply enables the uiser to generate and display, presumably on 
 an experimental basis, a "paradigm-name" list in a different order from that 
-dictated by the `pdgmPropOrder` feature of the `LANG-pdgms.json` file.
+dictated by the <code>pdgmPropOrder</code> feature of the <code>LANG-pdgms.json</code> file.
 			  </p>
 	</li>
 <li><em>The Query-Generating Function</em>
@@ -845,8 +845,12 @@ into the display script. The query itself, and its CSV output, are
 for the moment printed to the terminal (or eventually to a log file).
 		  </p>
 </li>
+</ol>
+</li>
+
+
 	    <li id="aamaupdate">
-	      <em>Note: Remote Data and Webapp Update</em>
+	      <h4>Remote Data and Webapp Update</h4>
 	      <p>AAMA is an on-going project. Its data is constantly being updated,
 		corrected, and added-to; the accompanying webb application
 		is in a process of constant revision. 
