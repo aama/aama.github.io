@@ -58,15 +58,17 @@
 			<li>compared</li>
 		</ul>
 		on individual browsers.</p> 
-	      <p>In the first instance
-		the archive should  make available and comparable the major 
-		morphological paradigms of some forty Cushitic and Omotic languages,
-		and in the longer term help situate the morphologies of these 
-		two language families within Afroasiatic. Ultimately
-		we hope also that the archive and its accompanying software
-		may serve as a tool for exploration of typology and structure 
-		of the form of linguistic organization known as the paradigm.
-	      </p>
+	      <p>
+			The archive itself is neutral as far as the use it is put to is concerned: 
+			  comparison, reference, diachronic and synchronic research, pedagogical, 
+			  . . . But ultimately it is hoped that the archive will make available and 
+			  comparable the major morphological paradigms of a wide variety of A
+			  froasiatic languages in all the major families and in the longer term help 
+			  situate these morphologies with respect to one another within Afroasiatic. 
+			  Ultimately we hope also that the archive and its accompanying software may serve 
+			  as a tool for exploration of typology and structure of the form of linguistic 
+			  organization known as the paradigm.   
+e      </p>
 	      <p>As presently configured tha AAMA project consists of 
 		three interconnected modules:</p>
 		<ul>
@@ -77,13 +79,13 @@
 	      <ul style="list-style-type:none;">
 		<li id="datafiles">
 		  <h4>1.1 Data Files</h4>
-		  <p>An extensible collection of <a href="#datafilelist">data files</a>  
-		    containing morphological paradigms from Afroasiatic languages.
-		    The data in itself is application-neutral, and could be cast 
-		    into any plausible
-		    datastore format, and used in conjunction with tools and
-		    query-and-display
-		    applications constructed using any appropriate programming tools.</p>
+		  <p>
+			The base component of the archive is an extensible collection of morphological 
+			  paradigms in a consistent and comparable format  from as many Afroasiatic 
+			  languages as possible . The data in itself is application-neutral, and could 
+			  be cast into any plausible datastore format, and used in conjunction with tools 
+			  and query-and-display applications constructed using any appropriate programming 
+			  tools.
 		  <p>Presently archived files cover principally the verbal and pronominal
 		    morphological paradigms of thirty-three Cushitic and
 		    six Omotic languages. In addition there are files
@@ -118,7 +120,7 @@
 		    what traditionally would be termed:</p>
 		  <ul>
 		    <li> <em>the number, person gender paradigm  of the imperfect 
-			affirmative of the  Burunge glide verb xaw-'come'</em></li>
+			affirmative of the  Burunge glide-stem verb xaw-'come'</em></li>
 		  </ul>
 		  <p>In table form:</p>
 
@@ -153,37 +155,38 @@
 		      </tr>
 		    </tbody>
 		  </table>
-		<p> For the normative/persistant data format we are using
-		JSON. This notation has the advantage of being
-		rigorously defined system of terms (<code>:term</code>),
-		strings (<code>"string"</code>), vectors 
-		(<code>[a b c d]</code> maps (<code>{a b, c d}</code> and sets 
-		(<code>#{a b c d}</code>, and thus reliably transformable 
-		into a consistent RDF notation, while  at the same time 
-		providing a human-readable natural format for data-entry and 
-		inspection.
+		<p> 
+		Our normative/persistent data format, JSON, is a rigorously defined system 
+			of terms (term), strings ("string"), ordered lists 
+			([a b c d],maps/"dictionaries" ({a: b, c: d, . . .} read "the value 
+			of property a is b; of property c is d, . . .) and unordered sets (
+			#{a, b, c, d,}. It is reliably transformable into a consistent 
+			Resource Description Framework (RDF) notation, while at the same time 
+			providing a human-readable natural format for data-entry and inspection. 	
 	      </p>
 	      <p>
 		Our current JSON structure (cf. <a href="#datastructure">below</a>)
 		while open to extension and revision,
 		seems to provide a natural notation for the verbal and 
 		pronominal inflectional paradigms encountered in Afroasiatic,
-		and perhaps for inflectional paradigms generally. </p>
-		  <p>Paradigms are  formally rendered  in AAMA's JSON format by a nested 
+		and perhaps for inflectional paradigms generally.
+		  </p>
+		  <p>
+			  Paradigms are  formally rendered  in AAMA's JSON format by a nested 
 		    data-sturucture, we call ":termcluster": where entities are either 
 		    labels/indices  or data strings (enclosed in quotes); 
 		    where square brackets ( "[ ]") enclose listw and braces("{ }") enclose 
-		    indexed listw ("di9ctionaries"). So that the paradigm just seen in table form woud be 
+		    indexed listw ("dictionaries"). So that the paradigm just seen in table form woud be 
 		    rendered by the following data structure: </p>
 		  <pre>
 {"termcluster":   {"label": "burunge-VBaseImperfGlideStemBaseForm-xaw",
                  "note": "Kiessling1994 ## 7.2.2,7.2.3",
                  "common": {
-                          "polarity": "Affirmative",
-                          "lexeme": "xaw",
-                          "pos": "Verb",
-                          "stemClass": "GlideStem",
                           "tam": "Imperfect"
+                          "polarity": "Affirmative",
+                          "stemClass": "GlideStem",
+                          "pos": "Verb",
+                          "lexeme": "xaw",
                           },
                           "terms": [["number", "person", "gender", "token"],
                                   ["Singular", "Person1", "Common, "xaw"]
@@ -196,13 +199,20 @@
                   }
  }
 		  </pre>
-		  <p> Where "termcluster" is an indexed list, with a unique "label" and a "note" 
-		    property, which always indicates the paradigm's published source; 
-                   "common" is an indexed list of the property=value pairs 
-		    common to every member of the paradigm, and the list of lists "terms" has as 
-		    its first member a lit of the paradigm  term properties 
-		    (= paradigm column heads), while each subsequent member list 
-		    contains the values, in order, of the properties.</p>		
+		  <p> 
+			  Here,  "termcluster" is itself an indexed list, with a unique "label" 
+			  nd a "note" property, which always indicates at least the paradigm's 
+			  published source, in addition to other possible properties; "common" 
+			  is an indexed list of the morphological property=value pairs common 
+			  to every member of the paradigm ("Imperfect", "Affirmative", "GlideStem", 
+			  "Verb", "xaw"), and the list of lists "terms" has as its first member
+			  a list of the paradigm term properties (= paradigm column heads), while 
+			  each subsequent member list contains the values, in order, of the 
+			  properties.You will observe that we rigorously follow the convention of 
+			  referring to properties in lower-case, while values are always 
+			  capitalized.
+		  </p>
+		
 		  <p><em> Any or all the the data files
 		    can be downloaded from the AAMA site, and 
 		    corrections to the existing files and submission, for on-line
@@ -228,7 +238,7 @@
 <pre>
 pos=Verb,lex=xaw,polarity=Affirmative,stemClass=Glide,tam=Imperfect%number,person,gender
 </pre>
-		In paractice it would be listed as:
+		In paractical paradigm-lists it would be appear as:
 <pre>
 Verb,xaw,Affirmative,Glide,Imperfect
 </pre>
@@ -247,7 +257,7 @@ Verb,xaw,Affirmative,GlideStem,Subjunctive
 		  <h4>1.2 A Resource Descripton Framework (RDF) Datastore and Related Tools</h4>
 		  <p>The data archive will hopefully serve a number of 
 		    research and reference purposes. One such purpose is the creation of a 
-		    queriable datastore, which will enable easy maiipulation and combination and comparison
+		    query-able datastore, which will enable easy manipulation and combination and comparison
                     of morphological information within and between different languages and language families. 
                     To this end we have elected to set up such a
 		    datastore  using the W3C-sanctioned  
@@ -260,7 +270,10 @@ Verb,xaw,Affirmative,GlideStem,Subjunctive
 		    basically, RDF involves:</p>
 		  <ol>
 		    <li><em>Identifying units of information, and assigning them URL-like 
-			unique Uniform Resource Identifiers (<a href="https://www.rfc-editor.org/rfc/rfc3986">URI</a>). </em>
+			unique Uniform Resource Identifiers (<a href="https://www.rfc-editor.org/rfc/rfc3986">URI</a>)
+			-- on URI ; see especially Tim Berner-Lee 199? and much subsequent literature 
+				on the value and necessity of assigning to each resource a unique 
+				identifier. </em>
 		      <p>For example, in a paradigm  cited above from the  burunge-pdgms.json 
 			file one of the possible values of the property<em> tam </em>
 			(TenseAspectMode) is <em>Imperfect</em>.  In the correspnding 
@@ -277,7 +290,7 @@ Verb,xaw,Affirmative,GlideStem,Subjunctive
 				  <pre>
 <em>brn:tam</em>					  
 				  </pre>
-				  . while the Burunge TTL file would
+				  while the Burunge TTL file would
                       contain in a brief abbreviation section (typically five to ten items) the entry:</p>
 <pre>
 <em>@prefix brn:     &lt;http://id.oi.uchicago.edu/aama/2013/burunge/&gt;</em>
@@ -286,7 +299,7 @@ Verb,xaw,Affirmative,GlideStem,Subjunctive
 		      <pre>
 <em>&lt;http://id.oi.uchicago.edu/aama/2013/burunge/Imperfect&gt;</em>
  		      </pre>
-		      <p>would be in ttl notation:
+		      <p>would be in more widely used <code>ttl</code> notation:
 				  <pre>
 	<em>brn:Imperfect</em>			  
 				  </pre>
@@ -310,11 +323,11 @@ paradigmTermID-s hasProperty-p withValue-o .
 			</pre>
 		      <p>Thus if the first term of the JSON paradigm given above had the 
 			pdgmTermID <em>aama:d3c483b1</em> one of the (many) triples 
-			descibing it would be (in the ttl notation):</p>
+			descibing it would be (in the <code>ttl</code> notation):</p>
 		      <pre>
 aama:d3c483b1 brn:tam brn:Imperfect .
 		      </pre>
-		      <p>Where <em>aama:</em> is the ttl abbreviation for  </p>
+		      <p>Where <em>aama:</em> is the <code>ttl</code> abbreviation for  </p>
 		      <pre>
 <em>&lt;http://id.oi.uchicago.edu/aama/2013/&gt;</em>
 		      </pre>
@@ -327,7 +340,7 @@ aama:d3c483b1 brn:token  "xaw" .</em>
 		      </pre>
 		      <p>stating that 'the :person property of the term has the value 
 			:Person1'</p>
-		      <p>And so forth. A good way to see practically the relation between 
+		      <p>. . . and so forth. A good way to see practically the relation between 
 			the JSON data file and its RDF transform is to take a look at a paradigm
 			of interest in the 
 			JSON and TTL versions of a language data file of interest: e.g.
@@ -343,7 +356,7 @@ burunge-pdgms:{termclusters:[{label:"brn-VerbGlideStem-xaw-ImperfectAffirmative"
 		    But they are very rapidly produced and indexed (a few seconds per 
 		    language using the AAMA pdgmDict-json2ttl.py program),  efficiently stored, 
                     and permit  extremely quick adccess to information for display, comparison, 
-		    manipulation, and reasoning. As mentiondd, among the RDF  tools in the on-line
+		    manipulation, and reasoning. As mentiond, among the RDF  tools in the on-line
 		    material, there is a Python script for 
 		    transforming the (JSON) data files into appropriate RDF datastore 
 		    (ttl) format, and a set of scripts to upload data files to a local 
@@ -358,11 +371,11 @@ burunge-pdgms:{termclusters:[{label:"brn-VerbGlideStem-xaw-ImperfectAffirmative"
 				  valuable for distinguishing terminologies and 
 			building nomenclatures and ontologies. But in practice, although RDF is an extremely interesting topic in itself, 
 			  running the 
-		    relevant scripts for transforming, adding to ,or correcting archive-data from the json 
+		    relevant scripts for transforming, adding to, or correcting archive-data from the json 
 		    files (usually done via an application menu choice), requires no special 
 		    knowledge about RDF datastores. Some knowledge of the structure of an 
 		    RDF datastore and the SQL-like SPARQL query language however IS required 
-		    if you want to revise or add  a page to the webapp, submitting a new genre of
+		    if you want, for example, to submit a new genre of
 		    query to the datastore in order to extract new information.<p>
 				
 		    <p>Pending an on-line publicly accessible datastore, you
@@ -371,11 +384,11 @@ burunge-pdgms:{termclusters:[{label:"brn-VerbGlideStem-xaw-ImperfectAffirmative"
 		    machine, and loading the data into it.</p>
 		</li>
 		<li id="qinterface" ><h4>1.3 Query/Display User Interface</h4>
-		  <p> The directory 'webappy' contains a set of Python scripts which contitute 
+		  <p> The directory 'webappy' contains a set of Python scripts which constitute 
                     the elements of a rather basic 'proof-of-concept'  application1 with a prototype interface:</p>
 		  <ol>
-		    <li>A set of Python scripts which index the paradigm files, set up the matrerial for the menu
-                      and select lists and input forms,  and programatically transform the JSON files into
+		    <li>A set of Python scripts which index the paradigm files, set up the material for the menu
+                      and select lists and input forms,  and programmatically transform the JSON files into
                       ttl. These are principally:
                       <pre>
 pdgmDict-schemata.py
@@ -384,8 +397,8 @@ pdgmDict-pvlists.py
 pdgmDict-json2ttl.py
                       </pre>
                       </li>
-			  <li>A set of shell scripts to launch the Fuseki datastore and add new or corected data to it, and 
-			  to upload or download new or corrected data to or from the remote repsitory:
+			  <li>A set of shell scripts to launch the Fuseki datastore and add new or corrected data to it, and 
+			  to upload or download new or corrected data to or from the remote repository:
 			  	<pre>
 fuseki.sh
 aama-datastore-update.sh
@@ -435,9 +448,9 @@ pdgmDispUI-formsearch.py
 				to the downloading of a choice of the data files of interest, is the downloading and running of the set of scripts which constitute the
 				application.</p>
 		  <p><h5>Note on Git client</h5>
-		  The aama project uses <a
+		  The AAMA project uses <a
 		  href="http://github.com">GitHub</a> to store data
-		  and tools; you wll need a git client in order to
+		  and tools; you will need a git client in order to
 		  download the tools repository and the data
 		  repositories you are interested in.  Follow the
 		  instructions at
@@ -473,7 +486,7 @@ pdgmDispUI-formsearch.py
 		  <p>
 		    Fuseki is the SPARQL server we are using to query the dataset.  <a
 		    href="http://jena.apache.org/download/index.cgi">Download</a>
-		    the current <code>apache-jena-fuseki-N.N.N-distribution</code>
+		    the current <code>apache-jena-fuseki-n-n-n distribution</code>
 		    distribution (either the zip file or the tar file; NB, make
 		    sure your Java JDK is up-to-date with the download)
 		    and store it in a convenient location.
@@ -501,7 +514,7 @@ pdgmDispUI-formsearch.py
 			  variety of Beja described by Richard Hudson in . . .
 		  <a
 		      href="https://github.com/aama/beja-van">beja-van</a> is the
-			  variety of Beja described by . . . Verhove ub . . .
+			  variety of Beja described by Martine Verhove in . . .
 		  etc.
 		  </p>
 		  <p>Now you need to download the data to your local
@@ -530,14 +543,14 @@ pdgmDispUI-formsearch.py
 
 		  <p>
 		    In the  <code>~/webappy</code> directory, clone the
-		    aama kgithub application repository:
+		    aama github application repository:
 		    <pre>
 ~/aama $ git clone https://github.com/aama/webappy.git
 			</pre>
 		  </p>
 			<p>
 			The Python scripts (<code>. . . .py</code>) will remain in this directory, while the 
-				shell and query scripts (<code>. . . .sh</code>. <code>. . . .q</code>) should be moved to
+				shell and query scripts (<code>. . . .sh</code>. <code>. . . .qr</code>) should be moved to
                     the <code>~/webappy/bin</code> subdirectory</a>
 			</p>
 			  
@@ -552,14 +565,14 @@ pdgmDispUI-formsearch.py
    ~/ 
    |-aama-data/
    |--data/
-   |---afar/ `afar.json`, `afar.ttl`
-   |---geez/ `geez.json`, `geez.ttl`	
-   |---yemsa/ `yemsa.json`, `jemsa.ttl`
+   |---afar/ <em><afar.json, afar.ttl </em>
+   |---geez/ <em><geez.json, geez.ttl</em>	
+   |---yemsa/ <em><yemsa.json, jemsa.ttl</em>
 `  |-jena/
-   |--apache-jena-fuseki-n.n.n/ aamaconfig.ttl, . . .	
-   |-webappy/ pdgmDict-schemata.py, . . . ,  pdgmDisp-baseApp.py, . . .
-   |---bin: fuseki.sh, . . . list-graphs.rq, . . .
-		</pre>
+   |--apache-jena-fuseki-n.n.n/ <em>aamaconfig.ttl, . . .	</em>
+   |-webappy/ <em>pdgmDict-schemata.py, . . . ,  pdgmDisp-baseApp.py, . . .</em>
+   |---bin: <em>fuseki.sh, . . . list-graphs.rq, . . .</em>
+   </pre>
 	  </p>
 	    </li>
 	      <h4>3. Configuring Appication</h4>
@@ -735,7 +748,7 @@ Query: bin/fuquery-gen.sh bin/list-graphs.rq
 		  be invoked through a menu choice, or run independently as a Python script.
 		  All of them involve lining up a data framework, converting this into a
 		  SPARQL query by one of the functions in <code>pdgmDispQuery.py</code>, running
-		  the SkPARQL query, and displaying the result in some appropriate format.</p>
+		  the SPARQL query, and displaying the result in some appropriate format.</p>
 			  <ol>
 				  <li> <em>A basic paradigm display function</em>
 			        <p>                                                                                                                                     		  
@@ -773,7 +786,7 @@ pdgmDisp-baseApp-GPDGM.py
 
 				  </li>
 			  
-				  <li> <em>A function to search morphological features acrod the whole datastore</em>
+				  <li> <em>A function to search morphological features across the whole datastore</em>
 					  <p> 
 						  <pre>
 pdgmDisp-formSearch.py
@@ -828,19 +841,9 @@ finds the data it displays by running a SPARQL query against the AAMA datastore.
 These queries are formed from the display data request by one or more of the
  <code>query()</code> functions contained in this script and which have been imported
 into the display script. The query itself, and its CSV output, are
-for the moment printed to the terrminal (or eventually to a log file).
+for the moment printed to the terminal (or eventually to a log file).
 		  </p>
 </li>
-	<li><em>A Script to Generate Alternate Paradigm Name Sequences</em>
-
-				  <pre>
-pdgmDisp-pnames.py
-				  </pre>
-			This program simply enables the uiser to generate and display, presumably on 
-an experimental basis, a "paradigm-name" list in a different order from that 
-dictated by the `pdgmPropOrder` feature of the `LANG-pdgms.json` file.
-		  </p>
-		  </li>
 	    <li id="aamaupdate">
 	      <em>Note: Remote Data and Webapp Update</em>
 	      <p>AAMA is an on-going project. Its data is constantly being updated,
