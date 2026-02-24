@@ -106,6 +106,7 @@
 		    treatment as pronominal and verbal. We are experimenting with various 
 		    consistent ways to systematically treat at least case, number, 
 		    focus morphosyntax across the archive.</p>
+			<h4>The Paradigm</h4>
 		  <p>Informally we can define "Paradigm" in its simplest and most obvious 
 		    sense as:
 		    <ul>
@@ -178,8 +179,8 @@
 			  Paradigms are  formally rendered  in AAMA's JSON format by a nested 
 		    data-sturucture, we call ":termcluster": where entities are either 
 		    labels/indices  or data strings (enclosed in quotes); 
-		    where square brackets ( "[ ]") enclose listw and braces("{ }") enclose 
-		    indexed listw ("dictionaries"). So that the paradigm just seen in table form woud be 
+		    where square brackets ( "[ ]") enclose lists and braces("{ }") enclose 
+		    indexed lists ("dictionaries"). So that the paradigm just seen in table form woud be 
 		    rendered by the following data structure: </p>
 		  <pre>
 {"termcluster":   {"label": "burunge-VBaseImperfGlideStemBaseForm-xaw",
@@ -207,10 +208,10 @@
 			  nd a "note" property, which always indicates at least the paradigm's 
 			  published source, in addition to other possible properties; "common" 
 			  is an indexed list of the morphological property=value pairs common 
-			  to every member of the paradigm ("Imperfect", "Affirmative", "GlideStem", 
-			  "Verb", "xaw"), and the list of lists "terms" has as its first member
-			  a list of the paradigm term properties (= paradigm column heads), while 
-			  each subsequent member list contains the values, in order, of the 
+			  to every member of the paradigm ("tam=Imperfect", "polarity=Affirmative", "stemClass=GlideStem", 
+			  "pos=Verb", "lexeme=xaw"), and the list of lists "terms" has as its first member
+			  a list of the paradigm term <em>properties</em> (= paradigm column heads), while 
+			  each subsequent member list contains the <em>values</em>, in order, of the 
 			  properties.You will observe that we rigorously follow the convention of 
 			  referring to properties in lower-case, while values are always 
 			  capitalized.
@@ -247,13 +248,15 @@ Verb,xaw,Affirmative,Glide,Imperfect
 </pre>
 			
 		<p> and might occur in a list as:</p>
-		<pre>.  .  .
+		<pre>
+.  .  .
 Verb,qadid,Affirmative,DentalStem,Perfect
 Verb,qadid,Affirmative,DentalStem,Subjunctive
 Verb,xaw,Affirmative,GlideStem,Imperfect
 Verb,xaw,Affirmative,GlideStem,Perfect
 Verb,xaw,Affirmative,GlideStem,Subjunctive
-. . . </pre>
+. . . 
+		</pre>
 		</li>
 
 		<li id="rdfdatastore">
@@ -274,7 +277,9 @@ Verb,xaw,Affirmative,GlideStem,Subjunctive
 		  <ol>
 		    <li><em>Identifying units of information, and assigning them URL-like 
 			unique Uniform Resource Identifiers (<a href="https://www.rfc-editor.org/rfc/rfc3986">URI</a>)
-			-- on URI ; see especially Tim Berner-Lee 199? and much subsequent literature 
+			-- on URI ; see especially 
+				<a href=https://www.rfc-editor.org/rfc/rfc1630>Tim Berners-Lee 1994</a> 
+				and much subsequent literature 
 				on the value and necessity of assigning to each resource a unique 
 				identifier. </em>
 		      <p>For example, in a paradigm  cited above from the  burunge-pdgms.json 
@@ -383,7 +388,7 @@ burunge-pdgms:{termclusters:[{label:"brn-VerbGlideStem-xaw-ImperfectAffirmative"
 				
 		    <p>Pending an on-line publicly accessible datastore, you
 		    can set one up on your own  computer. Instructions
-		    are given below for setting up an RDF server on an individual 
+		    are given below for setting up the Fuseki RDF server on an individual 
 		    machine, and loading the data into it.</p>
 		</li>
 		<li id="qinterface" ><h4>1.3 Query/Display User Interface</h4>
@@ -442,14 +447,14 @@ pdgmDispUI-formsearch.py
 	    </li>
 	    <li id="software">
 	      <h4>2. How to Install the Required Software</h4>
-			<p>Although it is anticipated that the AAMA digital application will eventually have a
-				home where its data and be consulted, and to a certain extent manipulated, online we anticipate that
+			<p>Although we plan for the AAMA digital application to be hosted on a site 
+				where its data can be consulted, and to a certain extent manipulated, online we anticipate that
 			most users will want to download the application and a selection (or all!) of the data, and work
 			with it on their own machine, perhaps including data of their own, which they might wish to propose uploading
 			to the home site, along with proposals for modifications and additions to the data-manipulation software.</p>
-			<p>At the moment, pending the creation of an executable of the <code>.exe</code> or <code>.jar</code> type what we can propose, in addition
-				to the downloading of a choice of the data files of interest, is the downloading and running of the set of scripts which constitute the
-				application.</p>
+			<p>At the moment, pending the creation of an appropriate executable what we can propose, in addition
+				to the downloading of a choice of the data files of interest, is the downloading and running of the set of 
+				scripts which constitute the application.</p>
 		  <p><h5>Note on Git client</h5>
 		  The AAMA project uses <a
 		  href="http://github.com">GitHub</a> to store data
@@ -571,7 +576,7 @@ pdgmDispUI-formsearch.py
    |--data/
    |---afar/ <em>afar.json, afar.ttl </em>
    |---geez/ <em>geez.json, geez.ttl</em>	
-   |---yemsa/ <em>yemsa.json, jemsa.ttl</em>
+   |---yemsa/ <em>yemsa.json, yemsa.ttl</em>
    |-jena/
    |--apache-jena-fuseki-n.n.n/ <em>aamaconfig.ttl, . . .	</em>
    |-webappy/ <em>pdgmDict-schemata.py, . . . ,  pdgmDisp-baseApp.py, . . .</em>
@@ -713,19 +718,19 @@ Query: bin/fuquery-gen.sh bin/list-graphs.rq
 	    <li id="aamaquery">
 	      <h4>4. Running the Application</h4>
 	      The SPARQL service can be accessed to explore the morphological
-	      data via two interfaces:
+	      data via two distinct interfaces:
 	      <ul style="list-style-type:none;">
 		<li>
 		  <h4>4.1The Apache Jena Fuseki interface </h4>
 		  <p>
 		    You can see this on your browser at 
 		    <code>localhost:3030</code> after you launch Fuseki. 
-		    SPARQL queries, for example, . . . , can be run directly 
+		    SPARQL queries can be run directly 
 		    against the datastore 
 		    in the Fuseki Control Panel on the 
 		    <code>localhost:3030/dataset.html</code> page
 		    (select the <code>/aama</code>
-		    dataset when prompted). Also the <code>pdgmDisp-...</code>
+		    dataset when prompted). Note that the <code>pdgmDisp-...</code>
                     scripts automatically write to the terminal all SPARQL queries generated
                     in the course of the computation. These queries can be copied and
                     pasted into the Fuseki panel for inspection and debugging.
@@ -775,7 +780,7 @@ pdgmDisp-baseApp-PDGM.py
 					<pre>
 pdgmDisp-baseApp-GPDGM.py
 					</pre>
-					Here	we have this same structure of a set of 'common'
+					Here we have this same structure of a set of 'common'
 				 property-value pairs and a "table" of 'terms', except that for the 
 				properties <code>commmon</code> and 
 				<code>terms</code> the set of property-values associated with each is 
@@ -795,7 +800,7 @@ pdgmDisp-baseApp-GPDGM.py
 						  <pre>
 pdgmDisp-formSearch.py
 						  </pre>
-					  is for the comparison of
+				This serves for the comparison of
 realizations of a given property/value combination in different
 languages. Two or more languages can be selected from the upper-right
 language-selection list. In an Entry box below a list of
@@ -820,7 +825,11 @@ the full paradigm, sequentially numbered, in the lower right-hand text
 box. For moore precise comparison one could then go on to 'combine'
 the paradigms as in the baseApp script.
 </p>
-			  </li>
+	  </ul>		  
+<p>
+In  addition there are:	
+</p>
+		  <ul></ul>
 		<li><em>A paradigm-name generation function</em>
 			<p>
 			<pre>
@@ -848,11 +857,8 @@ into the display script. The query itself, and its CSV output, are
 for the moment printed to the terminal (or eventually to a log file).
 		  </p>
 </li>
-</ol>
-</li>
 
-
-	    <li id="aamaupdate">
+   <li id="aamaupdate">
 	      <h4>Remote Data and Webapp Update</h4>
 	      <p>AAMA is an on-going project. Its data is constantly being updated,
 		corrected, and added-to; the accompanying webb application
@@ -888,8 +894,6 @@ for the moment printed to the terminal (or eventually to a log file).
 		will update he files of the web applicagtion.
 	      </p>
 	    </li>
-	  </ol>
-	  </li>
 	  </ul>
 
 	  <h4 id="dataschema"> Appendix 1: The Data Schema </h4>
