@@ -30,7 +30,7 @@
           <h3>
 	  <a name="welcome-to-aama---the-afro-asiatic-morphology-archive" class="anchor" href="#welcome-to-aama---the-afro-asiatic-morphology-archive"><span class="octicon octicon-link"></span></a>Welcome to AAMA - the Afro-Asiatic Morphology Archive.</h3>
 
-	  <h4>Getting Started(v6)</h4>
+	  <h4>Getting Started(v7)</h4>
 
 	  <h5>Overview</h5>
 	  <ul style="list-style-type:none;">
@@ -906,43 +906,49 @@ for the moment printed to the terminal (or eventually to a log file).
 	      <pre>
 
 {
-|-"lang;"        <em>"language name"</em>
-|-"subfamily;"	<em>"language subfamily name"</em>			 
-|-"lgpref:"       <em>"string representing 3-character ns prefix used for the 
-/                  URI of language-specific morphosyntactic properties 
-/                  and values"</em>
-|-"datasource:"   <em>"bibliographic source(s) for the data in the file"</em>
-|-"datasourceNotes:" <em>"remarks, if necessary, about darasource"</em>
-|-"transcription:"  <em>"remarks, if necessary about how the transcription should be interpreted
-/						w.r.t. normative AAMA transcription. (The transcription of the 'LANG-pdgms.json' file 
-/	 					is always that of the datasource.)"</em>
-|-"geodemoURL:"   <em>"on-line geo-/demo-graphical information about the language"</em>
-|-"geodemoTXT:"   <em>"short textual summary of geo-/demographcal information"</em>
-|-"schemata:" {	<em>"associative map of each morphosyntactic property used 
-/                  in the inflectional paradigms with a list of its values"</em>>}
-|-"lexemes:"   {  <em>"associative map of each paradigmatic 'lexeme'-ID with an indication of 
-/					its lemma, gloss, part-of-speech and possibly other properties relevant to the
-/				     collection of paradigms -- a provisional stand-in for a reference to a true digital lexicon".</em>}
-|-"pdgmPropOrder:"  <em>"list of paradigm properties in the order their values are to be listed in paradigm labels
-/		  	           (can be programatically altered)"</em>
-|-"termclusters:"   {  <em>"label-ordered list of  term-clusters/paradigms,
-/                   each of which has the structure:"</em>}
-|----"label:"     <em>"descriptive label assigned to the term-cluster at data-entry"</em>
-|----"note:"      <em>"bibliographic reference to source of paradigm data; plus other
-/					remarks, if necessary"</em>
-|----"common:"    <em>"map of property-value pairs which all members of the
-/                 termcluster have in common"</em>
-|----"terms:"     <em>"list of lists, the first of which enumerates  the
-/                  properties which differentiate individual terms, while
-/                  the others list, in order, the value of the i-th
-/                  property -- in fact, a property-value-table realization of the distinct property-
-/                  value pairs of the lexeme in question"</em>
-|   }
-|
-| . . .
-|
-| ]
-}
+|-"lang;"        		"language name"
+|-"subfamily;"		"language subfamily name"			 
+|-"lgpref:"       		"string representing 3-character ns prefix used for the  
+				URI of language-specific morphosyntactic properties                 	
+				and values"
+|-"datasource:"   	"bibliographic source(s) for the data in the file"
+|-"datasourceNotes:" "remarks, if necessary, about darasource"
+|-"transcription:"        "remarks, if necessary about how the transcription should be interpreted
+				w.r.t. normative AAMA transcription. (The transcription of the 'LANG-					pdgms.json' file is always that of the datasource.)"
+|-"geodemoURL:"   	"on-line geo-/demo-graphical information about the language"
+|-"geodemoTXT:"   	"short textual summary of geo-/demographcal information"
+|-"schemata:" {	
+				"associative map of each morphosyntactic property used 	                				in the inflectional paradigms with a list of its values">
+			}
+|-"lexemes:"   {  	
+				"associative map of each paradigmatic 'lexeme'-ID with an indication of 
+				its lemma, gloss, part-of-speech and possibly other properties relevant to the
+				collection of paradigms -- a provisional stand-in for a reference to a true 				digital lexicon".
+			}
+|-"pdgmPropOrder:"  "list of paradigm properties in the order their values are to be listed in 					paradigm labels  (can be programatically altered)"
+|-"termclusters:"   [ 	
+				"label-ordered list of term-clusters/paradigms,
+                 		  each of which has the structure:"
+			      {
+|----"label:"    		 "descriptive label assigned to the term-cluster at data-entry"
+|----"note:"      		"bibliographic reference to source of paradigm data; plus other
+				 remarks, if necessary"
+|----"common:"     {
+			  	"map of property-value pairs which all members of the
+                 		 termcluster have in common"
+			     }
+|----"terms:"    [[ 		
+				"list of lists, the first of which enumerates  the
+                		  properties which differentiate individual terms, while   the others list, in   				 order, the value of the i-th
+                		 property -- in fact, a property-value-table realization of the distinct property-
+                		 value pairs of the lexeme in question"
+			   ]
+			]
+			}	
+			...
+			]
+ }
+			  
 
 </pre>
 	  <h4 id="datafilelist"> Appendix 2: The Data Files </h4>
